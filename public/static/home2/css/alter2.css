@@ -1,0 +1,20 @@
+.myMask{position: fixed;top: 80px;left: 0; width: 100%; height: 100%;    background-color: rgba(0,0,0,.3);
+    transition: opacity .2s ease;;display: none;z-index: 999;}
+.myDlg{color: #000;font-size: 13px;width: 640px;margin: 0 auto; position: absolute;display: none; background: #fff; z-index: 1001;}
+.Dlg-footer{ text-align: center;padding-bottom: 20px;}
+
+/**/
+
+.form-item{ color: #111; font-size: 14px;overflow: hidden;}
+.form-item ul{margin: 10px;  overflow: hidden;}
+.form-item li{margin: 5px auto;width: 100%;display: table;position: relative;}
+.form-item label{/* display:inline-block; *//* line-height: 35px; *//* position: relative; *//* text-align: left; */display: table-cell;/* height: 35px; */position: relative;padding: 0;width: 80px;}
+.form-item p{ line-height: 30px;}
+.form-item .form-input{/* float: left; */box-sizing: border-box; padding: 0 10px; font-size: 14px;line-height: 35px;height: 35px;width: 100%;color: #111;border: 1px solid #ddd;outline: 0;-webkit-appearance: none;display: table-cell;position: relative;vertical-align: middle;background-color: transparent;}
+/**/
+.app-modal-header{position: relative;height: 50px;line-height: 50px;border-bottom: 1px solid #e6e6e6}
+.app-modal-header h3.title{margin: 0;display: inline-block;font-weight: 400;text-indent: 15px;font-size: 16px}
+.app-modal-header a.close{position: absolute;right: 15px;top: 50%;margin-top: -10px;width: 20px;height: 20px;line-height: normal;text-align: center}
+.app-modal-header a.close i{background-position: -69px -284px;vertical-align: middle}
+.app-modal-header a.close:hover i,.app-modal-header a.close i{display: inline-block;font-size: 0;background-image: url(../images/sprite.icon.png?v=c7552ca40e);width: 18px;height: 18px}
+.app-modal-header a.close:hover i{background-position: -115px -284px}

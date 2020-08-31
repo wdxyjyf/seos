@@ -1,0 +1,41 @@
+﻿{include file='common/head'}
+<!-- 登录注册 -->
+<div class="demo">
+	<div class="demobg"></div>
+	<div class="aui-content-box clearfix">
+		<div class="aui-content-box-fl allheight">
+			<div class="aui-form-header">
+				<div class="aui-form-header-item on">注册新账号</div>
+			</div>
+			<form action="" method="post" id="registform">
+				<input type="hidden" name="yaoqingid" value="{$userid}" id="yaoqingid">
+				<div class="aui-form-list">
+					<img src="/static/home2/images/log.png" />
+					<input type="text" class="aui-input findpass" placeholder="请输入手机号" data-required="required" autocomplete="off" name="mobile" id="rmobile">
+				</div>
+				<div class="aui-form-list">
+					<img src="/static/home2/images/pass.png" />
+					<input type="password" class="aui-input findpass" placeholder="请设置您的密码" data-required="required" autocomplete="off" name="password" id="rpass">
+				</div>
+				<div class="aui-form-list">
+					<img src="/static/home2/images/yzm.png" />
+					<input type="text" class="aui-input findpass" name="code" placeholder="请输入验证码" data-required="required" autocomplete="off" id="rcode">
+					<input type="button" class="aui-child codebtn" value="获取验证码" id="get_code">
+				</div>
+				<div class="aui-form-pwd clearfix findfoot">
+					<div class="terms">
+						<input type="checkbox" id="is_agree">
+						<a href="/agreement">同意使用协议</a>
+					</div>
+					<a href="login">已有账号 ? 去登录</a>
+					<div class="c_l"></div>
+				</div>
+				<div class="aui-form-btn">
+					<button class="aui-btn" id="registerbut">注 册</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div style="width: 1080px;height: 80px;"></div>
+{include file='common/footer'}

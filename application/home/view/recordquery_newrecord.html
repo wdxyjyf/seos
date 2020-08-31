@@ -1,0 +1,107 @@
+{include file='common/head'}
+<!-- 顶部支撑盒子-->
+<section class="products">
+</section>
+<!-- 搜素列表 -->
+<div class="js">
+  <div class="kj">
+    <div class="pmt">
+        <div class="gun"></div>
+        <h1 style="color: #333"><a href="/newbeian">最新备案列表</a> <span>></span> <a href="/beian" class="bacx">备案查询</a></h1>
+    </div>
+    <form action="/newbeian" method="post" class="newform">
+        <div class="onep">
+            <span class="onetit">备案性质 :</span>
+            <ul class="fuxuan">
+                <li><input type="checkbox" value="全部" id="all" name="nature[]" {if($nature && in_array('全部', $nature))} checked {/if}><span>全部</span></li>
+                <li><input type="checkbox" value="企业" name="nature[]" {if($nature && in_array('企业', $nature))} checked {/if}><span>企业</span></li>
+                <li><input type="checkbox" value="个人" name="nature[]" {if($nature && in_array('个人', $nature))} checked {/if}><span>个人</span></li>
+                <li><input type="checkbox" value="事业单位" name="nature[]" {if($nature && in_array('事业单位', $nature))} checked {/if}><span>事业单位</span></li>
+                <li><input type="checkbox" value="社会团体" name="nature[]" {if($nature && in_array('社会团体', $nature))} checked {/if}><span>社会团体</span></li>
+            </ul>
+        </div>
+        <div class="twop">
+            <span class="twotit">省市地区 :</span>
+            <div class="rightbox">
+                <ul class="province">
+                    <li><span class="default allprovince" data-id="0" data-cname="全国">全国</span></li>
+                    {foreach $provinces as $key => $value}
+                    <li><span data-id="{$value.city_id}" class="othercity" data-cname="{$value.city_zh}">{$value.city_zh}</span></li>
+                    {/foreach}
+                </ul> 
+            </div>
+            <div class="c_l"></div>
+            <input type="hidden" name="city" class="cityval">
+        </div>
+        <div class="threep">
+            <span class="onetit">备案时间 :</span>
+            <ul class="timelist">
+                <li><span class="default2 alltime" data-time="0">全部</span></li>
+                <li><span data-time="7">最近七天</span></li>
+                <li><span data-time="30">最近30天</span></li>
+                <li class='zdy'><span data-time="4">自定义</span></li>
+                <li style="display: none;" class="timebox">
+                    <div class="layui-inline">
+                        <input type="text" class="layui-input start" placeholder="开始时间" name="startime" value="{$starttime?:''}">
+                    </div>
+                    <div class="layui-inline">
+                        <input type="text" class="layui-input end" placeholder="结束时间" name="endtime" value="{$endtime?:''}">
+                    </div>
+                </li>
+            </ul>
+            <input type="hidden" name="beiantime" class="beiantimeval">
+        </div>
+        <div class="fourp">
+            <span class="onetit">高级搜索 :</span>
+            <input type="text" name="url_name" placeholder="网站域名或备案名称搜索" class="urlname" value="{$kw?:''}">
+            <button type="button" id="beianbtn">查询</button>
+        </div>
+    </form>
+    <div class="fetchdata" data-province="{$cityid}" data-time="{$beiantime}"></div>
+    <div id="datatable">
+        <table class="pmddd">
+          <tr class="tabtit">
+            <th width="90px;">网站域名</th>
+            <th width="200px;">备案名称</th>
+            <th width="90px;">备案性质</th>
+            <th width="130px;">备案号</th>
+            <th width="100px;">备案审核时间</th>
+          </tr>
+          <tbody id='content'>
+            {if $beianlist}
+            {foreach $beianlist as $key => $value}
+            <tr class="tbodytit">
+                <td><a href="/beian/{$value.website_url}">{$value.website_url}</a></td>
+                <td>{$value.name}</td>
+                <td>{$value.nature}</td>
+                <td>{$value.record_num}</td>
+                <td>{$value.status_time}</td>
+            </tr>
+            {/foreach}
+            {else /}
+            <tr style="text-align: center;">
+                <td colspan="4"><h1 style="margin-top: 40px;">暂无相关数据，请核对后重新选择</h1></td>
+            </tr>
+            {/if}
+          </tbody>
+        </table>
+        {if $beianlist}
+        <div class="pagestyle">
+            {$fenye|raw}
+            <!-- <form action="">
+                <input type="hidden" name="page">
+                <input type="hidden" name="city">
+                <input type="hidden" name="nature">
+            </form> -->
+        </div>
+        <input type="hidden" class="beian_maxpage" value="{$beian_maxpage}">
+            {if $maxPage}
+                <p class="maxPage">当前最多可支持查看<span>{$maxPage}</span>页，更多备案信息，请<a href="tencent://message/?uin=3215787225&Menu=yes">联系客服</a>！</p>
+            {/if}
+        {/if}
+    </div>
+  </div>
+</div>
+<!-- 底部 -->
+{include file='common/footer'}
+

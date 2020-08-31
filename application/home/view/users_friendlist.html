@@ -1,0 +1,118 @@
+﻿{include file='common/head'}
+<!--权限与升级-->
+<div class="wrap1">
+	<div class="vip_cont c100 clearfix">
+		<!-- 左侧 -->
+		<div class="fl vip_left vip_magLeft">
+			<dl>
+				<dt>我的账号</dt>
+				<dd>
+				<p><a href="/homeuser">账号信息</a></p>
+				<p><a href="/edituser">修改资料</a></p>
+				<p><a href="/upass">修改密码</a></p>
+				<p><a href="/authlist" >权限升级</a></p>
+				
+				<p>
+					<a href="/plist">下载记录</a>
+				</p>
+				<p class="commonstyle">
+					<a href="/visit">邀请领VIP</a>
+				</p>
+				<img src="/static/home2/images/vip.png" class="invite">
+				</dd>
+			</dl>
+		</div>
+		<!-- 右侧 -->
+		<div class="fr vip_right vip_magRight">
+			<div class="vip_center">
+				<h1 style="width:100px;display: inline-block; text-align: center; cursor: pointer;">活动说明</h1>
+				<h1 class="noactive" style="width:100px;display: inline-block; text-align: center; cursor: pointer;">我的邀请</h1>
+			</div>
+
+			<div class="rules">
+				<div class="rules__title">
+					— 邀请活动规则说明 —
+				</div>
+				<div class="rules__item">
+					<div class="rules__item__title">
+						<span>活动时间</span>
+					</div>
+					<div class="rules__item__content">
+						2020年01月15日19:00 到 2020年03月15日12:00<br>
+						活动期间，所有用户均可发起邀请，邀请的用户必须为新注册用户<br>
+						邀请好友注册成功后，累计邀请人数，可获得对应奖励。
+					</div>
+				</div>
+				<div class="rules__item">
+					<div class="rules__item__title">
+						<span>邀请奖励</span>
+					</div>
+					<div class="rules__item__content">
+						<ul>
+							<li>每累计邀请1位用户可获得1天全站VIP（享受所有权限）；</li>
+							<li>满足邀请人数后，VIP自动到账， 已是VIP用户，获得VIP奖励后，直接增加当前账号VIP的天数。 </li>
+						</ul>
+					</div>
+				</div>
+				<div class="rules__item">
+					<div class="rules__item__title">
+						<span>作弊惩罚</span>
+					</div>
+					<div class="rules__item__content">
+						<ul>
+							<li>若邀请的好友呈现出明显的规则：如邀请的多名好友昵称非常相似、邀请的用户注册时间分布过于紧密，则判定为机器作弊，将取消奖励，严重者取消参与资格,则判定为刷小号作弊 ，将收回奖励。</li>
+							<li>搜一搜站长在法律允许范围内享有本次活动解释权。</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<table class="pmddd hide">
+			    <tr class="tabtit2">
+			    	<th width="5%"></th>
+			      	<th width="20%">日期</th>
+			        <th width="40%">用户名</th>
+			        <th>VIP奖励</th>
+			    </tr>
+			    {if empty($userlist) }
+			        <tr class="tabtit3"><td colspan="7">暂无邀请好友</td></tr>
+			    {else /} 
+			    <tbody id="content">
+		        {foreach $userlist as $key=>$vo}
+		        <tr class="tabtit4">
+					<td></td>
+					<td>{$vo.reg_time}</td>
+		          	<td>{$vo.mobile}</td>
+		          	<td>1天</td>
+		        </tr>
+		        {/foreach}
+		        </tbody>
+		      {/if}
+		    </table>
+		</div>
+		<div class="c_l"></div>
+	</div>
+</div>
+
+<div class="cus03">
+	<p class="recom">
+		<span>推广链接:</span><input id="recomUrl" value="{$yqurl}" type="text" disabled><button id="copyurl">复制链接</button>
+	</p>
+</div>
+<div class="c_l"></div>
+{include file='common/footer'}
+<script>
+	$('.vip_center h1').click(function(){
+		if ($(this).hasClass('noactive')) {
+			$('.vip_center h1').addClass('noactive')
+			$(this).removeClass('noactive')
+			if ($(this).index() == 0) {
+				$('.rules').removeClass('hide')
+				$('.pmddd').addClass('hide')
+			} else {
+				$('.rules').addClass('hide')
+				$('.pmddd').removeClass('hide')
+			}
+		}
+	})
+</script>

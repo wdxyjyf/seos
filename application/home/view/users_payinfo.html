@@ -1,0 +1,97 @@
+{include file='common/head'}
+<!--权限与升级-->
+<div class="wrap1">
+	<div class="vip_cont c100 clearfix">
+		<!-- 左侧 -->
+		<div class="fl vip_left vip_magLeft">
+			<dl>
+				<dt>我的账号</dt>
+				<dd>
+				<p><a href="/homeuser">账号信息</a></p>
+				<p><a href="/edituser">修改资料</a></p>
+				<p><a href="/upass">修改密码</a></p>
+				<p class="commonstyle"><a href="/authlist" >权限升级</a></p>
+				<p>
+					<a href="/visit">邀请列表</a>
+				</p>
+				<p>
+					<a href="/plist">下载记录</a>
+				</p>
+				</dd>
+			</dl>
+		</div>
+		<!-- 右侧 -->
+		<div class="fr vip_right vip_magRight">
+			<div class="vip_center">
+				<h1 style="width:100px;">升级详情</h1>
+			</div>
+			<div class="layui-form-item inputstyle">
+		        <label class="layui-form-label inputlable2">升级说明</label>
+		        <div class="layui-input-4">
+		        	<span class="inputlable3">{$title}</span>
+		        </div>
+		    </div>
+		    <div class="layui-form-item">
+	            <label class="layui-form-label inputlable2">支付方式</label>
+	            <div class="layui-input-block">
+	                <input type="radio" name="pay_type" value="alipay" title="支付宝" style="margin-left: 30px;" checked>
+	                <img src="/static/home2/images/alipaly.png" style="margin-left: 5px;">
+	                <input type="radio" name="pay_type" value="weixin" title="微信" style="margin-left: 30px;" id="weixin">
+	                <img src="/static/home2/images/weixin.png" style="margin-left: 5px;">
+	            </div>
+        	</div>
+        	<div class="layui-form-item">
+		        <label class="layui-form-label inputlable2">支付价格</label>
+		        <div class="layui-input-4">
+		        	<span class="inputlable3">{$price} / 年</span>
+		        </div>
+		    </div>
+
+		    <div class="layui-form-item" >
+		        <div class="layui-input-block">
+		        	<a href="/pay" target="_blank" class="layui-btn pay" style="background: #504cc1;margin-left: 40px;">支付</a>
+		        </div>
+		    </div>
+		    <div class="payform">
+		    	<form action="/pay" method="post" id="pform">
+		    		<input type="hidden" name="gid" value="{$type}">
+		    		<input type="hidden" name="typetit" value="{$typetit}">
+		    	</form>
+		    </div>
+		</div>
+		<div class="c_l"></div>
+	</div>
+</div>
+<div class="cus03">
+	<p class="recom">
+		<span>推广链接:</span><input id="recomUrl" value="{$yqurl}" type="text" disabled><button id="copyurl">复制链接</button>
+	</p>
+</div>
+<div class="c_l"></div>
+<div class="footersss">
+  <div class="ft" style="margin-top: 70px;">
+   
+    <div class="c_l"></div>
+    <div class="fttt">
+		<p style="color:#666;">© CopyRight 2019 南京白鸥网络技术有限公司  </p>
+		<h2><a href="http://www.beian.miit.gov.cn/"> 苏ICP备17006137号-3</a></h2>
+		<h2 class="footabout"><a href="/contact"> 联系我们</a></h2>
+		<h2 class="footabout"><a href="/about"> 关于我们</a></h2>
+		<h2 class="footabout"><a href="/agreement"> 使用协议</a></h2>
+		<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=badeb4d7a314531403d2a395623f3bd0b5b48e8542ecac260f0530356a957fdc" style="margin-left:20px;"><img border="0" src="/static/home2/images/qq2.png" alt="搜一搜站长工具" title="搜一搜站长工具" width="25px" height="25px"></a>
+		<div class="c_l"></div>
+	</div>
+  </div>
+</div>
+
+<div id="mask" class="mask"></div>    
+<div class="unshow user-profile-name hide">
+	<img class="qr-close" src="/static/home2/images/close.png">
+	<p class="qr-title">微信支付</p>
+	<div id="qrcode"></div>
+	<p class="qr-price">{$price}元</p>
+</div>
+
+{$config['cnzz']|raw}
+</body>
+</html>

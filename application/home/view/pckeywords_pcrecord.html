@@ -1,0 +1,88 @@
+﻿{include file='common/head'}
+
+<!-- 搜索框-->
+<section class="products">
+  <div class="container">
+    <div class="search-div">
+      <form action="/pcrank" method="post">
+       <input type="hidden" name="engine" id="engine" value="{$engine}">
+         <table class="search-table"> 
+          <tr>
+            <td class="xiala" width="6.5%" data-value="1">
+              <p class="home_icons {$icon}">
+                <span class="caret"></span>
+              </p>
+              <ul class="dropdown-menu">
+                  <li data-engine="0" data-icon="icon-baidu">
+                      <a><span class="home_icons icon-baidu" alt="百度"></span></a>
+                  </li>
+                  <li data-engine="1" data-icon="icon-360">
+                      <a><span class="home_icons icon-360" alt="360"></span></a>
+                  </li>
+                  <li data-engine="2" data-icon="icon-sougou">
+                      <a><span class="home_icons icon-sougou" alt="搜狗"></span></a>
+                  </li>
+                  <li data-engine="3" data-icon="icon-shenma">
+                      <a><span class="home_icons icon-shenma" alt="神马"></span></a>
+                  </li>
+              </ul>
+            </td>
+            <td width="2%"></td>
+            <td width="35%" class="tdline">
+              <input class="search-input pcurl" placeholder="请输入网址" autocomplete="off" value="{$target}">
+            </td>
+            <td width="27.8%" class="inputtwo">
+               <input class="search-input pckeywords" placeholder="请输入关键词" autocomplete="off" value="{$kw?$kw:''}">
+            </td>
+            <td width="11%" class="pl"><a href="/pcranks"><span>批量查询</span></a></td>
+            <td class="search-btn2" id="selectbtn">查询排名</td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+  <div class="pmdata" style="display: none" data-sign="{$sign}" data-engine="{$engine}"></div>
+</section>
+<!-- 内容 -->
+<div class="keyjb">
+  <div class="kejb">
+    <div class="keytou">
+       <div class="gunun"></div>
+       <p class="resp"><strong>PC关键词排名查询结果</strong></p>
+       <div class="c_l"></div>
+    </div>
+    <table class="pmaaa uniquetab hottab">
+      <tr>
+        <th >网址地址</th>
+        <th >搜索引擎</th>
+        <th >终端</th>
+        <th >关键词</th>
+        <th >PC端搜索量</th>
+        <th >排名</th>
+        <th >预估流量</th>
+      </tr>
+      <tr class="reslist">
+        <td>{$target}</td>
+        <td>{$type}</td>
+        <td>PC端</td>
+        <td>{$kw}</td>
+        <td>{$sousl?:'<img src="/static/home2/images/wh2.png" title="暂无查到搜索量">'}</td>
+        <td id="rank"><img src="/static/home2/images/loading.gif"></td>
+        <td id="flow"><img src="/static/home2/images/loading.gif"></td>
+      </tr>
+    </table>
+  </div>
+</div>
+{if ($ad)}
+<div class="ad">
+    <a href="{$ad.url}"><img src="{$ad.pic}" title="{$ad.title}"></a>
+</div>
+{/if}
+<!-- 简介 -->
+<div class="js">
+  {include file='common/footnav'}
+</div>
+<!-- 底部 -->
+{include file='common/footer'}
+
+

@@ -1,0 +1,175 @@
+{include file="common/head"/}
+<div class="admin-main layui-anim layui-anim-upbit" ng-app="hd" ng-controller="ctrl">
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>{$title}</legend>
+    </fieldset>
+    <form class="layui-form layui-form-pane">
+        
+        <div class="layui-form-item">
+            <label class="layui-form-label">API地址</label>
+            <div class="layui-input-4">
+                <input type="text" name="api" ng-model="field.api" lay-verify="required" placeholder="输入API地址" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">API名称</label>
+            <div class="layui-input-4">
+                <input type="text" name="title" ng-model="field.title" lay-verify="required" placeholder="输入API名称" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">描述</label>
+            <div class="layui-input-4">
+                <input type="text" name="description" ng-model="field.description" placeholder="输入描述" class="layui-input" lay-verify="required">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">请求示例</label>
+            <div class="layui-input-4">
+                <input type="text" name="example" ng-model="field.example" placeholder="输入请求示例" class="layui-input" lay-verify="required">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">次数</label>
+            <div class="layui-input-4">
+                <input type="text" name="num" ng-model="field.num" lay-verify="required" placeholder="请输入次数" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">价格</label>
+            <div class="layui-input-4">
+                <input type="text" name="price" ng-model="field.price" lay-verify="required" placeholder="请输入价格" class="layui-input">
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">图片</label>
+            <input type="hidden" name="img" id="img" value="{{field.img}}">
+            <div class="layui-input-block">
+                <div class="layui-upload">
+                    <button type="button" class="layui-btn layui-btn-primary" id="adBtn">
+                        <i class="icon icon-upload3"></i>点击上传
+                    </button>
+                    <div class="layui-upload-list">
+                        <img class="layui-upload-img" id="adPic">
+                        <p id="demoText"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn" lay-submit="" lay-filter="submit">{:lang('submit')}</button>
+                <a href="javascript:history.back()" class="layui-btn layui-btn-primary">{:lang('back')}</a>
+            </div>
+        </div>
+    </form>
+</div>
+{include file="common/foot"/}
+<script src="/static/common/js/angular.min.js"></script>
+<script>
+    var m = angular.module('hd',[]);
+    m.controller('ctrl',function($scope) {
+        $scope.field = '{$info|raw}'!='null'?{$info|raw}:{api:'',title:'',description:'',num:'',price:''};
+        layui.use(['form', 'layer','upload','laydate'], function () {
+            var form = layui.form, upload = layui.upload,laydate = layui.laydate,$= layui.jquery;
+            if($scope.field.img){
+                adPic.src = $scope.field.img;
+            }
+            //墨绿主题
+            laydate.render({
+                elem: '#test29'
+                ,theme: 'molv'
+            });
+            
+            form.on('select(grouplevel)', function(data) {
+                var str = data.value;
+                if (str == 'number:1') {
+                    $('.endtime').css('display','none');
+                } else {
+                    $('.endtime').css('display','block');
+                }
+            });
+            if ($('select[name=level]').val() == 'number:1') {
+                $('.endtime').css('display','none');
+            } else {
+                $('.endtime').css('display','block');
+            }
+ 
+            form.on('submit(submit)', function (data) {
+                // 提交到方法 默认为本身
+                // console.log(data);
+                // var mobile=/^1[3|4|5|7|8|9]\d{9}$/;
+                // var email=/^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$|^1[3|4|5|7|8]\d{9}$/;
+                // if(!mobile.test(data.field.mobile)){
+                //      layer.msg('手机格式错误',{icon: 5});
+                //      return false;
+                // }
+                // if(!email.test(data.field.email)){
+                //      layer.msg('邮箱格式错误',{icon: 5});
+                //      return false;
+                // }
+                var preg = /^\d+$/
+                if (!preg.test(data.field.num)) {
+                    layer.msg('次数格式错误',{icon: 5});
+                    return false;
+                }
+                if (!preg.test(data.field.price)) {
+                    layer.msg('价格格式错误',{icon: 5});
+                    return false;
+                }
+              
+                var loading = layer.load(1, {shade: [0.1, '#fff']});
+                data.field.id = $scope.field.id;
+                $.post("", data.field, function (res) {
+                    layer.close(loading);
+                    if (res.code > 0) {
+                        layer.msg(res.msg, {time: 1800, icon: 1}, function () {
+                            location.href = res.url;
+                        });
+                    } else {
+                        layer.msg(res.msg, {time: 1800, icon: 2});
+                    }
+                });
+            });
+            //普通图片上传
+            var uploadInst = upload.render({
+                elem: '#adBtn'
+                ,url: '{:url("UpFiles/upload")}'
+                ,before: function(obj){
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function(index, file, result){
+                        $('#adPic').attr('src', result); //图片链接（base64）
+                    });
+                },
+                done: function(res){
+                    console.log(res)
+                    if(res.code==0){
+                        $('#img').val(res.url);
+                    }else{
+                        //如果上传失败
+                        return layer.msg('上传失败');
+                    }
+                }
+                ,error: function(){
+                    //演示失败状态，并实现重传
+                    var demoText = $('#demoText');
+                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                    demoText.find('.demo-reload').on('click', function(){
+                        uploadInst.upload();
+                    });
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

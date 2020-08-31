@@ -1,0 +1,153 @@
+﻿{include file='common/head'}
+<!-- 搜索框-->
+<section class="products">
+	<div class="container">
+		<div class="search">
+      <input type="hidden" class="hidedata" data-on="{$on}" data-onearr="{$onearr}" data-topurl="{$topurl}">
+      <!-- <form action="/beian" method="get"> -->
+  			<input type="text" placeholder="请输入要查询备案的网址" class="beianurl" value="{$kw?$kw:''}">
+  			<a href="/beians"><span class="plbaselect">批量查询</span></a>
+  			<button class="search-btn" id="selecturl" type="button">立即搜索</button>
+      <!-- </form> -->
+		</div>
+	</div>
+</section>
+<!-- 内容 -->
+<div class="keyjb">
+  <div class="kejb">
+    <div class="keytou">
+       <div class="gunun"></div>
+       <p class="resp"><strong><font color="#333">{$kw} </font>域名备案查询结果</strong></p>
+       <div class="c_l"></div>
+    </div>
+    <table class="pmaaa uniquetab hottab">
+      <tr>
+        <th>网站域名</th>
+        <th width="25%">备案名称</th>
+        <th width="10%">备案性质</th>
+        <th width="17%">备案号</th>
+        <th width="14%">备案审核时间</th>
+        <th width="14%">缓存时间</th>
+      </tr>
+      {if empty($urlinfo)}
+       <tr class="reslist editSpan" id="bainfo">
+        <td><a href="/{$kw}">{$kw}</a></td>
+        <td><img src="/static/home2/images/loading.gif"></td>
+        <td><img src="/static/home2/images/loading.gif"></td>
+        <td><img src="/static/home2/images/loading.gif"></td>
+        <td><img src="/static/home2/images/loading.gif"></td>
+        <td><img src="/static/home2/images/loading.gif"></td>
+      </tr>
+      {else /}
+      <tr class="reslist" id="bainfo">
+        <td>
+        {if $urlinfo.website_url}
+        <a href="/{$urlinfo.website_url}">{$urlinfo.website_url}</a>
+        {else /}
+        <span>未备案</span>
+        {/if}
+        </td>
+        <td>
+        {if $urlinfo.name}
+        {$urlinfo.name}
+        {else /}
+        <span>未备案</span>
+        {/if}
+        </td>
+        <td>
+        {if $urlinfo.name}
+        {$urlinfo.nature}
+        {else /}
+        <span>未备案</span>
+        {/if}
+        </td>
+        <td>
+        {if $urlinfo.name}
+        {$urlinfo.record_num}
+        {else /}
+        <span>未备案</span>
+        {/if}
+        </td>
+        <td>
+        {if $urlinfo.name}
+        {if ($urlinfo.status_time)}
+        {$urlinfo.status_time|substr=0,10}
+        {else/}
+        <img src="/static/home2/images/wh2.png">
+        {/if}
+        {else /}
+        <span>未备案</span>
+        {/if}
+        </td>
+        <td>
+        {if $urlinfo.name}
+        {$urlinfo.create_time|substr=0,10}
+        {else /}
+        <span>未备案</span>
+        {/if}
+        <a href="javascript:;" class="editUrl">[更新]</a>
+       </td>
+      </tr>
+      {/if}
+    </table>
+    
+    <div class="keytou">
+       <div class="gunun"></div>
+       <p class="resp"><strong><font color="#333">该域名还备案了以下网站</font></strong></p>
+       <div class="c_l"></div>
+    </div>
+    {if $other == 1}
+    <table class="pmaaa">
+      <tr class="othertit">
+        <th>网站域名</th>
+        <th>网站名称</th>
+        <th>备案号</th>
+        <th>备案性质</th>
+        <th>注册时间</th>
+        <th>到期时间</th>
+        <th>备案审核时间</th>
+      </tr>
+      <tbody class="content">
+        {foreach $otherlist as $pvvo}
+        <tr class="othertr">
+          <td><a href="/{$pvvo.website_url}">{$pvvo.website_url}</a></td>
+          <td>{$pvvo.name}</td>
+          <td>{$pvvo.record_num}</td>
+          <td>{$pvvo.nature}</td>
+          <td>
+          {if $pvvo.start_time}
+          {$pvvo.start_time|substr=0,10}
+          {else /}
+          <span><img src="/static/home2/images/wh2.png" title="暂无数据"></span>
+          {/if}
+          </td>
+          <td>
+          {if $pvvo.end_time}
+          {$pvvo.end_time|substr=0,10}
+          {else /}
+          <span><img src="/static/home2/images/wh2.png" title="暂无数据"></span>
+          {/if}
+          </td>
+          <td>{$pvvo.status_time|substr=0,10}</td>
+        </tr>
+        {/foreach}
+      </tbody>
+    </table>
+    {else /}
+    <h3 class="ores">暂无搜索到 "{$kw}" 的相关域名数据,请稍后重试!</h3>
+    {/if}
+
+  </div>
+</div>
+<!-- 最近查询 -->
+<div class="zjbeianbox ">
+  <span class="zjtit">相关域名查询:</span>
+  {foreach $list as $key=>$value}
+  <span class="balist"><a href="/beian/{$value.website_url}" class="beianone">{$value.website_url}</a></span>
+  {/foreach}
+</div>
+<div class="js">
+  {include file='common/footnav'}
+</div>
+<!-- 底部 -->
+{include file='common/footer'}

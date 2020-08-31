@@ -1,0 +1,38 @@
+{include file='common/head'}
+<div class="js">
+  <div class="kj apitop">
+    <div class="gun" style='margin-left:0px'></div>
+    <h1 style='margin-left:20px;font-weight: bold;'>API接口列表</h1>
+  </div>
+  <div class='kj apilist'>
+    <ul>
+    {foreach ($apis as $k=>$api)}
+      <a href="/apiinfo/{$api.id}" target="_black">
+      {if (($k+1)%4 == 0)}
+      <li class='mb'>
+      {else/}
+      <li class='mb mr'>
+      {/if}
+          <div class="icoapi">
+            <img src="{$api.img}" style="height:60px;width:60px;">
+          </div>
+          <strong class="t">{$api.title}</strong>
+          <span class="i">数据来源：搜一搜</span>
+      </li>
+      </a>
+    {/foreach}
+    </ul>
+  <div class="c_l"></div>
+  </div>
+  
+  <div class="kj">
+    <div class="gun"></div>
+    <h1>工具简介</h1>
+    <h2>当下热门数据API，提供多种基础数据API服务。</h2>
+  </div>
+{include file='common/footnav'}
+</div>
+{include file='common/footer'}
+
+
+

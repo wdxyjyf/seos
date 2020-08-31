@@ -1,0 +1,63 @@
+{include file='common/head'}
+<!-- 搜索框-->
+<input type="text" style="opacity:0;position:absolute;" value="搜一搜站长工具，大数据关键词挖掘，免费网站关键词排名监控，邀请注册即可获得VIP 会员！{$Think.session.yqurl}" id="fuzhi">
+<section class="plkey">
+  <div class="plkeyrq" >
+    <div class="keytou">
+      <div class="gunun"></div>
+      <p class="resp" style="margin-top: 9px;"><strong>网站收录批量查询</strong></p>
+      <div class="c_l"></div>
+    </div>
+    <input type="hidden" class="alldata" data-plsubmit="{$includ_plsubmit}" data-level="{$level}" data-slorder="{$slorder}" data-plat="{$platform}">
+    <textarea name="keyword" id="ydkeywords" class="keysearch" placeholder="输入查询网址&#10;&#10;格式随意，智能识别、提取网址&#10;&#10;一次最多可查询{$includ_plsubmit}个网址&#10;&#10;VIP权限享有更高权限" spellcheck="false" style="width: 75%"></textarea>
+    <div class="right">
+      <button class="engine" engine=1><img src="/static/home2/images/baidu.png"><span>百 度</span></button>
+      <button class="engine" engine=2><img src="/static/home2/images/360.png"><span>好 搜</span></button>
+      <button class="engine" engine=3><img src="/static/home2/images/sougou.png"><span>搜 狗</span></button>
+      <button class="keytj" style="margin-top: 20px;" type="button">确认提交搜索</button>
+    </div>
+    <div class="c_l"></div>
+  </div>
+</section>
+<!-- 介绍 -->
+<div class="js">
+  <div class="kj">
+    <div class="gun"></div>
+    <h1>工具简介</h1>
+    <h2>网站收录批量查询工具，百度网站收录批量查询工具，360搜索网站收录批量查询工具，搜狗网站收录批量查询工具</h2>
+    <p>----支持熊掌号直接查询URL查询</p>
+    <p>----批量电脑端查询网站收录</p>
+  </div>
+  {include file='common/footnav'}
+</div>
+<!-- 结果 -->
+<div id="result" class="plmres"></div>
+<div class="sousuo plmres2">
+  <div class="paiming">
+    <ul class="pmt hideline">
+      <div class="gun"></div>
+      <p><strong>网站收录查询结果</strong></p>
+      <a id="daochu" href="javascript:;" class="hide"><img src="/static/home2/images/dc.png"><span> 导出数据</span></a>
+      <form action="/export2excel" id="daochuForm" method="post">
+        <input type="hidden" name="title" value="网站收录查询结果">
+        <input type="hidden" name="point">
+        <input type="hidden" name="shuju">
+      </form>
+      <div class="c_l"></div>
+    </ul>
+    <table class="pmddd">
+      <tr class="tabtit">
+        <th width="15%">序号</th>
+        <th >网站地址</th>
+        <th width="15%">建站时间 <img class="days order hide" src="/static/home2/images/asc.png"></th>
+        <th width="15%" >搜索引擎</th>
+        <th width="15%" >终端</th>
+        <th width="20%" >收录 <img class="rank order hide" src="/static/home2/images/asc.png"></th>
+      </tr>
+      <tbody id='content'></tbody>
+    </table>
+  </div>
+</div>
+<!-- 底部 -->
+{include file='common/footer'}
+

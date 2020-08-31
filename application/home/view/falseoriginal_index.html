@@ -1,0 +1,43 @@
+﻿{include file='common/head'}
+<div class="wyc">
+    <div class="wyckj">
+        <form action="" method="post">
+            <ul>
+                <li class="yuanwen">原文章内容</li>
+                <img src="/static/home2/images/jt.png">
+                <li class="wycwz">AI+伪原创</li>
+                <button class="wyczh" id="changebtn" type="button" style="outline:none;cursor: pointer;">立即转换</button>
+                <div class="c_l"></div>
+                <textarea class="wuck" placeholder="可以输入{$rule.wyc_num?:'500'}个字，如需要更多字数上限请{$Think.session.userinfo?$rule.is_max?'联系客服':'升级会员':'登录'}..." name="transform" maxnum="{$rule.wyc_num?:'500'}" is_max="{$rule.is_max?'1':'0'}" is_login="{$Think.session.userinfo?'1':'0'}"></textarea>
+                <textarea class="wuck2"></textarea>
+                <div class="c_l"></div>
+            </ul>
+        </form>
+    </div>
+</div>
+<div class="changecont"><p class="falseres"></p></div>
+<div class="c_l"></div>
+<div class="cus03">
+    <div class="error">
+        <p><img src="/static/home2/images/mess.png"><span>如需高级版本:指定关键词采集+智能伪原创 一体化，戳下：<a href="http://wyc.seos.vip/" style="color: #423da1;" target="_blank">智能写作平台</a>！<a href="/apiinfo/2" style="color: #423da1;">API接口</a>，请联系客服QQ:30449406</span></p>
+    </div>
+</div>
+{if $ad}
+<div class="ad">
+    <a href="{$ad.url}"><img src="{$ad.pic}" title="{$ad.title}"></a>
+</div>
+{/if}
+<!-- 介绍 -->
+<div class="js">
+    <div class="kj">
+        <div class="gun"></div>
+        <h1>工具简介</h1>
+        <h2>内容创作服务产品，旨在为SEOER、内容运营、小说写作、论文写作打造更新快、覆盖全、质量高的内容生态圈，基于你提供内容<br><br>帮助你持续高效的进行写作、优雅表达。</h2>
+        <p>---- 1. 采用语义分析，深度学习等计算技术，及时形成知识积累。独立审核算法，自动把关，保证输出文章符合要求</p>
+        <p>---- 2. 机器自动生成，速度快，可迅速输出大量文章，基础AI情感分析 / 中文分词 / 语言模型，极简的操作使你可以专注、更快的深度写作</p>
+        <p>---- 3. 深度AI文章生成，凭借其强大的NLP、深度学习等技术轻松过原创度检测,目前已通过国内百度、360、搜狗等搜索引擎，今日头条等自媒体平台检测</p>
+    </div>
+    {include file='common/footnav'}
+</div>
+{include file='common/footer'}
+

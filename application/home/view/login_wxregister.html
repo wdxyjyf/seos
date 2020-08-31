@@ -1,0 +1,30 @@
+﻿{include file='common/head'}
+<!-- 登录注册 -->
+<div class="demo">
+	<div class="demobg"></div>
+	<div class="aui-content-box clearfix">
+		<div class="aui-content-box-fl allheight" style="height: 420px;">
+			<div class="aui-form-header">
+				<div class="aui-form-header-item on">绑定手机号</div>
+			</div>
+			<form action="" method="post" id="wxregistform">
+				<div class="aui-form-list">
+					<img src="/static/home2/images/log.png" />
+					<input type="text" class="aui-input findpass" placeholder="请输入手机号" data-required="required" autocomplete="off" name="mobile" id="rmobile">
+				</div>
+				<div class="aui-form-list">
+					<img src="/static/home2/images/pass.png" />
+					<input type="password" class="aui-input findpass" placeholder="请输入您的密码" data-required="required" autocomplete="off" name="password" id="rpass">
+				</div>
+				<div class="aui-form-pwd clearfix">
+					<a href="/register">还没有账号 ? 去注册</a>
+					<div class="c_l"></div>
+				</div>
+				<div class="aui-form-btn" style="margin-top: 60px;">
+					<button class="aui-btn" id="wxregisterbut">立即绑定</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{include file='common/footer'}

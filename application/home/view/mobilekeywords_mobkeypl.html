@@ -1,0 +1,93 @@
+﻿{include file='common/head'}
+
+<!-- 搜索框-->
+<input type="text" style="opacity:0;position:absolute;" value="搜一搜站长工具，大数据关键词挖掘，免费网站关键词排名监控，邀请注册即可获得VIP 会员！{$Think.session.yqurl}" id="fuzhi">
+<section class="plkey">
+  <div class="plkeyrq" >
+    <div class="keytou mobpltop">
+      <div class="gunun"></div>
+      <p><strong>移动端关键词排名批量查询</strong></p>
+      <div class="c_l"></div>
+    </div>
+    <div class="search-div">
+      <input type="hidden" id="ydtype">
+      <table class="search-table"> 
+          <tr>
+            <td class="xiala" width="6.5%" data-value="1">
+              <p class="home_icons">
+                <span class="caret"></span>
+              </p>
+              <ul class="dropdown-menu">
+                  <li data-engine="0" data-icon="icon-baidu">
+                      <a><span class="home_icons icon-baidu" alt="百度"></span></a>
+                  </li>
+                  <li data-engine="1" data-icon="icon-360">
+                      <a><span class="home_icons icon-360" alt="360"></span></a>
+                  </li>
+                  <li data-engine="2" data-icon="icon-sougou">
+                      <a><span class="home_icons icon-sougou" alt="搜狗"></span></a>
+                  </li>
+                  <li data-engine="3" data-icon="icon-shenma">
+                      <a><span class="home_icons icon-shenma" alt="神马"></span></a>
+                  </li>
+              </ul>
+            </td>
+            <td width="2%"></td>
+            <td class="tdline">
+              <input class="search-input ydurl" name="target" id="ydurl" placeholder="请输入网址" autocomplete="off" style="padding-left: 10px;font-size: 16px;">
+            </td>
+          </tr>
+        </table>
+    </div>
+    <textarea name="keyword" id="ydkeywords" class="keysearch" placeholder="请输入您需要搜索的关键词, 批量查询格式为: 一行一个关键字,回车为一行&#10;&#10;一次最多可提交{$rank_plsubmit}条&#10;&#10;VIP权限享有更高权限" ></textarea>
+    <button class="keytj plmbtn" type="button">查询排名</button>
+    <div class="c_l"></div>
+  </div>
+  <input type="hidden" class="pldata" data-btn="{$rank_plsubmit}" data-moborder="{$pmorder}">
+</section>
+<!-- 介绍 -->
+<div class="js">
+  <div class="kj">
+    <div class="gun"></div>
+    <h1>工具简介</h1>
+    <h2>移动端网站排名批量查询工具，百度移动端排名批量查询工具，360搜索移动端排名批量查询工具，搜狗移动端排名批量查询工具</h2>
+    <p>----支持熊掌号直接查询URL查询</p>
+    <p>----批量移动端查询关键词排名</p>
+  </div>
+  {include file='common/footnav'}
+</div>
+<!-- 结果区 -->
+<div id="result" class="plmres"></div>
+<div class="sousuo plmres2">
+  <div class="paiming">
+    <ul class="pmt hideline">
+      <div class="gun"></div>
+      <p><strong>移动端关键词批量查询结果</strong></p>
+      <a id="daochu" href="javascript:;"><img src="/static/home2/images/dc.png"><span>导出数据 </span></a>
+      <form action="/export2excel" id="daochuForm" method="post">
+        <input type="hidden" name="title" value="移动端批量排名导出">
+        <input type="hidden" name="point">
+        <input type="hidden" name="shuju">
+      </form>
+      <div class="c_l"></div>
+    </ul>
+    <table class="pmddd">
+      <tr class="tabtit">
+        <th >序号</th>
+        <th >网址地址</th>
+        <th >搜索引擎</th>
+        <th >终端</th>
+        <th >关键词</th>
+        <th >移动端搜索量</th>
+        <th class="zhousl" width="10%">排名</th>
+        <th >预估流量</th>
+      </tr>
+      <tbody id='content'>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- 底部 -->
+{include file='common/footer'}
+

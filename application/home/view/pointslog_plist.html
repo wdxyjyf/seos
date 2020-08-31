@@ -1,0 +1,73 @@
+﻿{include file='common/head'}
+<!--积分兑换记录-->
+<div class="wrap1">
+	<div class="vip_cont c100 clearfix">
+		<!-- 左侧 -->
+		<div class="fl vip_left vip_magLeft">
+			<dl>
+				<dt>我的账号</dt>
+				<dd>
+				<p><a href="/homeuser">账号信息</a></p>
+				<p><a href="/edituser">修改资料</a></p>
+				<p><a href="/upass">修改密码</a></p>
+				<p><a href="/authlist" >权限升级</a></p>
+				<p style="background: #f0f1f5;border-left:3px solid #504cc1;">
+					<a href="#">下载记录</a>
+				</p>
+				<p class="commonstyle">
+					<a href="/visit">邀请领VIP</a>
+				</p>
+				<img src="/static/home2/images/vip.png" class="invite">
+				</dd>
+			</dl>
+		</div>
+		<!-- 右侧 -->
+		<div class="fr vip_right vip_magRight" style="float: left;margin-left: 52px;width: 847px;">
+			<div class="vip_center">
+				<h1 style="width:100px;">扣除记录</h1>
+			</div>
+			<table class="pmddd">
+			    <tr style="font-size: 14px;line-height: 40px;background: #f5f5f5;border-top:1px solid #ccc;border-bottom:1px solid #ccc;text-align: center;">
+			    	<th width="2%"></th>
+			      <!-- 	<th>ID</th> -->
+			        <th>手机号</th>
+			        <th>兑换商品名称</th>
+			        <th>扣除备注</th>
+			        <th>扣除积分</th>
+			        <th>操作时间</th>
+			    </tr>
+			    {if empty($plist) }
+			        <tr style="text-align: center;font-size: 15px;line-height: 100px;"><td colspan="7">暂无记录</td></tr>
+			    {else /} 
+			    <tbody id="content">
+		        {foreach $plist as $key=>$vo}
+		        <tr style="text-align: center;font-size: 14px;line-height: 45px;border-top:1px solid #f0f1f5">
+		        	<td></td>
+		        	<!-- <td>{$key+1}</td> -->
+		          	<td>{$vo.umobile}</td>
+		          	<td title="{$vo.gname}">{$vo.gname}</td>
+		          	<td title="{$vo.content}">{$vo.content|subtext=15}</td>
+		          	<td>{$vo.spendcode}</td>
+		          	<td>{$vo.create_time}</td>
+		        </tr>
+		        {/foreach}
+		        </tbody>
+		      {/if}
+		      
+		    </table>
+			{if $plist}
+			<div style="text-align: center">
+				{$page|raw}
+			</div>
+			{/if}
+		</div>
+		<div class="c_l"></div>
+	</div>
+</div>
+<div class="cus03">
+	<p class="recom">
+		<span>推广链接:</span><input id="recomUrl" value="{$yqurl}" type="text" disabled><button id="copyurl">复制链接</button>
+	</p>
+</div>
+<div class="c_l"></div>
+{include file='common/footer'}

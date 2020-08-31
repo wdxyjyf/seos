@@ -1,0 +1,68 @@
+﻿{include file='common/head'}
+<!-- 搜索框-->
+<section class="products">
+  <input type="hidden" class="stopquery" value="{$stop?:''}">
+	<div class="container">
+		<div class="search">
+      <!-- <form action="/digr" method="get"> -->
+  			<input type="text" class="digkeywords" placeholder="请输入相关词进行挖掘" spellcheck="false">
+  			<button class="search-btn" id="selectdig" type="button">立即挖掘</button>
+      <!-- </form> -->
+		</div>
+	</div>
+</section>
+<!-- 热门推荐 -->
+<div class="sousuo">
+  <div class="paiming">
+    <ul class="pmt">
+      <div class="gun"></div>
+      <p><strong>热门相关词</strong></p>
+      <img src="/static/home2/images/share.png" style="margin-right:6%;">
+      <div class="c_l"></div>
+    </ul>
+    <table class="pmddd">
+      <tr class="tabtit">
+        <th width="90px;">排名</th>
+        <th width="120px;">关键词</th>
+        <th >周搜索量</th>
+        <th >周PC搜索量</th>
+        <th >周移动搜索量</th>
+        <th>日搜索量</th>
+        <th >PC日搜索量</th>
+        <th >移动日搜索量</th>
+      </tr>
+      {if empty($list)}
+        <tr class="digkeyres"><td colspan="7">暂无热门潜力词!</td></tr>
+      {else /} 
+      <tbody id='content'>
+      {foreach $list as $key=>$pvvo}
+      <tr class="tbodytit">
+        <td><div class="sort sort{$key+1}">{$key+1}</div></td>
+        <td title="{$pvvo.keyword}"><a href="/dig/{$pvvo.keyword|urlsafe_b64encode}" class="keyimg">{$pvvo.keyword|subtext=7}</a></td>
+        <td>{$pvvo.averagePv}</td>
+        <td>{$pvvo.averagePvPc}</td>
+        <td>{$pvvo.averagePvMobile}</td>
+        <td>{$pvvo.averageDayPv}</td>
+        <td>{$pvvo.averageDayPvPc}</td>
+        <td>{$pvvo.averageDayPvMobile}</td>
+      </tr>
+      {/foreach}
+      {/if}
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- 介绍 -->
+<div class="js">
+  <div class="kj">
+    <div class="gun"></div>
+    <h1>工具简介</h1>
+    <h2>关键词挖掘工具，通过工具挖掘功能，可以挖掘精准的关键词，为企业网站优化提供参考</h2>
+    <p>----比如短关键词，以及精准度高的关键词</p>
+    <p>----如有问题请及时联系管理人员</p>
+  </div>
+  {include file='common/footnav'}
+</div>
+<!-- 底部 -->
+{include file='common/footer'}
+

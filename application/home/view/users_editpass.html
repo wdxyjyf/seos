@@ -1,0 +1,92 @@
+﻿{include file='common/head'}
+<div class="wrap1">
+	<div class="vip_cont c100 clearfix">
+		<!--会员中心 左侧导航-->
+		<div class="fl vip_left vip_magLeft">
+			<dl>
+				<dt>我的账号</dt>
+				<dd>
+					<p >
+						<a href="/homeuser">账号信息</a>
+					</p>
+					<p>
+						<a href="/edituser">修改资料</a>
+					</p>
+					<p class="commonstyle">
+						<a href="/upass">修改密码</a>
+					</p>
+					<p>
+						<a href="/authlist">权限升级</a>
+					</p>
+					
+					<p>
+					<a href="/plist">下载记录</a>
+					</p>
+					<p>
+						<a href="/visit">邀请领VIP</a>
+					</p>
+					<img src="/static/home2/images/vip.png" class="invite">
+				</dd>
+			</dl>
+		</div>
+		<!--会员中心 右侧信息-->
+		<div class="fr vip_right vip_magRight">
+			<div class="vip_center">
+				<h1>修改密码</h1>
+			</div>
+			<form class="layui-form layui-form-pane" style="margin:50px 0 0 50px;">
+			    <div class="layui-form-item">
+			        <label class="layui-form-label inputlable">旧密码</label>
+			        <div class="layui-input-4">
+			            <input type="password" name="oldpass" lay-verify="required" placeholder="请输入旧密码" class="layui-input">
+			        </div>
+			    </div>
+			    <div class="layui-form-item inputstyle">
+			        <label class="layui-form-label inputlable">新密码</label>
+			        <div class="layui-input-4">
+			            <input type="password" name="newpass"  lay-verify="required|pass" autocomplete="on" placeholder="请输入新密码" class="layui-input">
+			        </div>
+			    </div>
+			    <div class="layui-form-item inputstyle">
+			        <label class="layui-form-label inputlable" >确认新密码</label>
+			        <div class="layui-input-4">
+			            <input type="password" name="confirmpass"  lay-verify="required|pass" autocomplete="on"placeholder="再次确认新密码" class="layui-input">
+			        </div>
+			    </div>
+			   
+			    <div class="layui-form-item inputstyle">
+			        <div class="layui-input-block">
+			            <button type="button" class="layui-btn editbtn" lay-submit="" lay-filter="submit">提交</button>
+			        </div>
+			    </div>
+			</form>
+		</div>
+		<div class="c_l"></div>
+	</div>
+</div>
+<div class="cus03">
+	<p class="recom">
+		<span>推广链接:</span><input id="recomUrl" value="{$yqurl}" type="text" disabled><button id="copyurl">复制链接</button>
+	</p>
+</div>
+<div class="c_l"></div>
+<div class="footersss">
+  <div class="ft" style="margin-top: 70px;">
+   
+    <div class="c_l"></div>
+    <div class="fttt">
+      <p>© CopyRight 2019 南京白鸥网络技术有限公司  </p>
+      <h2><a href="http://www.beian.miit.gov.cn/"> 苏ICP备17006137号-3</a></h2>
+      <h2 class="footabout"><a href="/contact"> 联系我们</a></h2>
+      <h2 class="footabout"><a href="/about"> 关于我们</a></h2>
+      <h2 class="footabout"><a href="/agreement"> 使用协议</a></h2>
+      <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=badeb4d7a314531403d2a395623f3bd0b5b48e8542ecac260f0530356a957fdc" style="margin-left:20px;"><img border="0" src="/static/home2/images/qq2.png" alt="搜一搜站长工具" title="搜一搜站长工具" width="25px" height="25px"></a>
+      <div class="c_l"></div>
+    </div>
+  </div>
+</div>
+{$config['cnzz']|raw}
+</body>
+</html>
+
+

@@ -1,0 +1,158 @@
+﻿{include file='common/head'}
+{if empty($hotlistlike)}
+<style>
+.ft{
+  position: fixed;
+  left:0;
+  bottom: 50px;
+  width: 100%;
+}
+</style>
+{/if}
+<!-- 搜索框-->
+<section class="products">
+	<div class="container">
+		<div class="search">
+      <input type="hidden" class="hotall" data-kw="{$kw}" data-on="{$on}" data-ontwo="{$on2}"> 
+      <!-- <form action="/keyresult" method="get">  -->
+  			<input type="text"  placeholder="请输入关键词进行查询" class="hotkeywords" value="{$kw?$kw:''}">
+  			<span><a href="/keywords">批量查询</a></span>
+  			<button class="search-btn" id="selecthot" type="button">立即搜索</button>
+      <!-- </form> -->
+		</div>
+	</div>
+</section>
+
+<div class="keyjb">
+  <div class="kejb">
+    <div class="keytou">
+       <div class="gunun"></div>
+       <p class="resp" style="color: #333"><strong><font color="#423da1">{$kw} </font>关键词查询结果</strong></p>
+       <div class="c_l"></div>
+    </div>
+    <table class="pmaaa uniquetab hottab">
+      <tr>
+        <th>关键词</th>
+        <th width="13%">周搜索量</th>
+        <th width="13%">周PC搜索量</th>
+        <th width="13%">周移动搜索量</th>
+        <th width="13%">日搜索量</th>
+        <th width="13%">PC日搜索量</th>
+        <th width="13%">移动日搜索量</th>
+      </tr>
+      <tr class="reslist">
+        <td>
+            <a href="javascript:;" class="ahref">{$kw|subtext}</a>
+            <div class="hover-button">
+                搜
+              <div>
+                  <ul>
+                      <li style="border:0px;"><a target="_blank" href="/dig/{$kw|urlsafe_b64encode}">相关词</a></li>
+                      <li style="border:0px;"><a target="_blank" href="/related/{$kw|urlsafe_b64encode}">长尾词</a></li>
+                      {if (mb_strlen($kw,'utf8')<=5)}
+                      <li style="border:0px;"><a target="_blank" href="/findsites/{$kw|urlsafe_b64encode}">相关网站</a></li>
+                      {/if}
+                  </ul>
+              </div>
+            </div>
+
+        </td>
+        {if $on}
+        <td>{$hotlist.averagePv}</td>
+        {else/}
+        <td id="zhou"><img src="/static/home2/images/loading.gif"></td>
+        {/if}
+
+        {if $on}
+        <td>{$hotlist.averagePvPc}</td>
+        {else/}
+        <td id="zhoupc"><img src="/static/home2/images/loading.gif"></td>
+        {/if}
+
+        {if $on}
+        <td>{$hotlist.averagePvMobile}</td>
+        {else/}
+        <td id="zhouyd"><img src="/static/home2/images/loading.gif"></td>
+        {/if}
+
+        {if $on}
+        <td>{$hotlist.averageDayPv}</td>
+        {else/}
+        <td id="risol"><img src="/static/home2/images/loading.gif"></td>
+        {/if}
+
+        {if $on}
+        <td>{$hotlist.averageDayPvPc}</td>
+        {else/}
+        <td id="risolpc"><img src="/static/home2/images/loading.gif"></td>
+        {/if}
+
+        {if $on}
+        <td>{$hotlist.averageDayPvMobile}</td>
+        {else/}
+        <td id="risolyd"><img src="/static/home2/images/loading.gif"></td>
+        {/if}
+      </tr>
+    </table>
+  </div>
+</div>
+
+{if ($ad)}
+<div class="ad">
+    <a href="{$ad.url}"><img src="{$ad.pic}" title="{$ad.title}"></a>
+</div>
+{/if}
+
+<div class="sousuo">
+  <div class="paiming">
+    <ul class="pmt hideline">
+      <div class="gun"></div>
+      <p><strong>相关数据推荐</strong></p>
+      <a href="#" id="fenx"><img src="/static/home2/images/share.png"></a>
+      <div class="c_l"></div>
+    </ul>
+    {if $on2}
+    <table class="pmaaa pmddd">
+      <tr class="tabtit">
+        <th>关键词</th>
+        <th>周搜索量</th>
+        <th>周PC搜索量</th>
+        <th>周移动搜索量</th>
+        <th>日搜索量</th>
+        <th>PC日搜索量</th>
+        <th>移动日搜索量</th>
+      </tr>
+      <tbody class="content" id='tbody'>
+      {foreach $hotlistlike as $pvvo}
+      <tr>
+        <td>
+          <a href="javascript:;" class="ahref" title="{$pvvo.keyword2}">{$pvvo.keyword2|subtext}</a>
+           <div class="hover-button">
+              搜
+            <div>
+                <ul>
+                    <li><a target="_blank" href="/dig/{$pvvo.keyword|urlsafe_b64encode}">相关词</a></li>
+                    <li><a target="_blank" href="/related/{$pvvo.keyword|urlsafe_b64encode}">长尾词</a></li>
+                    {if (mb_strlen($pvvo.keyword, 'utf8')<=5)}
+                    <li><a target="_blank" href="/findsites/{$pvvo.keyword|urlsafe_b64encode}">相关网站</a></li>
+                    {/if}
+                </ul>
+            </div>
+          </div>
+        </td>
+        <td>{$pvvo.averagePv}</td>
+        <td>{$pvvo.averagePvPc}</td>
+        <td>{$pvvo.averagePvMobile}</td>
+        <td>{$pvvo.averageDayPv}</td>
+        <td>{$pvvo.averageDayPvPc}</td>
+        <td>{$pvvo.averageDayPvMobile}</td>
+      </tr>
+      {/foreach}
+      </tbody>
+    </table>
+    {else/}
+    <h3 class="record">暂无搜索到 "{$kw}" 的相关数据,请稍后重试!</h3>
+    {/if}
+  </div>
+</div>
+{include file='common/footer'}

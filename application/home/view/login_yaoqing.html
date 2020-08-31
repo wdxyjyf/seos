@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width"/>
+  <title>{$config.title}</title>
+  <meta name="Keywords" content="{$config.key}" />
+  <meta name="Description" content="{$config.des}" />
+  <link rel="shortcut icon" href="/static/home2/images/logo.ico"/>
+  <link href="/static/home2/css/style.css" rel="stylesheet"/>
+  <script src="/static/home2/js/jquery-1.12.4.min.js"></script>
+  <script type="text/javascript" src="/static/home2/js/jquery.superslide.2.1.1.js">//pc导航</script>
+</head>
+
+<body>
+<header class="header-v1">
+  <div class="top-main">
+    <div class="logo1"><a href="#"><img src="{$config.logo}" alt="logo"/></a></div>
+    
+  </div>
+</header>
+<div class="c_l"></div>
+<!-- 登录注册 -->
+<div class="demo" style="height: 800px;">
+<div class="demobg"></div>
+<div style="margin-top: -50px;">
+	<div class="aui-content-box clearfix">
+		<div class="aui-content-box-fl" style="height: 470px;">
+			<div class="aui-form-header">
+				<div class="aui-form-header-item on" style="margin-left: 100px;">好友邀请注册</div>
+			</div>
+			<form action="" method="post">
+				<input type="hidden" name="yaoqingid" class="aui-input" value="{$userid}" id="yaoqingid">
+				<div class="aui-form-list">
+					<input type="text" class="aui-input" style="border: 0px;outline:none;"placeholder="请输入手机号" data-required="required" autocomplete="off" name="mobile" id="rmobile"> 
+				</div>
+				<div class="aui-form-list">
+					<input type="password" class="aui-input"style="border: 0px;outline:none;"  placeholder="请设置您的密码" data-required="required" autocomplete="off" name="password" id="rpass">
+				</div>
+				<div class="aui-form-list">
+					<input type="text" class="aui-input" style="border: 0px;outline:none;"name="code" placeholder="请输入验证码" data-required="required" autocomplete="off" id="rcode">
+					<input type="button" class="aui-child" value="获取验证码" id="get_code" style="width: 100px;margin-left: 5%;">
+				</div>
+				<div class="aui-form-btn">
+					<button class="aui-btn" id="registerbut">注&nbsp;册</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+</body>
+	<script type="text/javascript">
+        $(function(){
+        	var time = 60;
+			function shijian(sj){
+				if(time == 0){
+					sj.removeAttribute('disabled');
+					sj.value = '获取验证码';
+					time =60;
+					return;
+				}else{
+					sj.setAttribute('disabled',true);
+					sj.value = '重新发送（'+ time +')';
+					time--;
+				}
+				setTimeout(function(){
+					shijian(sj)
+				},1000)
+			}
+			/*点击发送验证码*/ 
+			$("#get_code").click(function(){
+				var sj = this;
+				var rmobile = $("#rmobile").val();
+				if(rmobile == ''){
+					$.sendWarning('手机号不能为空', 1000);
+			  		return false;	
+			  	}
+			  	$.post('/home/Login/sendPhoneCode', {mobile:rmobile, type:1}, function(data){
+		            if(data.code == 1){
+		            	$.sendSuccess(data.msg, 1000, function(){
+			  				shijian(sj);
+		            	})
+		            }else{
+		            	$.sendError(data.msg, 1000);
+		            	return false;
+		            }
+		        });	
+			});
+			/*点击注册*/
+			$("#registerbut").click(function(){
+			  	var rmobile = $("#rmobile").val();
+			  	var rpass = $("#rpass").val();
+			  	var rcode = $("#rcode").val();
+			  	var yaoqingid = $("#yaoqingid").val();
+			  	if(rmobile == ''){
+			  		$.sendWarning('手机号不能为空', 1000);
+			  		return false;
+			  	}			  	
+			  	if(rpass == ''){
+			  		$.sendWarning('密码不能为空', 1000);
+			  		return false;
+			  	}
+			  	if(rcode == ''){
+			  		$.sendWarning('验证码不能为空', 1000);
+			  		return false;
+			  	}
+			  	$.post('/home/login/doRegister', {mobile:rmobile, password:rpass,code:rcode,yaoqingid:yaoqingid}, function(data){
+		            if(data.code == 1){
+		            	$.sendSuccess(data.msg, 1000, function(){
+		            		location.href='/';
+		            	})
+		            }else{
+		            	$.sendError(data.msg, 1000);
+		            	return false;
+		            }
+		        });
+		        return false;
+			});
+			
+        })
+	</script>
+

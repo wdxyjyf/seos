@@ -1,0 +1,123 @@
+﻿{include file='common/head'}
+<!-- 搜索框-->
+<section class="products">
+  <div class="container">
+    <div class="search">
+        <form method="post">
+            <input type="text" class="qzweb" name="qzweb" placeholder="请输入网址" value="{$onearr?$onearr:''}" >
+            <input type="text" class="qzkey" placeholder="请输入关键词" value="{$qzkey?$qzkey:''}">
+            <button class="search-btn" style="width:180px;" id="selectqz" type="button">立即搜索</button>
+        </form>
+    </div>
+  </div>
+  <div class="jsdata" style="display: none" data-count="{$count}" data-tit="{$istitle}" data-endurl="{$onearr}"></div>
+  <input type="hidden" id="isAjax" value="{$isAjax}">
+</section>
+<div class="cipinbox">
+  <div class="kejb">
+    <div class="keytou cipinbox2">
+      <span class="gunun" style="margin-top: 0px;"></span>
+      <span class="cipinres">
+        <strong>词频查询结果</strong>
+        <span> 网址: <a href="/{$onearr}" style="color: #423da1">{$onearr}</a>
+        </span> 
+        <span class="qztit"> {$urltitle}</span>
+      </span>
+    </div>
+    {if  $count == 0}
+    <table class="pmaaa uniquetab">
+        <tr class="cipinhead">
+          <th >词频</th>
+          <th>搜索量</th>
+          <th>词频比重</th>
+          <th>词频个数</th>
+          <th>页面质量</th>
+        </tr>
+        <tr class="cipincont">
+          <td>{$qzkey}</td>
+          <td>{$keyres}</td>
+          {if ($info)}
+            <td id="qznum">{$info['frequency']}%</td>
+            <td id="cpnum">{$info['word_num']}</td>
+            {if ($info['frequency'] >=0 and $info['frequency'] < 3)}
+            <td id="qzbtn"><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal" style="background: #ffc34f">偏低</button></td>
+            {elseif ($info['frequency'] >=3 and $info['frequency'] < 10)}
+            <td id="qzbtn"><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal" style="background: #89ca82">标准</button></td>
+            {else/}
+            <td id="qzbtn"><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal" style="background: #FF9A63">偏高</button></td>
+            {/if}
+          {else/}
+          <td id="qznum"><img src="/static/home2/images/loading.gif"></td>
+          <td id="cpnum"><img src="/static/home2/images/loading.gif"></td>
+          <td id="qzbtn"> 
+            <img src="/static/home2/images/loading.gif">
+          </td>
+          {/if}
+        </tr>
+    </table>
+    {else /} 
+      <div id="qzres">
+          <h3>暂无搜到关于“ <span style="color:#504cc1">{$qzurl}</span> ”的结果，请稍后重试。</h3>
+      </div>
+      <table class="pmaaa uniquetab qzarr">
+         <tr class="cipinhead2">
+          <th>序号</th>
+          <th>词频</th>
+          <th>搜索量</th>
+          <th>词频比重</th>
+          <th>词频个数</th>
+          <th>页面质量</th>
+        </tr>
+        {if ($info)}
+          {foreach ($info as $k=>$vo)}
+            <tr style="text-align: center;font-size: 14px;line-height: 40px;">
+              <td>{$k+1}</td>
+              <td>{$vo['keyword']}</td>
+              <td>{$vo['sousl']}</td>
+              <td>{$vo['frequency']}%</td>
+              <td>{$vo['word_num']}</td>
+              {if ($vo['frequency'] >=0 and $vo['frequency'] < 3)}
+              <td><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal" style="background: #ffc34f">偏低</button></td>
+              {elseif ($vo['frequency'] >=3 and $vo['frequency'] < 10)}
+              <td><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal" style="background: #89ca82">标准</button></td>
+              {else/}
+              <td><button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal" style="background: #FF9A63">偏高</button></td>
+              {/if}
+            </tr>
+          {/foreach}
+        {/if}
+      </table>
+      {if (!$info)}
+      <img src="/static/home2/images/loading.gif" id="qzimg">
+      {/if}
+    {/if}
+    <div class="c_l"></div>
+  </div>
+  {if ($ad)}
+  <div class="ad">
+    <a href="{$ad.url}"><img src="{$ad.pic}" title="{$ad.title}"></a>
+  </div>
+  {/if}
+  <!-- 最近查询 -->
+  <div class="zjbeianbox indexym" style="margin-top: 40px;">
+    <span class="zjtit">更多网站词频查询:</span>
+    {foreach $list as $key=>$value}
+    <span class="balist"><a href="/rate/{$value.website_url}" class="beianone">{$value.website_url}</a></span>
+    {/foreach}
+  </div>
+</div>
+<!-- 介绍 -->
+<div class="js">
+  <div class="kj">
+    <div class="gun"></div>
+    <h1>工具简介</h1>
+    <h2>通过网站的地址，以及关键词计算该网站内容的关键词词频占得权重</h2>
+    <p>----一个非常重要的参数对于搜索引擎优化来说；请适当增加关键词的词频在网页中</p>
+    <p>----可输入内页，栏目页进行查询</p>
+    <p>----默认不输入关键词，则提前网页内容的前20个词频比较高的关键词作为展示</p>
+  </div>
+ {include file='common/footnav'}
+</div>
+<!-- 底部 -->
+{include file='common/footer'}
+

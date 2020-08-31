@@ -1,0 +1,59 @@
+﻿{include file='common/head'}
+
+<!-- 搜索框-->
+<section class="products">
+	<div class="container">
+    <div class="search-div">
+      <form action="/pcrank" method="post">
+        <input type="hidden" name="engine" id="engine" value='0'>
+        <table class="search-table"> 
+          <tr>
+            <td class="xiala" width="6.5%" data-value="1">
+              <p class="home_icons">
+                <span class="caret"></span>
+              </p>
+              <ul class="dropdown-menu">
+                    <li data-engine="0" data-icon="icon-baidu">
+                        <a><span class="home_icons icon-baidu" alt="百度"></span></a>
+                    </li>
+                    <li data-engine="1" data-icon="icon-360">
+                        <a><span class="home_icons icon-360" alt="360"></span></a>
+                    </li>
+                    <li data-engine="2" data-icon="icon-sougou">
+                        <a><span class="home_icons icon-sougou" alt="搜狗"></span></a>
+                    </li>
+                    <li data-engine="3" data-icon="icon-shenma">
+                        <a><span class="home_icons icon-shenma" alt="神马"></span></a>
+                    </li>
+                </ul>
+            </td>
+            <td width="2%"></td>
+            <td width="35%" class="tdline">
+              <input class="search-input pcurl" placeholder="请输入网址" autocomplete="off">
+            </td>
+            <td width="27.8%" class="inputtwo">
+              <input class="search-input pckeywords" placeholder="请输入关键词" autocomplete="off">
+            </td>
+            <td width="11%" class="pl"><a href="/pcranks"><span>批量查询</span></a></td>
+            <td class="search-btn2" id="selectbtn">查询排名</td>
+          </tr>
+        </table>
+      </form>
+		</div>
+	</div>
+</section>
+<!-- 简介 -->
+<div class="js">
+  <div class="kj">
+    <div class="gun"></div>
+    <h1>工具简介</h1>
+    <h2>PC端网站排名查询工具，百度PC端排名查询工具，360搜索PC端排名查询工具，搜狗PC端排名查询工具</h2>
+    <p>----支持熊掌号直接查询URL查询</p>
+    <p>----可单独查询关键词排名</p>
+    <p>----批量PC端查询关键词排名</p>
+  </div>
+{include file='common/footnav'}
+</div>
+<!-- 底部 -->
+<div style="width: 1080px;height: 100px;"></div>
+{include file='common/footer'}

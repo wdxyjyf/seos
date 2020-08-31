@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=1080px">
+    <meta http-equiv="Cache-Control" content="no-transform " />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>{$headtitle|raw}</title>
+    <meta name="Keywords" content="{$Keyword}" />
+    <meta name="Description" content="{$Desc}" />
+    <link rel="shortcut icon" href="/favicon.ico"/>
+    <link href="/static/home2/css/style.css" rel="stylesheet"/>
+    <link href="/static/home2/css/dialog.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/static/plugins/layui/css/layui.css" media="all" />
+    <link href="/static/home2/css/page.css" rel="stylesheet"/>
+{volist name="CSS" id="c"}
+    <link href="{$c}" rel="stylesheet"/>
+{/volist}
+    <script src="/static/home2/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="/static/home2/js/jquery.superslide.2.1.1.js">//pc导航</script>
+    <script type="text/javascript" src="/static/home2/js/jquery.dialog.js">//弹框</script>
+    <script type="text/javascript" src="/static/plugins/layui/layui.js"></script>
+    <script type="text/javascript" src="/static/home2/js/common.js?{:time()}"></script> 
+    <script type="text/javascript" src="/static/home2/js/base64.js"></script> 
+{volist name="JS" id="j"}
+    <script type="text/javascript" src="{$j}"></script>
+{/volist}
+</head>
+<body>
+<header class="header-v1">
+    <div class="top-main">
+        <div class="logo1"><a href="/"><img src="{$config.logo?:'/static/home2/images/logo.png'}" alt="logo"/></a></div>
+        <div class="top-main-content">
+            <div class="navBar">
+                <ul class="nav clearfix">
+                    <li id="m1" class="m "><h3><a href="/" title="">首页</a></h3></li>
+                    <li id="m2" class="m ">
+                        <h3><a href="#" title="综合排名查询">综合排名查询</a></h3>
+                        <div class="sub">
+                            <dl>
+                                <dd><a href="/mrank" title="移动端查询">移动端查询</a></dd>
+                                <dd><a href="/mranks" title="移动端批量查询">移动端批量查询</a></dd>
+                                <dd><a href="/pcrank" title="PC端查询">PC端查询</a></dd>
+                                <dd><a href="/pcranks" title="PC端批量查询" class="lasta">PC端批量查询</a></dd>
+                            </dl>
+                        </div>
+                    </li>
+                    <li id="m3" class="m ">
+                        <h3><a href="#" title="关键词查询" >关键词查询</a></h3>
+                        <div class="sub">
+                            <dl>
+                                <dd><a href="/keyword" title="关键词精准查询">精准查询</a></dd>
+                                <dd><a href="/keywords" title="批量关键词查询" class="lasta">批量关键词查询</a></dd>
+                            </dl>
+                        </div>
+                    </li>
+                    <li id="m4" class="m ">
+                        <h3><a href="#" title="关键词挖掘" >关键词挖掘</a></h3>
+                        <div class="sub">
+                            <dl>
+                                <dd><a href="/dig" title="相关词挖掘">相关词挖掘</a></dd>
+                                <dd><a href="/related" title="长尾词挖掘" class="lasta">长尾词挖掘</a></dd>
+                            </dl>
+                        </div>
+                    </li>
+                    <li id="m5" class="m"><h3><a href="/rate" title="词频查询">词频查询</a></h3></li>
+                    <li id="m6" class="m"><h3><a href="/monitor" title="网站监控">网站监控</a></h3></li> 
+                </ul>
+            </div>
+        </div>
+        <div class="navBar1" >
+            <ul class="nav1 clearfix">
+                <li class="n">
+                    {if ($tx = $Think.session.userinfo.avatar)}
+                    <img src="{$tx}"/>
+                    {elseif ($wximg = $Think.session.userinfo.headimgurl)/}
+                    <img src="/{$wximg}"/>
+                    {else/}
+                    <img src="/static/home2/images/login.png"/>
+                    {/if}
+                    <div class="sub1">
+                        <dl>
+                            {if $Think.session.usersmobile ==''}
+                            <dd><a href="/login">立即登录</a></dd>
+                            <dd><a href="/register">注册账号</a></dd>
+                            {else /}
+                            <dd><a href="/homeuser">会员中心</a></dd>
+                            <dd><a href="/loginout">退出</a></dd>
+                            {/if}
+                        </dl>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<input type="hidden" class="userinfo" data-id="{$Think.session.usersid}" data-level="{$Think.session.userinfo.level}" data-ydurl="{$Think.session.yqurl}">
+<div class="c_l"></div>

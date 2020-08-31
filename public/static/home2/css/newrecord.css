@@ -1,0 +1,45 @@
+.products{height: 85px;padding-top: 0px;padding-bottom: 0px;}
+.js{padding:20px 0px;}
+.pmt{height: 40px;line-height: 40px;}
+/*列表第一行 单位性质*/
+.onep{width: 1080px;height: 50px;margin-top:10px;line-height: 50px;border-bottom: 1px solid #f2f2f2;}
+.onetit{float: left;color: #423da1;margin-left: 10px;}
+.onep .fuxuan li input{margin-left: 22px;width:14px;height: 14px;}
+.onep .fuxuan li{float: left;}
+.onep .fuxuan li span{margin-left: 5px;cursor: pointer;}
+/*第二行 省市区*/
+.twop{width: 1080px;height: 100px;border-bottom: 1px solid #f2f2f2;}
+.twop .rightbox{float: left;width:800px;height: 100px;}
+.twotit{float: left;color: #423da1;margin-left: 10px;margin-top: 10px;}
+.twop .province li{float: left;margin-top: 10px;margin-left: 10px;}
+.twop .province li span{margin-left: 10px; cursor: pointer;}
+.default{background: #504cc1;color: #fff;padding: 5px 8px; }
+.default2{background: #504cc1;color: #fff;padding: 5px 8px;}
+/*第三行 时间*/
+.threep{width: 1080px;height: 50px;line-height: 50px;border-bottom: 1px solid #f2f2f2;}
+.threep .timelist li{float: left;margin-left: 20px;}
+.threep .timelist li span{cursor: pointer;}
+/*第四行 点击查询*/
+.fourp{width: 1080px;line-height: 80px;}
+.fourp input{width: 200px;height: 30px;font-size: 13px;line-height: 32px;color: #333;appearance: none;-moz-appearance: none;-webkit-appearance: none;
+border: 1px solid #8783d2;
+margin-left: 20px;padding-left:10px;}
+.fourp button{width: 80px;height: 32px;background: #423da1;color: #fff;position: relative;top: 1px;left: 8px;}
+/*表格*/
+.tbodytit{line-height: 40px;}
+.tbodytit a{color: #423da1}
+.tbodytit td{text-align: center;}
+form div:not(.rightbox){padding-left:44px;}
+.js .gun{margin-left: 3%}
+.pmt h1{margin-left: 5%}
+.pagestyle{text-align: center}
+.tbodytit{border-top: 1px solid #f6f6fc}
+.start{height: 32px;}
+.end{height: 32px;margin-left: -20px;}
+.fetchdata{display: none;}
+.bacx{color: #423da1;font-size: 15px;}
+.bacx:hover{color: #423da1;}
+
+.js p.maxPage{text-align: center;margin-top: -1px;font-style: italic;color:#666;}
+.maxPage span{color:#504cc1;font-weight: bold;}
+.maxPage a{color:#504cc1;font-weight: bold;}

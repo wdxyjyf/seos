@@ -1,0 +1,220 @@
+﻿{include file='common/head'}
+<div class="wrap1">
+	<div class="vip_cont c100 clearfix">
+		<!--会员中心 左侧导航-->
+		<div class="fl vip_left vip_magLeft">
+			<dl>
+				<dt>我的账号</dt>
+				<dd>
+					<p>
+						<a href="/homeuser">账号信息</a>
+					</p>
+					<p class="commonstyle">
+						<a href="/edituser">修改资料</a>
+					</p>
+					<p>
+						<a href="/upass">修改密码</a>
+					</p>
+					<p>
+						<a href="/authlist">权限升级</a>
+					</p>
+					<p>
+						<a href="/plist">下载记录</a>
+					</p>
+					<p>
+						<a href="/visit">邀请领VIP</a>
+					</p>
+					<img src="/static/home2/images/vip.png" class="invite">
+				</dd>
+			</dl>
+		</div>
+		<!--会员中心 右侧信息-->
+		<div class="fr vip_right vip_magRight layui-anim layui-anim-upbit" ng-app="hd" ng-controller="ctrl">
+			<div class="vip_center">
+				<h1>修改资料</h1>
+			</div>
+			<form class="layui-form layui-form-pane formedit">
+			    <div class="layui-form-item">
+			        <label class="layui-form-label inputlable">昵称</label>
+			        <div class="layui-input-4">
+			            <input type="text" ng-model="field.username" name="username" placeholder="请填写昵称" class="layui-input">
+			        </div>
+			    </div>
+			    <div class="layui-form-item inputstyle">
+		            <label class="layui-form-label inputlable">头像</label>
+		            <input type="hidden" name="avatar" id="avatar" value="{{field.avatar}}">
+		            <div class="layui-input-block">
+		                <div class="layui-upload">
+		                    <button type="button" class="layui-btn layui-btn-primary" id="cover">
+		                        <i class="icon icon-upload3"></i>点击上传
+		                    </button>
+		                    <div class="layui-upload-list">
+		                        <img class="layui-upload-img" id="previewimg">
+		                        <p id="demoText"></p>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+			    <div class="layui-form-item inputstyle">
+			        <label class="layui-form-label inputlable">QQ</label>
+			        <div class="layui-input-4">
+			        	<input type="text" name="qq" ng-model="field.qq" placeholder="请输入QQ号" class="layui-input">
+			        </div>
+			    </div>
+			    <div class="layui-form-item inputstyle">
+			        <label class="layui-form-label inputlable">邮箱</label>
+			        <div class="layui-input-4">
+			        	<input type="text" name="email" ng-model="field.email" lay-verify="required|email" placeholder="请输入邮箱" class="layui-input" id="emailyz">
+			        </div>
+			    </div>
+			    <!-- {if $email_validated == 1}
+			    <div class="layui-form-item inputstyle">
+			        <label class="layui-form-label inputlable">邮箱</label>
+			        <div class="layui-input-4">
+			        	<input type="text" name="email" ng-model="field.email" class="layui-input" readonly="readonly">
+			        </div>
+			        <span style="line-height: 38px;">验证成功<img src="/static/home2/images/right.png" style="width:12px; margin-left:8px;"></span>
+			    </div>
+				{else /}
+				<div class="layui-form-item inputstyle">
+			        <label class="layui-form-label inputlable">邮箱</label>
+			        <div class="layui-input-4">
+			        	<input type="text" name="email" ng-model="field.email" lay-verify="required|email" placeholder="请输入邮箱" class="layui-input" id="emailyz">
+			        </div>
+			    </div>
+			  	<div class="layui-form-item inputstyle">
+			        <label class="layui-form-label inputlable">邮箱验证码</label>
+			        <div class="layui-input-4">
+			        	<input type="text" name="emailcode" placeholder="请输入邮箱验证码" class="layui-input">
+			        	<input type="button" class="layui-btn" value="获取验证码" id="get_code" style="width: 112px;margin-left: 100%;margin-top: -56px;height: 38px;">
+			        </div>
+			    </div>
+				{/if} -->
+			    <div class="layui-form-item inputstyle">
+			        <div class="layui-input-block">
+			            <button type="button" class="layui-btn editbtn" lay-submit="" lay-filter="submit">保存</button>
+			        </div>
+			    </div>
+			</form>
+		</div>
+		<div class="c_l"></div>
+	</div>
+</div>
+<div class="cus03">
+	<p class="recom">
+		<span>推广链接:</span><input id="recomUrl" value="{$yqurl}" type="text" disabled><button id="copyurl">复制链接</button>
+	</p>
+</div>
+<div class="c_l"></div>
+<div class="footersss">
+  <div class="ft" style="margin-top: 70px;">
+    <div class="c_l"></div>
+    <div class="fttt">
+      <p>© CopyRight 2019 南京白鸥网络技术有限公司  </p>
+      <h2><a href="http://www.beian.miit.gov.cn/"> 苏ICP备17006137号-3</a></h2>
+      <h2 class="footabout"><a href="/contact"> 联系我们</a></h2>
+      <h2 class="footabout"><a href="/about"> 关于我们</a></h2>
+      <h2 class="footabout"><a href="/agreement"> 使用协议</a></h2>
+      <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=badeb4d7a314531403d2a395623f3bd0b5b48e8542ecac260f0530356a957fdc" style="margin-left:20px;"><img border="0" src="/static/home2/images/qq2.png" alt="搜一搜站长工具" title="搜一搜站长工具" width="25px" height="25px"></a>
+      <div class="c_l"></div>
+    </div>
+  </div>
+</div>
+{$config['cnzz']|raw}
+<script>
+    var m = angular.module('hd',[]);
+    m.controller('ctrl',function($scope) {
+        $scope.field = '{$info|raw}'!='null'?{$info|raw}:{username:'',qq:'',email:'',id:''};
+        layui.use(['form', 'layer','upload'], function () {
+            var form = layui.form, upload = layui.upload,$= layui.jquery;
+            if($scope.field.avatar){
+                previewimg.src = $scope.field.avatar;
+            }
+            form.on('submit(submit)', function (data) {
+                console.log(data);
+                var loading = layer.load(1, {shade: [0.1, '#fff']});
+                data.field.id = $scope.field.id;
+                $.post("", data.field, function (res) {
+                    layer.close(loading);
+                    if (res.code > 0) {
+                        layer.msg(res.msg, {time: 1800, icon: 1}, function () {
+                            location.href = "/homeuser";
+                        });
+                    } else {
+                        layer.msg(res.msg, {time: 1800, icon: 2});
+                    }
+                });
+            });
+            var time = 60;
+			function shijian(sj){
+				if(time == 0){
+					sj.removeAttribute('disabled');
+					sj.value = '获取验证码';
+					time =60;
+					return;
+				}else{
+					sj.setAttribute('disabled',true);
+					sj.value = '重新发送（'+ time +')';
+					time--;
+				}
+				setTimeout(function(){
+					shijian(sj)
+				},1000)
+			}
+            /*点击发送验证码*/ 
+			$("#get_code").click(function(){
+				var sj = this;
+				var emailyz = $("#emailyz").val();
+				if(emailyz == ''){
+			  		layer.msg('邮箱不能为空');
+			  		return false;	
+			  	}
+			 	$.post('/home/Users/sendEmailCode', {emailyz:emailyz}, function(data){
+			 		data = JSON.parse(data)
+		            if(data.code == 1){
+		            	layer.msg(data.msg,{time: 1800, icon: 1});
+			  			shijian(sj);
+		            }else{
+		            	layer.msg(data.msg,{time: 1800, icon: 2});
+		            	return false;
+		            }
+		        }, 'json');	
+			});
+            //普通图片上传
+            var uploadInst = upload.render({
+                elem: '#cover'
+                ,url: '{:url("home/uploadimg/upload")}'
+                ,accept:'file'  // 允许上传的文件类型
+	            ,auto:true // 自动上传
+	            ,size:2048
+	            ,before:function (obj) {
+	                // 预览
+	                obj.preview(function(index,file,result) {
+	                	$('#previewimg').attr('src',result);            
+	                });
+	            }
+	            // 上传成功回调
+	            ,done:function(res) {
+	                console.log(res);
+	                console.log(res.url);
+	                if (res.code == 0) {
+	                	$('#avatar').val(res.url);
+	                    layer.msg(res.msg);
+	                }
+	            }
+	          	// 上传失败回调
+                ,error: function(){
+                	// console.log(333);
+                    //演示失败状态，并实现重传
+                    var demoText = $('#demoText');
+                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                    demoText.find('.demo-reload').on('click', function(){
+                        uploadInst.upload();
+                    });
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

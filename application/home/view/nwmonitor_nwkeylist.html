@@ -1,0 +1,437 @@
+﻿{include file='common/head'}
+<div class="nwtop"></div>
+<div class="pmjk-con nwbackgroup">
+    <div class="pmjk">
+        <div class="biaoti">当前位置：<a href="/monitor" style="color:blue">网站列表</a><span> > </span><span class="baitiurl">{$weburl}</span> 关键词分析</div>
+        </br>
+        <div class="pmjk">
+            <div class="chart-con">
+                <div class="header-tit">
+                    <div class="title">
+                        <div>Top100关键词总数趋势 ({$name})</div>
+                        <ul class="tab-change">
+                            <li class="active" id='a7'>7天</li>
+                            <li id='a30'>30天</li>
+                            <li id='a3'>3个月</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="echartbox">
+                    <div id="chart"></div>
+                </div>
+                <ul class="data-wrap">
+                	{if $pty != 2}
+                    <li>
+                        <div>
+                            <span class="checkItem bg1"></span>前100名
+                            <em class="data cyan" style="color: #A4DE6C;">{$dataarrinfo[0]?end($dataarrinfo[0]):0}</em>
+                        </div>
+                        <div>
+                            <span>上升</span>
+                            <span>{$a = $ud['100+']?:0}<i class="icon-up"></i></span>
+                        </div>
+                        <div>
+                            <span>下降</span>
+                            <span>{$b = $ud['100-']?:0}<i class="icon-down"></i></span>
+                        </div>
+                        <div>
+                            <span>变化</span>
+                            <span class="{$a>$b?'green':($a<$b?'red':'')}"> {$a-$b>0?'+'.($a-$b):$a-$b} </span>
+                        </div>
+                    </li>
+                    {/if}
+                    <li>
+                        <div>
+                            <span class="checkItem bg2"></span>前50名
+                            <em class="data cyan" style="color: #8DD1E1;">{$dataarrinfo[1]?end($dataarrinfo[1]):0}</em>
+                        </div>
+                        <div>
+                            <span>上升</span>
+                            <span>{$a = $ud['50+']?:0}<i class="icon-up"></i></span>
+                        </div>
+                        <div>
+                            <span>下降</span>
+                            <span>{$b = $ud['50-']?:0}<i class="icon-down"></i></span>
+                        </div>
+                        <div>
+                            <span>变化</span>
+                            <span class="{$a>$b?'green':($a<$b?'red':'')}"> {$a-$b>0?'+'.($a-$b):$a-$b} </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <span class="checkItem bg3"></span>前20名
+                            <em class="data red" style="color:#F7E254;">{$dataarrinfo[2]?end($dataarrinfo[2]):0}</em>
+                        </div>
+                        <div>
+                            <span>上升</span>
+                            <span>{$a = $ud['20+']?:0}<i class="icon-up"></i></span>
+                        </div>
+                        <div>
+                            <span>下降</span>
+                            <span>{$b = $ud['20-']?:0}<i class="icon-down"></i></span>
+                        </div>
+                        <div>
+                            <span>变化</span>
+                            <span class="{$a>$b?'green':($a<$b?'red':'')}"> {$a-$b>0?'+'.($a-$b):$a-$b} </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <span class="checkItem bg4"></span>前10名
+                            <em class="data green" style="color:#FF3E43;">{$dataarrinfo[3]?end($dataarrinfo[3]):0}</em>
+                        </div>
+                        <div>
+                            <span>上升</span>
+                            <span>{$a = $ud['10+']?:0}<i class="icon-up"></i></span>
+                        </div>
+                        <div>
+                            <span>下降</span>
+                            <span>{$b = $ud['10-']?:0}<i class="icon-down"></i></span>
+                        </div>
+                        <div>
+                            <span>变化</span>
+                            <span class="{$a>$b?'green':($a<$b?'red':'')}"> {$a-$b>0?'+'.($a-$b):$a-$b} </span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="header-tit">
+            <div class="title">
+                <div>关键词列表</div>
+                <ul class="tab-change">
+                    <li class="danger dels">批量删除</li>
+                </ul>
+                <ul class="tab-change">
+                    <li class="active add">+添加关键字</li>
+                </ul>
+            </div>
+        </div>
+        <div class="pmjk pmjk2">
+            <div class="bodybox">
+                <div class="top">
+                    <div class="col0 text-c"><input type="checkbox" id="zong"></div>
+                    <div class="col1 text-c">序号</div>
+                    <div class="col2 text-c">关键词</div>
+                    <div class="col1 text-c">当前排名</div>
+                    <div class="col2 text-c">搜索量</div>
+                    <div class="col1 text-c">搜索引擎</div>
+                    <div class="col3 text-c">趋势图</div>
+                    <div class="col2 text-c">更新时间</div>
+                    <div class="col1 text-c">操作</div>
+                </div>
+                {if empty($list)}
+                <h3 class="nullres">暂无监控的网站的关键字,快去添加吧</h3>
+                {else /}
+                <form id="rank_form" method="post">
+                    <input type="hidden" name="rank_id" id="rank_id">
+                </form>
+                {foreach $list as $k=> $v}
+                <ul class="list-rank" style="height:65px;">
+                    <li style="line-height:65px;">
+                        <div class="col0 text-c"><input type="checkbox" value="{$v.id}"></div>
+                        <div class="col1 text-c">{$k + ($page - 1) * $limit + 1}</div>
+                        <div class="col2 text-c"><span class="arr-like"></span><a class="kw" href="/webimg/{$weburl}/{$search}" data-id="{$v.id}" title="点击查看更多数据">{$v.dmkeywords|subtext=8}</a></div>
+                        {if $v.befrank == 0}
+                        <div class="col1 text-c">{$v.ranking}</div>
+                        {elseif $v.befrank > 0/}
+                        <div class="col1 text-c">{$v.ranking} 
+                            <img src="/static/home2/images/down.png" class="befrankimg">
+                            <span class="befrank">{$v.befrank}</span>
+                        </div>
+                        {else /} 
+                        <div class="col1 text-c">{$v.ranking}
+                            <img src="/static/home2/images/up.png" class="befrankimg2">
+                            <span class="befrank2">{:abs($v.befrank)}</span>
+                        </div>
+                        {/if}
+                        {if $v.sousl == 0}
+                        <div class="col2 text-c"><a href="/keyword/{$v.dmkeywords|urlsafe_b64encode}" class="befsousl">{$v.sousl}</a></div>
+                        {else /} 
+                        <div class="col2 text-c">{$v.sousl}</div>
+                        {/if}
+                        <div class="col1 text-c">
+                        {switch($name)}
+                            {case 百度PC}
+                            <img src="/static/home2/images/2.png" title="百度PC">
+                            {/case}
+                            {case 百度移动}
+                            <img src="/static/home2/images/1.png" title="百度移动">
+                            {/case}
+                            {case 360PC}
+                            <img src="/static/home2/images/3.png" title="360PC">
+                            {/case}
+                            {case 搜狗PC}
+                            <img src="/static/home2/images/4.png" title="搜狗PC">
+                            {/case}
+                            {case 搜狗移动}
+                            <img src="/static/home2/images/5.png" title="搜狗移动">
+                            {/case}
+                            {default/}
+                            暂无：请添加词
+                        {/switch}
+                        </div>
+                        <div class="chart-rank col3">
+                            <a href="javascript:;">
+                                <div id="chart-{$k}" class="charttable" style="height: 65px;"></div>
+                            </a>
+                        </div>
+                        <div class="col2 text-c">{$v.update_time}</div>
+                        <div class="col1 text-c">
+                            <a href="javascript:delkeylist({$v.id});" class="delweb">删除</a>
+                        </div>
+                    </li>
+                </ul>
+                {/foreach}
+
+                {/if}
+            </div>
+            <div class="nwwebpage">
+                {$paginate->render()|raw} 
+                 <form action="" id="nwForm" method="post">
+                    <input type="hidden" name="page">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="myMask"></div>
+    <div class="myDlg">
+        <div class="app-modal-header">
+            <h3 class="title">
+                添加关键字
+            </h3>
+            <a class="close" href="javascript:;"><i></i></a>
+        </div>
+        <input type="hidden" class="getweb" value="{$dmid}" data-search="{$search}">
+        <div class="Dlg-con">
+            <form method="post" id="formbuit">
+                <input type="hidden" name="weburl" value="{$weburl}" id="weburl">
+                <input type="hidden" name="dmid" value="{$dmid}" id="dmid">
+            <div class="form-item">
+                <ul>
+                    <li>
+                        <label>
+                            网站地址：
+                        </label>
+                        <input id='wzdz' type="text" class="form-input" value="{$weburl}" readonly="readonly">
+                    </li>
+                    <li>
+                        <label>搜索引擎：</label>
+                        <select class="form-input" name="enginetype" id="etval">
+                            <option value="0">请选择</option>
+                            <option value="1" {if($ety==1)} selected {/if}>百度</option>
+                            <option value="2" {if($ety==2)} selected {/if}>360</option>
+                            <option value="3" {if($ety==3)} selected {/if}>搜狗</option>
+                        </select>
+
+                    </li>
+                    <li>
+                        <label>终端类型：</label>
+                        <select class="form-input" name="platform" id="laval">
+                            <option value="0">请选择</option>
+                            <option value="1" {if($pty==1)} selected {/if}>PC</option>
+                            <option value="2" {if($pty==2)} selected {/if}>移动</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label> 关 键 词：</label>
+                        <textarea class="form-input" placeholder="请输入关键词,批量添加为一行一个关键字,回车为一行&#10;一次最多可提交{$countkey}条" name="dmkeywords" id="keywords"></textarea>
+                    </li>
+                </ul>
+            </div>
+            <div class="Dlg-footer">
+                <button type="button" class="btn btn-default guan">关闭</button>
+                <button type="button" class="btn blue okbtn">确定</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>  
+<script type="text/javascript">
+    var data = {:json_encode($dataarr)};
+    var info = {:json_encode($dataarrinfo)};
+    var alldata = {:json_encode($alldata)};
+    drawline(data, info);
+    $.each({:json_encode($list)}, function(i, v){
+        var sevendata = v.sevendata;
+        var seventime = v.seventime;
+        drawline1(i,sevendata,seventime);
+    })
+    function drawline(xarr,info) {
+        var mylineChart = echarts.init(document.getElementById('chart'));
+        var odata = ['前50名', '前20名', '前10名']
+        var oseries = [{
+                name: '前50名',
+                type: 'line',
+                // stack: '总量',
+                data: info[1],
+                smooth: true,
+                symbol: "none"
+            }, {
+                name: '前20名',
+                type: 'line',
+                // stack: '总量',
+                data: info[2],
+                smooth: true,
+                symbol: "none"
+            }, {
+                name: '前10名',
+                type: 'line',
+                // stack: '总量',
+                data: info[3],
+                smooth: true,
+                symbol: "none"
+                }]
+        if ({$pty} == 1) {
+        	odata.unshift('前100名')
+        	oseries.unshift({
+                name: '前100名',
+                type: 'line',
+                data: info[0],
+                smooth: true,
+                symbol: "none"
+            })
+        }
+
+        option = {
+            title: {
+                text: ''
+            },
+            tooltip: {
+                trigger: 'axis',
+
+            },
+            legend: {
+                data: odata
+            },
+            grid: {
+                x: '5%',
+                y: '6%',
+                x2: '5%',
+                y2: '6%',
+
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                
+                type: 'category',
+                boundaryGap: false,
+                splitLine: {
+                    show: false
+                },
+                axisLine: {
+                    show: false
+                },
+                data: xarr
+            },
+            yAxis: {
+                type: 'value',
+                axisLine: {
+                    show: false
+                }
+            },
+            series: oseries,
+           color: ['#A4DE6C', '#8DD1E1',  '#F7E254','#FF3E43'],//圆点颜色
+        };
+        if (option && typeof option === "object") {
+            mylineChart.setOption(option, true);
+        }
+    }
+    function drawline1(k,sevendata,seventime) {
+        $.each (sevendata, function(i,v) {
+            v = v == 0?"101":v
+            v = v == 100?"100":v
+            sevendata[i] = -v;
+        })
+        var mylineChart = echarts.init(document.getElementById('chart-'+k));
+        option = {
+                tooltip : {
+                    trigger: 'axis',
+                    textStyle:{
+                        fontSize: 10
+                    },
+                    confine: true,
+                    formatter: function(value){
+                        var datay = value[0]['data'] == "-101"?"100+":-value[0]['data']
+                        if ({$pty} == 2 && datay == '51') {
+                            datay = "50+"
+                        }
+                        return value[0].name+"<br>"+value[0].seriesName+"："+datay
+                    }
+                },
+                grid: {
+                    x: '20%',
+                    y: '15%',
+                    x2: '1%',
+                    y2: '25%',
+                },
+                calculable : false,
+                xAxis : [
+                    {
+                        show:false,
+                        type : 'category',
+                        boundaryGap : false,
+                        data : seventime
+                    }
+                ],
+                yAxis : [
+                    {
+                        type: 'value',
+                        axisLine: {
+                            show: false
+                        },
+                        splitLine: {    //网格线
+                            lineStyle: {
+                                type: 'dashed'  //设置网格线类型 dotted：虚线   solid:实线
+                            },
+                            show: true //隐藏或显示
+                        },
+                        axisTick: {
+                            show: false
+                        },
+                        axisLabel:{
+                            formatter: function (value) {
+                                return ''
+                            }
+                        }
+                    }
+                ],
+                series: [{
+                    name: '排名',
+                    type: 'line',
+                    stack: '总量',
+                    data: sevendata,
+                    smooth: true,
+                    symbol: "none"
+                }]
+            };
+        if (option && typeof option === "object") {
+            mylineChart.setOption(option, true);
+        }
+    }
+    $(".tab-change li").click(function(){
+　　　　 //获取点击的元素给其添加样式，讲其兄弟元素的样式移除
+        $(this).addClass("active").siblings().removeClass("active");
+        //获取选中元素的下标
+        var index = $(this).index();
+        $(this).parent().siblings().children().eq(index).addClass("active").siblings().removeClass("active");
+        $.post("/home/nwmonitor/clickBtn", {type:index,alldata:alldata}, function(res){
+            if(res.code == 1){
+                var xarr = res.xarr;
+                var info = res.xinfo;
+                drawline(xarr, info);
+            }
+        });
+    });
+
+</script>
+{include file='common/footer'} 
+
+
+       

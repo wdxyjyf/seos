@@ -1,0 +1,46 @@
+#lmobile{
+	font-size: 16px;
+	text-indent:10px;
+}
+#lpass{
+	font-size: 16px;
+	text-indent:10px;
+}
+.aui-form-list img{
+	width: 30px;
+	height: 30px;
+}
+#registform input{
+	font-size: 16px;
+	text-indent: 10px;
+}
+#wxregistform input{
+	font-size: 16px;
+	text-indent: 10px;
+}
+.allheight{height: 470px;}
+.aui-form-header-item{margin-left: 137px;}
+.findpass{border: 0px;outline:none;}
+#phonecode{width: 250px;}
+.aui-form-pwd .returnpage{float: left;cursor: pointer;}
+.findfoot{margin-bottom: 50px;margin-top: -10px;}
+.btnlogin{margin-top:60px;}
+#rcode{width: 250px;}
+#registform .codebtn{width: 100px;text-indent: 0px;font-size: 13px;}
+#registform a:hover{color: #504cc1}
+
+.moblogin{display: inline-block;margin-left: 85px;float: left;}
+.wxlogin{display: inline-block;margin-left: 30px;}
+
+/*.clearfix .wximg{margin-left: 110px;margin-top: 20px;cursor: pointer;}
+#loginbut{margin-top: -20px;}*/
+.terms{display:inline-block;position: relative;top: 26px;font-size: 14px}
+.terms a{top:0px;margin-left: 15px;}
+.terms [type=checkbox]{
+	-ms-transform: scale(1.2); /* IE */
+	-moz-transform: scale(1.2); /* FireFox */
+	-webkit-transform: scale(1.2); /* Safari and Chrome */
+	-o-transform: scale(1.2); /* Opera */
+}
+.weixinimg{width: 300px;height: 300px;padding: 2px;}
+iframe{width: 550px;}

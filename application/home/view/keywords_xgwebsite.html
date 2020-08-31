@@ -1,0 +1,71 @@
+{include file='common/head'}
+<input type="text" style="opacity:0;position:absolute;"
+       value="搜一搜站长工具，大数据关键词挖掘，免费网站关键词排名监控，邀请注册即可获得VIP 会员！{$Think.session.yqurl}" id="fuzhi">
+<section class="products">
+    <div class="container">
+        <div class="search">
+            <input type="hidden" class="allpage" data-page="{$page}">
+            <form id="form" method="post">
+                <input type="text" class="xgwebsite" placeholder="请输入关键词" value="{$kw?$kw:''}">
+                <button class="search-btn" id="selectweb" type="button">立即查询</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<div class="sousuo">
+    <div class="paiming">
+        <ul class="pmt">
+            <div class="gun"></div>
+            <p><strong><font color="#423da1">{$kw} </font>相关网站查询结果</strong></p>
+            {if count($list)}
+            <span id="daochu">
+                <img src="/static/home2/images/dc.png" style="margin-left: 5px;"><span>导出数据 </span>
+            </span>
+            {/if}
+            <div class="c_l"></div>
+        </ul>
+        {if $list}
+        <table class="pmddd">
+            <tr class="tabtit">
+                <th width="8%">序号</th>
+                <th width="17%">网址</th>
+                <th>标题</th>
+                <th width="11%">收录</th>
+                <th width="11%">收录时间</th>
+            </tr>
+            <tbody id='content'>
+                {foreach $list as $key=> $pvvo}
+                <tr class="tbodytit">
+                    <td>{$key + 1 + ($page-1)*$limit}</td>
+                    <td><img src="/static/home2/images/rz{$pvvo.jj?1:0}.png" style="height:16px;" title="{$pvvo.jj?'已认证':'未认证'}"><a style="color:#423da1;" href="/{$pvvo.website_url}" target="_blank" title="{$pvvo.website_url}">{$pvvo.website_url|subtext=20}</a></td>
+                    <td title="{$pvvo.title|strip_tags}">{$pvvo.title|subtext=36|raw}</td>
+                    <td>{$pvvo.baidu_include?:0}</td>
+                    <td>{$pvvo.create_time}</td>
+                </tr>
+                {/foreach}
+            </tbody>
+        </table>
+        {else /}
+        <style>
+            .ft {
+                position: fixed;
+                left: 0;
+                bottom: 20px;
+                width: 100%;
+            }
+        </style>
+        <h3 class="record">暂无搜索结果</h3>
+        {/if}
+    </div>
+    {if $list}
+    <div style="text-align: center;margin-top: 10px;">
+        {$fenye|raw}
+        <form action="/findsites" id="xgwebForm" method="post">
+            <input type="hidden" name="page">
+        </form>
+    </div>
+    {/if}
+</div>
+<!-- 底部 -->
+{include file='common/footer'}

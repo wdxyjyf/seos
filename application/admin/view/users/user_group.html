@@ -1,0 +1,58 @@
+{include file="common/head"/}
+<div class="admin-main layui-anim layui-anim-upbit">
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>会员组{:lang('list')}</legend>
+    </fieldset>
+    <blockquote class="layui-elem-quote">
+        <a href="{:url('groupAdd')}" class="layui-btn layui-btn-sm">
+            {:lang('add')}会员组
+        </a>
+    </blockquote>
+    <table class="layui-table" id="list" lay-filter="list"></table>
+</div>
+{include file="common/foot"/}
+
+
+<!-- 操作 -->
+<script type="text/html" id="action">
+    <a href="{:url('ruleAdd')}?group_id={{d.id}}" class="layui-btn layui-btn-xs layui-btn-normal">添加权限</a>
+    <a href="{:url('groupEdit')}?group_id={{d.id}}" class="layui-btn layui-btn-xs">{:lang('edit')}</a>
+    <!-- <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">{:lang('del')}</a> -->
+</script>
+
+<script>
+    layui.use(['table','form'], function() {
+        var table = layui.table, form = layui.form,$ = layui.jquery;
+        var tableIn = table.render({
+            id: 'user',
+            elem: '#list',
+            url: '{:url("userGroup")}',
+            method: 'post',
+            cols: [[
+                {field: 'id', title: '{:lang("id")}', width: 80, fixed: true, sort: true},
+                {field: 'title', title: '名称', width: 120},
+                {field:'create_time', title: '添加时间', width:200,sort: true},
+                {fixed: 'right', title: '操作',width: 260, align: 'center', toolbar: '#action'}
+            ]]
+        });
+        
+        table.on('tool(list)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'del'){
+                layer.confirm('您确定要删除该记录吗？', function(index){
+                    var loading = layer.load(1, {shade: [0.1, '#fff']});
+                    $.post("{:url('groupDel')}",{group_id:data.id},function(res){
+                        layer.close(loading);
+                        if(res.code==1){
+                            layer.msg(res.msg,{time:1000,icon:1});
+                            obj.del();
+                        }else{
+                            layer.msg(res.msg,{time:1000,icon:2});
+                        }
+                    });
+                    layer.close(index);
+                });
+            }
+        });
+    });
+</script>

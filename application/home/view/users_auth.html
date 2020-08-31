@@ -1,0 +1,408 @@
+﻿{include file='common/head'}
+<!--权限与升级-->
+<div class="wrap1">
+	<div class="vip_cont c100 clearfix">
+		<!-- 左侧 -->
+		<div class="fl vip_left vip_magLeft">
+			<dl>
+				<dt>我的账号</dt>
+				<dd>
+				<p><a href="/homeuser">账号信息</a></p>
+				<p><a href="/edituser">修改资料</a></p>
+				<p><a href="/upass">修改密码</a></p>
+				<p class="commonstyle"><a href="/authlist">权限升级</a></p>
+				<p>
+					<a href="/plist">下载记录</a>
+				</p>
+				<p>
+					<a href="/visit">邀请领VIP</a>
+				</p>
+				<img src="/static/home2/images/vip.png" class="invite">
+				</dd>
+			</dl>
+		</div>
+		<!-- 右侧 -->
+		<div class="fr vip_right" style="width: 78%;">
+			<div class="vip_center">
+				<h1 style="width: 70px;">权限与升级</h1>
+			</div>
+			<div class="module-privilege">
+				<table class="authtable">
+					<tr>
+						<td colspan="2" width="395px" align="center">会员特权</td>
+						<td colspan="2" rowspan="2" width="135px;">{$ulone.title}</td>
+						<td colspan="2" rowspan="2" width="135px;">{$ultwo.title}</td>
+						<td colspan="2" rowspan="2" width="135px;">{$ulthree.title}</td>
+					</tr>
+					<tr>
+						<td style="background: none;text-align: left;"><span>会员功能</span></td>
+						<td style="background: none;text-align: left;"><span>具体细项</span></td>
+					</tr>
+					<tr>
+						<td><span>价格 /年</span></td>
+						<td></td>
+						<td colspan="2">
+							{if $ulone.price == '0'}
+							免费
+							{else /}
+							{$ulone.price}
+							{/if}
+						</td>
+						<td colspan="2">
+							<img src="/static/home2/images/xianshi.png" style="height: 25px;">
+							{if $ultwo.price == '0'}
+							免费
+							{else /}
+							<font color="#FF4D4F"><strong>{$ultwo.price}</strong></font>
+							{/if}
+						</td>
+						<td colspan="2">
+							<img src="/static/home2/images/xianshi.png" style="height: 25px;">
+							{if $ulthree.price == '0'}
+							免费
+							{else /}
+							<font color="#FF4D4F"><strong>{$ulthree.price}</strong></font>
+							{/if}
+
+						</td>
+					</tr>
+					<tr>
+						<td><span>权限描述</span></td>
+						<td></td>
+						<td colspan="2">{$ulone.description}</td>
+						<td colspan="2">{$ultwo.description}</td>
+						<td colspan="2">{$ulthree.description}</td>
+					</tr>
+					<tr>
+						<td rowspan="5"><span>关键词</span></td>
+						<td><span>查询次数 / 天</span></td>
+						<td colspan="2">{$ulone.keyword_querynum}</td>
+						<td colspan="2">{$ultwo.keyword_querynum}</td>
+						<td colspan="2">{$ulthree.keyword_querynum}</td>
+						
+					</tr>
+					<tr>
+						<td><span>导出次数 / 天</span></td>
+						<td colspan="2">— —</td>
+						<td colspan="2">
+							{if $ultwo.keyword_exportnum == '0'}
+							— —
+							{else}
+							{$ultwo.keyword_exportnum}
+							{/if}
+						</td>
+						<td colspan="2">
+							{if $ulthree.keyword_exportnum == '0'}
+							— —
+							{else}
+							{$ulthree.keyword_exportnum}
+							{/if}
+						</td>
+					</tr>
+					<tr>
+						<td><span>展示条数</span></td>
+						<td colspan="2">{$ulone.keyword_shownum}</td>
+						<td colspan="2">{$ultwo.keyword_shownum}</td>
+						<td colspan="2">{$ulthree.keyword_shownum}</td>
+						
+					</tr>
+					<tr>
+						<td><span>批量查询次数 / 天</span></td>
+						<td colspan="2">{$ulone.keyword_plquerynum}</td>
+						<td colspan="2">{$ultwo.keyword_plquerynum}</td>
+						<td colspan="2">{$ulthree.keyword_plquerynum}</td>
+						
+					</tr>
+					<tr>
+						<td><span>批量查询关键词数量</span></td>
+						<td colspan="2">{$ulone.keyword_plsubmit}</td>
+						<td colspan="2">{$ultwo.keyword_plsubmit}</td>
+						<td colspan="2">{$ulthree.keyword_plsubmit}</td>
+					</tr>
+					<tr>
+						<td><span>词频</span></td>
+						<td><span>查询次数 / 天</span></td>
+						<td colspan="2">{$ulone.qz_querynum}</td>
+						<td colspan="2">{$ultwo.qz_querynum}</td>
+						<td colspan="2">{$ulthree.qz_querynum}</td>
+					</tr>
+					<tr>
+						<td><span>伪原创</span></td>
+						<td><span>伪原创字数</span></td>
+						<td colspan="2">{$ulone.wyc_num}</td>
+						<td colspan="2">{$ultwo.wyc_num}</td>
+						<td colspan="2">{$ulthree.wyc_num}</td>
+					</tr>
+					<tr>
+						<td rowspan="4"><span>备案</span></td>
+						<td><span>查询次数 / 天</span></td>
+						<td colspan="2">{$ulone.beian_querynum}</td>
+						<td colspan="2">{$ultwo.beian_querynum}</td>
+						<td colspan="2">{$ulthree.beian_querynum}</td>
+					</tr>
+					<tr>
+						<td><span>批量查询次数 / 天</span></td>
+						<td colspan="2">{$ulone.beian_plquerynum}</td>
+						<td colspan="2">{$ultwo.beian_plquerynum}</td>
+						<td colspan="2">{$ulthree.beian_plquerynum}</td>
+					</tr>
+					<tr>
+						<td><span>导出次数 / 天</span></td>
+						<td colspan="2">— —</td>
+						<td colspan="2">
+							{if $ultwo.beian_exportnum == '0'}
+							— —
+							{else}
+							{$ultwo.beian_exportnum}
+							{/if}
+						</td>
+						<td colspan="2">
+							{if $ulthree.beian_exportnum == '0'}
+							— —
+							{else}
+							{$ulthree.beian_exportnum}
+							{/if}
+						</td>
+					</tr>
+					<tr>
+						<td><span>批量查询数量</span></td>
+						<td colspan="2">{$ulone.beian_plsubmit}</td>
+						<td colspan="2">{$ultwo.beian_plsubmit}</td>
+						<td colspan="2">{$ulthree.beian_plsubmit}</td>
+					</tr>
+					<tr>
+						<td rowspan="3"><span>收录查询</span></td>
+						<td><span>查询次数 / 天</span></td>
+						<td colspan="2">{$ulone.includ_querynum}</td>
+						<td colspan="2">{$ultwo.includ_querynum}</td>
+						<td colspan="2">{$ulthree.includ_querynum}</td>
+					</tr>
+					<tr>
+						<td><span>查询数量</span></td>
+						<td colspan="2">{$ulone.includ_plsubmit}</td>
+						<td colspan="2">{$ultwo.includ_plsubmit}</td>
+						<td colspan="2">{$ulthree.includ_plsubmit}</td>
+					</tr>
+					<tr>
+						<td><span>导出次数 / 天</span></td>
+						<td colspan="2">— —</td>
+						<td colspan="2">
+							{if $ultwo.includ_exportnum == '0'}
+							— —
+							{else}
+							{$ultwo.includ_exportnum}
+							{/if}
+						</td>
+						<td colspan="2">
+							{if $ulthree.includ_exportnum == '0'}
+							— —
+							{else}
+							{$ulthree.includ_exportnum}
+							{/if}
+						</td>
+					</tr>
+					<tr>
+						<td rowspan="2"><span>网站监控</span></td>
+						<td><span>监控网址数量</span></td>
+						<td colspan="2">{$ulone.webmonitorl_urlnum}</td>
+						<td colspan="2">{$ultwo.webmonitorl_urlnum}</td>
+						<td colspan="2">{$ulthree.webmonitorl_urlnum}</td>
+					</tr>
+					<tr>
+						<td><span>监控关键词数量</span></td>
+						<td colspan="2">{$ulone.webmonitor_keynum}</td>
+						<td colspan="2">{$ultwo.webmonitor_keynum}</td>
+						<td colspan="2">{$ulthree.webmonitor_keynum}</td>
+					</tr>
+					<tr>
+						<td rowspan="4"><span>关键词查询排名</span></td>
+						<td><span>查询次数 / 天</span></td>
+						<td colspan="2">{$ulone.rank_querynum}</td>
+						<td colspan="2">{$ultwo.rank_querynum}</td>
+						<td colspan="2">{$ulthree.rank_querynum}</td>
+					</tr>
+					<tr>
+						<td><span>批量查询次数 / 天</span></td>
+						<td colspan="2">{$ulone.rank_plquerynum}</td>
+						<td colspan="2">{$ultwo.rank_plquerynum}</td>
+						<td colspan="2">{$ulthree.rank_plquerynum}</td>
+					</tr>
+					<tr>
+						<td><span>批量查询数量</span></td>
+						<td colspan="2">{$ulone.rank_plsubmit}</td>
+						<td colspan="2">{$ultwo.rank_plsubmit}</td>
+						<td colspan="2">{$ulthree.rank_plsubmit}</td>
+					</tr>
+					<tr>
+						<td><span>导出次数 / 天</span></td>
+						<td colspan="2">— —</td>
+						<td colspan="2">
+							{if $ultwo.rank_exportnum == '0'}
+							 — —
+							{else}
+							{$ultwo.rank_exportnum}
+							{/if}
+						</td>
+						<td colspan="2">
+							{if $ulthree.rank_exportnum == '0'}
+							— —
+							{else}
+							{$ulthree.rank_exportnum}
+							{/if}
+						</td>
+					</tr>
+					<tr>
+						<td rowspan="5"><span>排序数据</span></td>
+						<td><span>备案排序</span></td>
+						<td colspan="2">
+							{if $ulone.order_beian == '0'}
+							<span class="icon error"></span>
+							{else}
+							<span class="icon right"></span>
+							{/if}
+						</td>
+						<td colspan="2">
+							{if $ultwo.order_beian == '0'}
+							<span class="icon error"></span>
+							{else}
+							<span class="icon right"></span>
+							{/if}
+						</td>
+						<td colspan="2">
+							{if $ulthree.order_beian == '0'}
+							<span class="icon error"></span>
+							{else}
+							<span class="icon right"></span>
+							{/if}
+						</td>
+					</tr>
+					<tr>
+						<td><span>排名查询排序</span></td>
+						<td colspan="2">
+							{if $ulone.order_rank == '0'}
+							<span class="icon error"></span>
+							{else}
+							<span class="icon right"></span>
+							{/if}
+						</td>
+						<td colspan="2">
+							{if $ultwo.order_rank == '0'}
+							<span class="icon error"></span>
+							{else}
+							<span class="icon right"></span>
+							{/if}
+						</td>
+						<td colspan="2">
+							{if $ulthree.order_rank == '0'}
+							<span class="icon error"></span>
+							{else}
+							<span class="icon right"></span>
+							{/if}
+						</td>
+					</tr>
+					<tr>
+						<td><span>收录排序</span></td>
+						<td colspan="2">
+							{if $ulone.order_includ == '0'}
+							<span class="icon error"></span>
+							{else}
+							<span class="icon right"></span>
+							{/if}
+						</td>
+						<td colspan="2">
+							{if $ultwo.order_includ == '0'}
+							<span class="icon error"></span>
+							{else}
+							<span class="icon right"></span>
+							{/if}
+						</td>
+						<td colspan="2">
+							{if $ulthree.order_includ == '0'}
+							<span class="icon error"></span>
+							{else}
+							<span class="icon right"></span>
+							{/if}
+						</td>
+					</tr>
+					<tr>
+						<td><span>关键词挖掘排序</span></td>
+						<td colspan="2">
+							{if $ulone.order_keydig == '0'}
+							<span class="icon error"></span>
+							{else}
+							<span class="icon right"></span>
+							{/if}
+						</td>
+						<td colspan="2">
+							{if $ultwo.order_keydig == '0'}
+							<span class="icon error"></span>
+							{else}
+							<span class="icon right"></span>
+							{/if}
+						</td>
+						<td colspan="2">
+							{if $ulthree.order_keydig == '0'}
+							<span class="icon error"></span>
+							{else}
+							<span class="icon right"></span>
+							{/if}
+						</td>
+					</tr>
+					<tr>
+						<td><span>相关词查询排序</span></td>
+						<td colspan="2">
+						{if $ulone.order_relate == '0'}
+						<span class="icon error"></span>
+						{else}
+						<span class="icon right"></span>
+						{/if}
+						</td>
+						<td colspan="2">
+						{if $ultwo.order_relate == '0'}
+						<span class="icon error"></span>
+						{else}
+						<span class="icon right"></span>
+						{/if}
+						</td>
+						<td colspan="2">
+						{if $ulthree.order_relate == '0'}
+						<span class="icon error"></span>
+						{else}
+						<span class="icon right"></span>
+						{/if}
+						</td>
+					</tr>
+					<tr id="lasttr">
+						<td><span>权限升级</span></td>
+						<td></td>
+						<td colspan="2"></td>
+						<td colspan="2">
+							<form action="/payinfo" method="post" id="form2">
+								<input type="hidden" name="type" value="2">
+								<input type="hidden" name="price" value="{$ultwo.price}">
+								<button class="sjbtn level2">立即开通</button>
+							</form>
+						</td>
+						<td colspan="2">
+							<form action="/payinfo" method="post" id="form3">
+								<input type="hidden" name="type" value="3">
+								<input type="hidden" name="price" value="{$ulthree.price}">
+								<button class="sjbtn level3">立即开通</button>
+							</form>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="c_l"></div>
+	</div>
+</div>
+<div class="cus03">
+	<p class="recom">
+		<span>推广链接:</span><input id="recomUrl" value="{$yqurl}" type="text" disabled><button id="copyurl">复制链接</button>
+	</p>
+</div>
+<div class="c_l"></div>
+<!-- 底部 -->
+{include file='common/footer'}
+

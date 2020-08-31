@@ -1,0 +1,36 @@
+﻿{include file='common/head'}
+<!-- 找回密码 -->
+<div class="demo">
+	<div class="demobg"></div>
+	<div class="aui-content-box clearfix">
+		<div class="aui-content-box-fl allheight">
+			<div class="aui-form-header" >
+				<div class="aui-form-header-item on">找回密码</div>
+			</div>
+			<form action="" method="post" id="registform">
+				<div class="aui-form-list">
+					<img src="/static/home2/images/log.png" />
+					<input type="text" class="aui-input findpass" name="mobile" placeholder="请输入您注册的手机号码" data-required="required" autocomplete="off" id="mobile">
+				</div>
+				<div class="aui-form-list">
+					<img src="/static/home2/images/yzm.png" />
+					<input type="text" class="aui-input findpass" name="phonecode" placeholder="请输入验证码" data-required="required" autocomplete="off" id="phonecode">
+					<input type="button" class="aui-child codebtn" value="获取验证码" id="get_code" style="">
+				</div>
+				<div class="aui-form-list">
+					<img src="/static/home2/images/pass.png" />
+					<input type="password" class="aui-input findpass" name="password" placeholder="请设置您的新密码" data-required="required" autocomplete="off" id="password">
+				</div>
+				<div class="aui-form-pwd clearfix findfoot">
+					<a onclick="javascript:history.back(-1);" class="returnpage">返回上一页</a>
+					<div class="c_l"></div>
+				</div>
+				<div class="aui-form-btn">
+					<button class="aui-btn" id="forgotpass" type="button">确认提交</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{include file='common/footer'}
+

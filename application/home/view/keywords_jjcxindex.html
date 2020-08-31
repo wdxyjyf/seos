@@ -1,0 +1,80 @@
+﻿<!--
+ * @Date: 2020-01-13 13:44:00
+ * @LastEditors  : 孙宏俊
+ * @LastEditTime : 2020-01-13 14:16:41
+ -->
+{include file='common/head'}
+<!-- 搜索框-->
+<section class="products">
+  <input type="hidden" class="stopquery" value="{$stop?:''}">
+	<div class="container">
+		<div class="search">
+        <!-- <form action="/comres" method="get"> -->
+  			<input type="text" class="selinput" placeholder="请输入关键词进行竞价查询" spellcheck="false">
+  			<button class="search-btn" id="selectres" type="button">立即查询</a></button>
+        <!-- </form> -->
+		</div>
+	</div>
+</section>
+<!-- 内容 -->
+<div class="sousuo">
+  <div class="paiming">
+    <ul class="pmt pmt1" style="border: none;">
+      <div class="gun"></div>
+      <p><strong>热门关键词</strong></p>
+      <a href="#" id="fenx"><img src="/static/home2/images/share.png"></a>
+      <div class="c_l"></div>
+    </ul>
+    <table class="pmddd">
+      <tr class="tabtit">
+        <th width="80px;">排名</th>
+        <th >关键词</th>
+        <th >PC端推荐价格</th>
+        <th >移动端推荐价格</th>
+        <th >相关网站数量</th>
+        <th >竞价公司数量</th>
+        <th >难度</th>
+        <th >是否高质量词</th>
+      </tr>
+      <tbody id="content">
+      {foreach $list as $key=>$pvvo}
+      <tr>
+        <td>{$key+1}</td>
+        <td><a href="/compete/{$pvvo.keyword|urlsafe_b64encode}" class="keyimg">{$pvvo.keyword|subtext}</a></td>
+        <td>{$pvvo.recommendPricePc}</td>
+        <td>{$pvvo.recommendPriceMobile}</td>
+        <td><a href="/findsites/{$pvvo.keyword|urlsafe_b64encode}">{$pvvo.xgnum}</a></td>
+        <td>{$pvvo.competition}</td>
+        <td>
+          {between name="$pvvo.competition" value="0,10"}
+            <button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal simple">简单</button>
+          {/between}
+          {between name="$pvvo.competition" value="11,20"}
+            <button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-warm same">一般</button>
+          {/between}
+          {if $pvvo.competition > 20} 
+            <button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger diffcult">困难</button>
+          {/if}
+        </td>
+        {if $pvvo.showReasons == ''} 
+        <td><button class="layui-btn  layui-btn-sm layui-btn-normal">否</button></td>
+        {else /} 
+        <td><button class="layui-btn  layui-btn-sm istrue">是</button></td>
+        {/if}
+      </tr>
+      {/foreach}
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- 介绍 -->
+<div class="js">
+  <div class="kj">
+    <div class="gun"></div>
+    <h1>工具简介</h1>
+    <h2>竞价关键词查询工具，通过工具挖掘功能，可以挖掘关键词的竞价价格，竞价公司数量，难度以及是否高质量关键词词；为企业网站优化提供更有力的参考</h2>
+  </div>
+  {include file='common/footnav'}
+</div>
+<!-- 底部 -->
+{include file='common/footer'}

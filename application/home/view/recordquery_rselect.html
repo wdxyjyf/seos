@@ -1,0 +1,57 @@
+﻿{include file='common/head'}
+<!-- 搜索框-->
+<section class="products">
+  <input type="hidden" class="stopquery" value="{$stop?:''}">
+  <div class="container">
+    <div class="search">
+      <!-- <form action="/beian" method="get"> -->
+        <input type="text"  class="beianurl" placeholder="请输入要查询备案的网址" spellcheck="false">
+        <a href="/beians"><span class="plbaselect">批量查询</span></a>
+        <button class="search-btn" id="selecturl" type="button">立即查询</button>
+      <!-- </form> -->
+    </div>
+  </div>
+</section>
+<!-- 最近查询 -->
+<div class="zjbeianbox">
+  <span class="zjtit">最近查询:</span>
+  {foreach $list as $key=>$value}
+  <span class="balist"><a href="/beian/{$value.website_url}" class="beianone">{$value.website_url}</a></span>
+  {/foreach}
+</div>
+<!-- 简介 -->
+<div class="js">
+  <div class="kj">
+    <div class="gun"></div>
+    <h1>工具简介</h1>
+    <h2>网站备案信息查询，实时查询网站备案，更新ICP备案信息</h2>
+    <p>----查询网站ICP备案信息，个人备案信息，企业备案信息，备案时间查询;支持批量查询功能</p>
+    <p>----若没查到备案数据，可能需要几秒钟缓存，请稍等重试</p>
+    <p>----如有异常请联系管理人员。</p>
+  </div>
+  {include file='common/footnav'}
+</div>
+<!-- 底部 -->
+<div class="footer">
+  <div class="ft footcont2">
+    <ul class="ftt">
+      <p>友情链接：</p>
+      {volist name="linkList" id="vo"}
+        <li><a href="{$vo.url}" target="_blank">{$vo.title}</a><span>|</span></li>
+      {/volist}
+    </ul>
+    <div class="c_l"></div>
+    <div class="fttt">
+      <p>© CopyRight 2019 南京白鸥网络技术有限公司  </p>
+      <h2><a href="http://www.beian.miit.gov.cn/"> 苏ICP备17006137号-3</a></h2>
+      <h2 class="footabout"><a href="/contact"> 联系我们</a></h2>
+      <h2 class="footabout"><a href="/about"> 关于我们</a></h2>
+      <h2 class="footabout"><a href="/agreement"> 使用协议</a></h2>
+      <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=badeb4d7a314531403d2a395623f3bd0b5b48e8542ecac260f0530356a957fdc" style="margin-left:20px;"><img border="0" src="/static/home2/images/qq2.png" alt="搜一搜站长工具" title="搜一搜站长工具" width="25px" height="25px"></a>
+      <div class="c_l"></div>
+    </div>
+  </div>
+  {$config['cnzz']|raw}
+</div>
+</body>
+</html>

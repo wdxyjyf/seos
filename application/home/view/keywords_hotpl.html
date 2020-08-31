@@ -1,0 +1,69 @@
+﻿{include file='common/head'}
+<!-- 搜索框-->
+<input type="text" style="opacity:0;position:absolute;" value="搜一搜站长工具，大数据关键词挖掘，免费网站关键词排名监控，邀请注册即可获得VIP 会员！{$Think.session.yqurl}" id="fuzhi">
+<section class="plkey">
+	<div class="plkeyrq" >
+		<div class="keytou">
+			<div class="gunun"></div>
+			<p><strong>关键词热度批量查询</strong></p>
+			<div class="c_l"></div>
+		</div>
+		<form action="#" method="post">
+			<textarea name="plhotkey" class="keysearch" placeholder="批量查询格式为: 一行一个关键字,回车为一行&#10;&#10;一次最多可提交{$keyword_plsubmit}条&#10;&#10;VIP权限享有更高权限"></textarea>
+			<button class="keytj" id="subplhot" type="button">确认提交搜索</button>
+		</form>
+		<div class="c_l"></div>
+		<input type="hidden" class="hotpl" data-submit="{$keyword_plsubmit}" data-dgorder="{$dgorder}">
+	</div>
+</section>
+<div class="sousuo">
+  <div class="paiming">
+    <ul class="pmt hideline">
+      <div class="gun"></div>
+      <p><strong id='tit'>{$tit}</strong></p>
+      <a id="daochu" href="javascript:;" style="display: none;margin-top: 20px"><img src="/static/home2/images/dc.png"><span>导出数据 </span></a>
+      <form action="/export2excel" id="daochuForm" method="post">
+        <input type="hidden" name="title" value="批量关键词查询导出">
+        <input type="hidden" name="point">
+        <input type="hidden" name="shuju">
+      </form>
+      <a href="#" id="fenx"><img src="/static/home2/images/share.png"></a>
+      <div class="c_l"></div>
+    </ul>
+    <div id="result"></div>
+    <table class="pmddd">
+		<tr class="tabtit">
+        	<th width="15%;">关键词</th>
+			<th class="zhousl">周搜索量<img src="/static/home2/images/desc.png" class="order hide"></th>
+			<th class="zhousl">周PC搜索量<img src="/static/home2/images/desc.png" class="order hide"></th>
+			<th class="zhousl">周移动搜索量<img src="/static/home2/images/desc.png" class="order hide"></th>
+			<th class="zhousl">日搜索量<img src="/static/home2/images/desc.png" class="order hide"></th>
+			<th class="zhousl">PC日搜索量<img src="/static/home2/images/desc.png" class="order hide"></th>
+			<th class="zhousl">移动日搜索量<img src="/static/home2/images/desc.png" class="order hide"></th>
+		</tr>
+		<tbody id='tbody'>
+			{foreach $list as $key=>$pvvo}
+			<tr>
+			   	<td title="{$pvvo.keyword}"><a href="/keyword/{$pvvo.keyword|urlsafe_b64encode}" class="keyimg">{$pvvo.keyword|subtext=8}</a></td>
+		        <td>{$pvvo.averagePv}</td>
+		        <td>{$pvvo.averagePvPc}</td>
+		        <td>{$pvvo.averagePvMobile}</td>
+		        <td>{$pvvo.averageDayPv}</td>
+		        <td>{$pvvo.averageDayPvPc}</td>
+		        <td>{$pvvo.averageDayPvMobile}</td>
+			</tr>
+			{/foreach}
+		</tbody>
+    </table>
+  </div>
+</div>
+{if ($ad)}
+<div class="ad">
+    <a href="{$ad.url}"><img src="{$ad.pic}" title="{$ad.title}"></a>
+</div>
+{/if}
+<!-- 介绍 -->
+<div class="js">
+  {include file='common/footnav'}
+</div>
+{include file='common/footer'}

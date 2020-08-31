@@ -1,0 +1,62 @@
+﻿{include file='common/head'}
+<!-- 搜索框-->
+<section class="products">
+  <input type="hidden" class="stopquery" value="{$stop?:''}">
+	<div class="container">
+		<div class="search">
+        <!-- <form action="/relar" method="get" > -->
+  			<input type="text" class="selinput" placeholder="请输入长尾词进行挖掘">
+  			<button class="search-btn" id="selectres" type="button">立即查询</a></button>
+        <!-- </form> -->
+		</div>
+	</div>
+</section>
+<!-- 内容 -->
+<div class="sousuo">
+  <div class="paiming" style="padding-bottom: 5px;">
+    <ul class="pmt hideline">
+      <div class="gun"></div>
+      <p><strong>热门长尾词</strong></p>
+      <a href="#" id="fenx"><img src="/static/home2/images/share.png"></a>
+      <div class="c_l"></div>
+    </ul>
+    <table class="pmddd">
+      <tr class="tabtit">
+        <th width="90px;">排名</th>
+        <th width="120px;">相关词</th>
+        <th >周搜索量</th>
+        <th >周PC搜索量</th>
+        <th >周移动搜索量</th>
+        <th>日搜索量</th>
+        <th >PC日搜索量</th>
+        <th >移动日搜索量</th>
+      </tr>
+      <tbody id="content">
+      {foreach $list as $key=>$pvvo}
+      <tr>
+        <td><div class="sort sort{$key+1}">{$key+1}</div></td>
+        <td title="{$pvvo.keyword}"><a href="/related/{$pvvo.keyword|urlsafe_b64encode}" class="keyimg">{$pvvo.keyword|subtext=7}</a></td>
+        <td>{$pvvo.averagePv}</td>
+        <td>{$pvvo.averagePvPc}</td>
+        <td>{$pvvo.averagePvMobile}</td>
+        <td>{$pvvo.averageDayPv}</td>
+        <td>{$pvvo.averageDayPvPc}</td>
+        <td>{$pvvo.averageDayPvMobile}</td>
+      </tr>
+      {/foreach}
+    </tbody>
+    </table>
+  </div>
+</div>
+<!-- 介绍 -->
+<div class="js">
+  <div class="kj">
+    <div class="gun"></div>
+    <h1>工具简介</h1>
+    <h2>精准相关词挖掘工具，通过工具挖掘功能，可以挖掘用户经常搜索的关键词，适合长尾词挖掘，为企业网站优化提供参考</h2>
+    <p>----【相对于关键词查询来说，更加精准知道客户所喜欢搜索的关键词,无关键词限制，数量导出量比较高，涉及范围比较广，长尾词比较多。】</p>
+  </div>
+  {include file='common/footnav'}
+</div>
+<!-- 底部 -->
+{include file='common/footer'}

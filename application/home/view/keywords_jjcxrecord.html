@@ -1,0 +1,163 @@
+﻿{include file='common/head'}
+<!-- 搜索框-->
+<section class="products">
+	<div class="container">
+		<div class="search">
+      <input type="hidden" class="hotall" data-kw="{$kw}" data-on="{$on}" data-ontwo="{$on2}"> 
+     <!--  <form action="/comres" method="get"> -->
+  			<input type="text" placeholder="请输入关键词进行竞价查询" class="jjcxkeywords" spellcheck="false" value="{$kw?:''}">
+  			<button class="search-btn" id="selecthot" type="button">立即搜索</button>
+      <!-- </form> -->
+		</div>
+	</div>
+</section>
+<div class="keyjb">
+  <div class="kejb">
+    <div class="keytou">
+       <div class="gunun"></div>
+       <p class="resp" style="color: #333"><strong><font color="#423da1">{$kw} </font>关键词竞价查询结果</strong></p>
+       <div class="c_l"></div>
+    </div>
+    <table class="pmaaa uniquetab hottab">
+      <tr>
+        <th>关键词</th>
+        <th>PC端推荐价格</th>
+        <th>移动端推荐价格</th>
+        <th>相关网站数量</th>
+        <th>竞价公司数量</th>
+        <th>难度</th>
+        <th>是否高质量词</th>
+      </tr>
+      <tr class="reslist">
+        <td>{$kw}</td>
+        {if $on}
+	        {if $jjlist.recommendPricePc}
+	        <td>{$jjlist.recommendPricePc}</td>
+	        {else /}
+	        <td><img src="/static/home2/images/wh2.png" title="暂无数据"></td>
+	        {/if}
+        {else/}
+        	<td id="pcjg"><img src="/static/home2/images/loading.gif"></td>
+        {/if}
+      
+        {if $on}
+	        {if $jjlist.recommendPriceMobile}
+	        <td>{$jjlist.recommendPriceMobile}</td>
+	        {else /}
+	        <td><img src="/static/home2/images/wh2.png" title="暂无数据"></td>
+	        {/if}
+        {else/}
+        	<td id="ydjg"><img src="/static/home2/images/loading.gif"></td>
+        {/if}
+        <td id="xgnum"><a href="/findsites/{$kw|urlsafe_b64encode}">{$jjlist.xgnum}</a></td>
+
+        {if $on}
+	        {if $jjlist.competition}
+	        <td>{$jjlist.competition}</td>
+	        {else /}
+	        <td><img src="/static/home2/images/wh2.png" title="暂无数据"></td>
+	        {/if}
+        {else/}
+        	<td id="jgsl"><img src="/static/home2/images/loading.gif"></td>
+        {/if}
+        
+        {if $on}
+	        {if $jjlist.competition}
+		        <td>
+		          {between name="$jjlist.competition" value="0,5"}
+		            <button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal simple">简单</button>
+		          {/between}
+		          {between name="$jjlist.competition" value="6,10"}
+		            <button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-warm same">一般</button>
+		          {/between}
+		          {if $jjlist.competition > 10} 
+		            <button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger diffcult">困难</button>
+		          {/if}
+		        </td>
+	        {else /}
+	        	<td><img src="/static/home2/images/wh2.png" title="暂无数据"></td>
+	        {/if}
+        {else/}
+        	<td id="jgnd"><img src="/static/home2/images/loading.gif"></td>
+        {/if}
+
+        {if $on}
+        {if $jjlist.showReasons}
+        <td><button class="layui-btn  layui-btn-sm istrue">是</button></td>
+        {else /}
+        <td><button class="layui-btn  layui-btn-sm layui-btn-normal">否</button></td>
+        {/if}
+        {else/}
+        <td id="iszl"><img src="/static/home2/images/loading.gif"></td>
+        {/if}
+
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="sousuo">
+  <div class="paiming">
+    <ul class="pmt pmt1" style="border: none">
+      <div class="gun"></div>
+      <p><strong>相关竞价推荐</strong></p>
+      <a href="#" id="fenx"><img src="/static/home2/images/share.png"></a>
+      <div class="c_l"></div>
+    </ul>
+    {if $on2}
+    <table class="pmaaa pmddd">
+      <tr class="tabtit">
+        <th>关键词</th>
+        <th >PC端推荐价格</th>
+        <th >移动端推荐价格</th>
+        <th >相关网站数量</th>
+        <th >竞价公司数量</th>
+        <th >难度</th>
+        <th >是否高质量词</th>
+      </tr>
+      <tbody id="content">
+        {foreach $jjlistlike as $pvvo}
+        <tr>
+          <td><a href="/compete/{$pvvo.keyword|urlsafe_b64encode}">{$pvvo.keyword2}</a></td>
+          <td>{$pvvo.recommendPricePc}</td>
+          <td>{$pvvo.recommendPriceMobile}</td>
+          <td><a href="/findsites/{$pvvo.keyword|urlsafe_b64encode}">{$pvvo.xgnum}</a></td>
+          <td>{$pvvo.competition}</td>
+          <td>
+           {between name="$pvvo.competition" value="0,5"}
+              <button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal simple">简单</button>
+            {/between}
+            {between name="$pvvo.competition" value="6,10"}
+              <button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-warm same">一般</button>
+            {/between}
+            {if $pvvo.competition > 10} 
+              <button class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger diffcult">困难</button>
+            {/if}
+          </td>
+          {if $pvvo.showReasons == ''} 
+          <td><button class="layui-btn  layui-btn-sm layui-btn-normal">否</button></td>
+          {else /} 
+          <td><button class="layui-btn  layui-btn-sm istrue">是</button></td>
+          {/if}
+        </tr>
+        {/foreach}
+      </tbody>
+    </table>
+    {else/}
+    <table class="pmaaa pmddd">
+      <tr class="tabtit">
+        <th>关键词</th>
+        <th >PC端推荐价格</th>
+        <th >移动端推荐价格</th>
+        <th >竞价公司数量</th>
+        <th >难度</th>
+        <th >是否高质量词</th>
+      </tr>
+      <tbody id="content">
+      </tbody>
+    </table>
+      <img src="/static/home2/images/loading.gif"id="jglist2">
+      <h3 class="record"></h3>
+    {/if}
+  </div>
+</div>
+{include file='common/footer'}

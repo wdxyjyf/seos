@@ -1,0 +1,108 @@
+.products .search-div{
+    margin-top: 60px;
+  }
+  .search-table{
+    margin: 0 auto;
+    width: 99%;
+    height: 50px;
+  }
+  .products .search-div .search-input{
+    height: 100%;
+    font-size: 16px;
+    width: 93%;
+  }
+  .search-table .eng-select:after{
+    margin: 5px 0 5px 8px;
+    content: " ";
+    border: 4px solid transparent;
+    border-top-color: #000000;
+    padding-top: -15px;
+  }
+  .caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 97px;
+    margin-top: 18px;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-top: 4px solid\9;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+  }
+  .search-table tr .pl{
+    background-color: #f2f2f2;
+    border-left: none;
+    cursor: pointer;
+    border: 1px solid #423da1;
+  }
+  .search-table tr .inputtwo{
+    border: 1px solid #423da1;
+    border-right: none;
+    background-color: #fff;
+  }
+  .search-table tr .tdline{
+    border: 1px solid #423da1;
+    background-color: #fff;
+  }
+  .search-table tr .search-btn2{
+    background-color: #423da1;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+  }
+  .search-table tr .xiala{
+    cursor: pointer;
+    position: relative;
+    border-bottom: none;
+     border-top: none;
+     background-color: #f2f2f2;
+      border-left: none;
+  }
+  
+  /*下拉*/
+  .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: -7px;
+      z-index: 999999;
+      display: none;
+      float: left;
+      min-width: 140px;
+      padding: 5px 0;
+      margin: 2px 0 0;
+      font-size: 14px;
+      text-align: left;
+      list-style: none;
+      background-color: #fff;
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box;
+      border: 1px solid #ccc;
+      border: 1px solid rgba(0,0,0,.15);
+      border-radius: 4px;
+      -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+      box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  }
+  .dropdown-menu>li>a {
+      display: block;
+      padding: 3px 20px;
+      clear: both;
+      font-weight: 400;
+      line-height: 1.42857143;
+      color: #333;
+      white-space: nowrap;
+  }
+  .dropdown-menu>li:hover{
+    background-color: #f2f2f2;
+  }
+  .home_icons{background-image: url("../images/home_icon.png"); display: inline-block;}
+
+  .home_icons{width: 97px; height: 35px;}
+  .icon-baidu{background-position: 0 0;}
+  .icon-360{background-position: -100px 0;}
+  .icon-bing{background-position: -200px 0;}
+  .icon-google{background-position: 0 -40px;}
+  .icon-youdao{background-position: -100px -40px;}
+  .icon-sougou{background-position: -200px -40px;}
+  .icon-shenma{background-image: url("../images/shenma.png"); display: inline-block;background-size: 87px 39px;background-repeat:no-repeat;background-position: 0 -3px;}
+  #selectbtn{ border: 1px solid #423da1;}

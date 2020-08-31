@@ -1,0 +1,34 @@
+/*权限*/
+.commonstyle{background: #f0f1f5;border-left:3px solid #504cc1;}
+.authtable tr td span{margin-left: 9px;}
+/* #copyurl{color:#423da1;cursor:pointer;} */
+/*修改资料*/
+.vip_right{float: left;margin-left: 52px;width: 847px;}
+.formedit{margin:50px 0 0 50px;}
+.vip_center h1{width:58px;}
+.inputstyle{margin-top:30px;}
+.inputlable{background: #f0f1f5}
+.editbtn{background: #504cc1}
+/*邀请*/
+.tabtit2{font-size: 14px;line-height: 40px;background: #f5f5f5;border-top:1px solid #ccc;border-bottom:1px solid #ccc;}
+.tabtit3{text-align: center;font-size: 15px;line-height: 100px;}
+.tabtit4{text-align: center;font-size: 14px;line-height: 45px;border-top:1px solid #f0f1f5}
+/*个人信息*/
+.cusName{width: 400px;}
+.cusName p{margin-top:-12px; margin-left:0px;height:35px;line-height: 35px;}
+.cusName .usertime{margin-top:-3px;height:32px;line-height: 32px;}
+.cusName .usertime2{margin-top:-3px;color: #FFA940;height:32px;line-height: 32px;}
+.cusName .usertime3{margin-top:-4px;height:32px;line-height: 32px;}
+.cusName .usertime3 img{width:12px; margin-left:8px;height:12px;line-height: 32px;}
+.userpoint{float:left; width:250px;}
+.userpoint .gunun{margin-top:40px;}
+.userpoint p{background:none; border:none; margin-top:36px;}
+.userpoint h1{margin-top:100px; font-size:50px; color:#423da1}
+/*支付*/
+.inputlable2{background: #f0f1f5;margin-left: 20px;text-align: center;padding: 9px 12px;}
+.inputlable3{margin-left: 30px;line-height: 38px;font-size: 18px;color: #666;}
+
+.cusName .tokentext{color: #504cc1;height:32px;line-height: 32px;}
+#token{cursor: pointer;}
+#tokeninput{opacity:0;position:absolute;}
+.payform{display: none;}

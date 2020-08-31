@@ -1,0 +1,116 @@
+﻿{include file='common/head'}
+<input type="text" style="opacity:0;position:absolute;"
+       value="搜一搜站长工具，大数据关键词挖掘，免费网站关键词排名监控，邀请注册即可获得VIP 会员！{$Think.session.yqurl}" id="fuzhi">
+<!-- 搜索框 -->
+<section class="products">
+    <div class="container">
+        <input type="hidden" class="alldata" data-level="{$level}" data-sort="{$sort}" data-relorder="{$relorder}" data-son="{$on}">
+        <div class="search">
+            <form method="post" id="form">
+                <input type="text" class="selinput" placeholder="请输入长尾词进行挖掘" value="{$kw?$kw:''}">
+                <button class="search-btn" id="selectres" type="button">立即查询</button>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- 内容 -->
+<div class="sousuo">
+    <div class="paiming">
+        <ul class="pmt">
+            <div class="gun"></div>
+            <p><strong><font color="#423da1">{$kw} </font>长尾词查询结果</strong></p>
+            {if count($list)}
+            <a id="daochu" href="javascript:;"><img src="/static/home2/images/dc.png"><span>导出数据</span></a>
+            {/if}
+            <div class="c_l"></div>
+        </ul>
+        {if $on}
+            {if $level == 1 || $level == 2}
+            <table class="pmddd">
+                <tr class="tabtit">
+                    <th width="20%">相关词</th>
+                    <th class="zhousl">周搜索量 <img src="/static/home2/images/desc.png" class="order"></th>
+                    <th class="zhousl">周PC搜索量 <img src="/static/home2/images/desc.png" class="order"></th>
+                    <th class="zhousl">周移动搜索量 <img src="/static/home2/images/desc.png" class="order"></th>
+                    <th class="zhousl">日搜索量 <img src="/static/home2/images/desc.png" class="order"></th>
+                    <th class="zhousl">PC日搜索量 <img src="/static/home2/images/desc.png" class="order"></th>
+                    <th class="zhousl">移动日搜索量 <img src="/static/home2/images/desc.png" class="order"></th>
+                </tr>
+                <tbody id="content">
+                {foreach $list as $pvvo}
+                <tr class="tbodytit">
+                    <td data-info="{$pvvo.keyword|subtext=8}">
+                        <a href='/related/{$pvvo.keyword|urlsafe_b64encode}' class="keyall" title="{$pvvo.keyword2}">{$pvvo.keyword2|subtext=9}</a>
+                        <div class="hover-button">
+                                搜
+                            <div>
+                                <ul>
+                                    <li><a target="_blank" href="http://www.baidu.com/baidu?word={$pvvo.keyword}">查百度</a></li>
+                                    <li><a target="_blank" href="/dig/{$pvvo.keyword|urlsafe_b64encode}">挖相关词</a></li>
+                                    {if (mb_strlen($pvvo.keyword, 'utf8')<=5)}
+                                    <li><a target="_blank" href="/findsites/{$pvvo.keyword|urlsafe_b64encode}">相关网站</a></li>
+                                    {/if}
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="color:#504cc1;">{$pvvo.averagePv}</td>
+                    <td>{$pvvo.averagePvPc}</td>
+                    <td>{$pvvo.averagePvMobile}</td>
+                    <td>{$pvvo.averageDayPv}</td>
+                    <td>{$pvvo.averageDayPvPc}</td>
+                    <td>{$pvvo.averageDayPvMobile}</td>
+                </tr>
+                {/foreach}
+                </tbody>
+            </table>
+            {else /}
+            <div class="rulebox">
+                <p class="onep">
+                    您当前级别不能查看到该数据！
+                </p>
+                <p class="twop">
+                    您可以提升级别来获取查看权限
+                </p>
+                <a class="vipanniu" href="/authlist"  target="_blank">
+                    <span>
+                        升级VIP
+                    </span>
+                </a>
+            </div>
+            {/if}
+            {if $list}
+            <div class="pagestyle">
+                {$list->render()|raw}
+                <form action="/related" id="relForm" method="post">
+                    <input type="hidden" name="page">
+                    <input type="hidden" name="sort">
+                </form>
+            </div>
+            {/if}
+
+        {else /}
+      <!--   <table class="pmddd">
+            <tr class="tabtit">
+                <th>相关词</th>
+                <th>周搜索量</th>
+                <th>周PC搜索量</th>
+                <th>周移动搜索量</th>
+                <th>日搜索量</th>
+                <th>PC日搜索量</th>
+                <th>移动日搜索量</th>
+            </tr>
+        </table> -->
+        <h3 class="record">暂无搜索结果 , 请稍后重试 !</h3>
+        <!-- <img src="/static/home2/images/loading.gif" id="diglist2"> -->
+        {/if}
+    </div>
+</div>
+{if ($ad)}
+<div class="ad">
+    <a href="{$ad.url}"><img src="{$ad.pic}" title="{$ad.title}"></a>
+</div>
+{/if}
+<!-- 底部 -->
+{include file='common/footer'}
+

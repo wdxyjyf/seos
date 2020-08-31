@@ -1,0 +1,74 @@
+{include file='common/head'}
+<!-- 搜索框-->
+<section class="products">
+    <div class="container">
+        <div class="search">
+           <!--  <form action="" id="indexform"> -->
+                <input type="text" list="source" class="website"  placeholder="请输入正确的网站地址" spellcheck="false">
+                <button class="search-btn" id="selectweb" type="button">立即查询</button>
+                <div class="history hide">
+                    <dl>
+                        <dd onclick="save_history($('.website'), this);"> + 保存输入框的网址</dd>
+                        {volist name="save_url" id="vo"}
+                        <dd class="dd_url" data-url="{$vo}"><button>删除</button>{$vo}</dd>
+                        {/volist}
+                    </dl>
+                </div>
+            <!-- </form> -->
+        </div>
+    </div>
+</section>
+<!-- 小导航 -->
+<div class="keywords">
+    <ul class="rank">
+        <li style="margin-left: 70px">
+            <a href="/keyword"><img src="/static/home2/images/hot2.png"><h1>关键词查询</h1></a>
+        </li>
+        <li>
+            <a href="/wyc"><img src="/static/home2/images/excavate2.png"><h1 style="margin-right: 70px">伪原创</h1></a>
+        </li>
+        <li>
+            <a href="/rate"><img src="/static/home2/images/rank2.png"><h1>词频查询</h1></a>
+        </li>
+        <li>
+            <a href="/compete"><img src="/static/home2/images/jingjia.png"><h1>竞价查询</h1></a>
+        </li>
+        <div class="c_l"></div>
+    </ul>
+</div>
+<!-- 广告 -->
+<div class="ad">
+    <ul class="add">
+    {volist name="adList" id="vo"}
+        <li><a href="{$vo.url}" target="_blank"><img src="{$vo.pic}" title="{$vo.title}"></a></li>
+    {/volist}
+        <div class="c_l"></div>
+    </ul>
+</div>
+<!-- 介绍 -->
+<div class="js">
+    <div class="kj">
+        <div class="gun"></div>
+        <h1>工具简介</h1>
+        <h2>搜一搜站长工具集成了众多站长SEO常用查询工具</h2>
+        <h2>批量网站排名查询，网站词频查询，伪原创，关键词挖掘，相关词挖掘，批量收录查询，网站备案查询，网站排名监控等站长工具</h2>
+        <p>----通过输入的网站，该工具自动查询网站的排名信息，为用户提供网站的优化参数调整参考</p>
+        <p>----您可以挖掘高质量的网页MATE信息</p>
+        <p>----通过分析网页关键词热度，对于页面总数字而言，关键词出现的频率越高，关键词热度也就越高</p>
+        <p>----可以检测网站是否存不合理的关键词设置等，并及时作出修改与改进</p>
+    </div>
+    {include file='common/footnav'}
+</div>
+<!-- 底部 -->
+<ul class="ftt">
+    <li><p>友情链接:</p></li>
+    {volist name="linkList" id="vo"}
+    <li><a href="{$vo.url}" target="_blank">{$vo.title}</a><span>|</span></li>
+    {/volist}
+</ul>
+{include file='common/footer'}
+
+
+
+
+

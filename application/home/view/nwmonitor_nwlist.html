@@ -1,0 +1,340 @@
+﻿{include file='common/head'}
+<style>
+.charttable>div{
+    overflow: visible !important;
+}
+</style>
+<div class="nwtop"></div>
+<div class="pmjk-con nwbackgroup">
+    <div class="pmjk">
+        <div class="header-tit">
+            <div class="title">
+                <div class="gun"></div>&nbsp;
+                <h3>当前位置： > <span>网站监控</span></h3>&nbsp;&nbsp;
+                <span class="update-time">更新时间（{$lastDate|date="Y年m月d日H:i:s"}）</span>
+                <ul class="tab-change nwul">
+                    <li class="active add">+添加网站监控</li>
+                    <li class="addpl">+批量添加</li>
+                </ul>
+            </div>
+        </div>
+        <input type="hidden" class="nwtype" val="{$type}">
+        <div class="tabs">
+            <form action="monitor" method="post">
+                <input type="hidden" name="urltype" id="urltype">
+                <ul class="link">
+                    <li class="active">
+                        <a href="/monitor">全部</a>
+                    </li>
+                    <li>
+                        <a href="/monitor/baidupc">百度PC</a>
+                    </li>
+                    <li>
+                        <a href="/monitor/baidum">百度移动</a>
+                    </li>
+                    <li>
+                        <a href="/monitor/haosou">360搜索PC</a>
+                    </li>
+                    <li>
+                        <a href="/monitor/sogoupc">搜狗PC</a>
+                    </li>
+                    <li>
+                        <a href="/monitor/sogoum">搜狗移动</a>
+                    </li>
+                </ul>
+                <div class="search222">
+                    <ul>
+                        <li>
+                            <input placeholder="请输入网站地址" class="from-control" name="searchname" id="searchname"
+                                   spellcheck="false">
+                        </li>
+                        <li>
+                            <button type="button" class="btn blue" id="btnsearch1">搜索</button>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+        <!---->
+        <div class="pmjk">
+            <div class="bodybox">
+                <div class="top">
+                    <div class="col1 text-c">序列号</div>
+                    <div class="col1 text-c" style="width:110px;text-align: left;">网站名称</div>
+                    <div class="col1 text-c" style="width:120px;text-align: left;">网站地址</div>
+                    <div class="col3 text-c" style="width:190px;">监控搜索引擎</div>
+                    <div class="col1 text-c">收录</div>
+                    <div class="col1 text-c">关键词数量</div>
+                    <div class="col3 text-c">总趋势</div>
+                    <div class="col2 text-c">操作</div>
+                </div>
+                {if $on == 0}
+                <h3 class="nullres">暂无监控的网站,快去添加吧</h3>
+                {else /}
+                <div id="tab">
+                    {foreach $list as $v}
+                    <ul class="list-rank" data-id="{$v.id}">
+                        <li>
+                            <div class="col1  text-c"><span class="arr-like2"></span><span class="xulie"></span></div>
+                            <div class="col1  text-c" style="width:110px;text-align: left;" title="{$v.webname}">{$v.webname?$v.webname|subtext=7:'未命名'}</div>
+                            <div class="col1  text-c" style="width:120px;text-align: left;" title="{$v.weburl}">{$v.weburl|subtext=14}</div>
+                            <div class="col3  text-c xiaotu" style="width:190px;">
+                                {foreach $v.type as $k1=>$v1}
+                                {switch($k1)}
+                                {case 百度PC}
+                                <a href="/weblist/baidupc/{$v['id']}"><img src="/static/home2/images/bdpc.png"
+                                                                                     title="百度PC"></a>
+                                {/case}
+                                {case 百度移动}
+                                <a href="/weblist/baidum/{$v['id']}"><img src="/static/home2/images/bdyd.png"
+                                                                                     title="百度移动"></a>
+                                {/case}
+                                {case 360PC}
+                                <a href="/weblist/haosou/{$v['id']}"><img src="/static/home2/images/360.png"
+                                                                                     title="360PC"></a>
+                                {/case}
+                                {case 搜狗PC}
+                                <a href="/weblist/sogoupc/{$v['id']}"><img src="/static/home2/images/sg.png"
+                                                                                     title="搜狗PC"></a>
+                                {/case}
+                                {case 搜狗移动}
+                                <a href="/weblist/sogoum/{$v['id']}"><img src="/static/home2/images/sgyd.png"
+                                                                                     title="搜狗移动"></a>
+                                {/case}
+                                {default/}
+                                暂无：请添加词
+                                {/switch}
+                                {/foreach}
+                            </div>
+                            <div class="col1  text-c">{$v.baidu_include}</div>
+                            <div class="col1  text-c">{$v.num}</div>
+                            <div class="chart-rank col3">
+                                <a href="#">
+                                    <div id="chart-{$v['weburl']}" class="charttable"></div>
+                                </a>
+                            </div>
+                            <div class="col2 text-c">
+                                <a class="addkeyword" data-val="{$v.weburl}" data-id="{$v.id}">添加词</a>
+                                <a class="updateweb" data-val="{$v.weburl}" data-id="{$v.id}">编辑</a>
+                                <a class="delweb" href="javascript:delweblist({$v.id}, '{$type}');">删除</a>
+                            </div>
+                        </li>
+                    </ul>
+                    {/foreach}
+                </div>
+                {/if}
+            </div>
+        </div>
+        <div class="nwwebpage">
+            {$fenye->render()|raw}
+            <form action="" id="monForm" method="post">
+                <input type="hidden" name="page">
+                <input type="hidden" name="navtype">
+            </form>
+        </div>
+    </div>
+</div>
+<div class="nwlist" style="display: none" data-num="{$xuhao}" data-page="{$page}" data-limit="{$limit}" data-nav="{$type}" data-son="{$count}"></div>
+<!--新增网站对话框-->
+<div class="myMask"></div>
+<div class="myDlg">
+    <div class="app-modal-header ">
+        <h3 class="title">
+            添加监控网站
+        </h3>
+        <a class="close" href="javascript:;"><i></i></a>
+    </div>
+    <div class="Dlg-con">
+        <form>
+            <div class="form-item">
+                <ul>
+                    <li class="nwinputlist">
+                        <p>网站名称：</p>
+                        <input type="text" class="form-input nwinput" value="" placeholder="请输入网站名称" name="webname" id="webname">
+                    </li>
+                    <li class="nwinputlist">
+                        <p>网站地址：</p>
+                        <input type="text" class="form-input nwinput" id="webval2" value="" placeholder="请输入网站地址" name="weburl">
+                    </li>
+                </ul>
+            </div>
+            <div class="Dlg-footer">
+                <button type="button" class="btn btn-default guan">关闭</button>
+                <button type="button" class="btn blue okbtn" id="btnsearch2">确定</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="myDlg2">
+    <div class="app-modal-header">
+        <h3 class="title">
+            添加关键字
+        </h3>
+        <a class="close" href="javascript:;"><i></i></a>
+    </div>
+    <div class="Dlg-con">
+        <form method="post" id="formbuit">
+            <div class="form-item">
+                <ul>
+                    <li>
+                        <label>
+                            网站地址：
+                        </label>
+                        <input id='wzdz' type="text" class="form-input" value=""
+                               readonly="readonly">
+                    </li>
+                    <li>
+                        <label>搜索引擎：</label>
+                        <select class="form-input" name="enginetype" id="etval">
+                            <option value="0">请选择</option>
+                            <option value="1" >百度</option>
+                            <option value="2" >360</option>
+                            <option value="3" >搜狗</option>
+                        </select>
+
+                    </li>
+                    <li>
+                        <label>终端类型：</label>
+                        <select class="form-input" name="platform" id="laval">
+                            <option value="0">请选择</option>
+                            <option value="1" >PC</option>
+                            <option value="2" >移动</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label> 关 键 词：</label>
+                        <textarea class="form-input" placeholder="请输入关键词,批量添加为一行一个关键字,回车为一行&#10;一次最多可提交{$countkey}条"
+                             name="dmkeywords" id="keywords"></textarea>
+                    </li>
+                </ul>
+            </div>
+            <div class="Dlg-footer">
+                <button type="button" class="btn btn-default guan">关闭</button>
+                <button type="button" class="btn blue okbtn2">确定</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="myDlgpl">
+    <div class="app-modal-header">
+        <h3 class="title">
+            批量添加网站监控
+        </h3>
+        <a class="close" href="javascript:;"><i></i></a>
+    </div>
+    <div class="Dlg-con">
+        <form method="post" id="formbuitpl">
+            <div class="form-item">
+                <ul>
+                    <li>
+                        <label> 网站地址：</label>
+                        <textarea class="form-input" placeholder="请输入网站地址,批量添加为一行一个网站地址,回车为一行&#10;一次最多可提交{$countall}条"
+                                 name="plurl" id="plurl"></textarea>
+                    </li>
+                </ul>
+            </div>
+            <div class="Dlg-footer">
+                <button type="button" class="btn btn-default guan">关闭</button>
+                <button type="button" class="btn blue" id="pladdurl">确定</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- 底部 -->
+<div class="footer maxfoot">
+    <div class="ft">
+        <div class="c_l"></div>
+        <div class="fttt">
+            <p>© CopyRight 2019 南京白鸥网络技术有限公司  </p>
+            <h2><a href="http://www.beian.miit.gov.cn/"> 苏ICP备17006137号-3</a></h2>
+            <h2 class="footabout"><a href="/contact"> 联系我们</a></h2>
+            <h2 class="footabout"><a href="/about"> 关于我们</a></h2>
+            <h2 class="footabout"><a href="/agreement"> 使用协议</a></h2>
+            <a target="_blank"
+               href="//shang.qq.com/wpa/qunwpa?idkey=badeb4d7a314531403d2a395623f3bd0b5b48e8542ecac260f0530356a957fdc"
+               style="margin-left:20px;"><img border="0" src="/static/home2/images/qq2.png" alt="搜一搜站长工具"
+                                              title="搜一搜站长工具" width="25px" height="25px"></a>
+            <div class="c_l"></div>
+        </div>
+    </div>
+</div>
+{$config['cnzz']|raw}
+<script type="text/javascript">
+    $(function () {
+        var list = {:json_encode($list)}
+
+        $.each(list, function (i, v) {
+            var sevendata = [];
+            $.each(v.type, function (ii, vv) {
+                sevendata.push({
+                    symbol: "none",
+                    name: ii + '前100数量',
+                    type: 'line',
+                    stack: ii + '总量',
+                    data: vv,
+                    smooth: true
+                })
+            })
+            var seventime = v.seventime;
+            drawline(v.weburl, sevendata, seventime);
+        })
+        function drawline(k, sevendata, seventime) {
+            var mylineChart = echarts.init(document.getElementById('chart-' + k));
+            option = {
+                tooltip: {
+                    trigger: 'axis',
+                    confine: true,
+                    textStyle:{
+                        fontSize: 10
+                    }
+                },
+                grid: {
+                    x: '20%',
+                    y: '15%',
+                    x2: '1%',
+                    y2: '25%',
+                },
+                calculable: false,
+                xAxis: [
+                    {
+                        show: false,
+                        type: 'category',
+                        boundaryGap: false,
+                        data: seventime
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                        axisLine: {
+                            show: false
+                        },
+                        splitLine: {    //网格线
+                            lineStyle: {
+                                type: 'dashed'  //设置网格线类型 dotted：虚线   solid:实线
+                            },
+                            show: true //隐藏或显示
+                        },
+                        axisTick: {
+                            show: false
+                        },
+                        axisLabel:{
+                            formatter: function (value) {
+                                return ''
+                            }
+                        }
+
+                    }
+                ],
+                series: sevendata
+            };
+            if (option && typeof option === "object") {
+                mylineChart.setOption(option, true);
+            }
+        }
+    });
+</script>
+</body>
+</html>
+
+	

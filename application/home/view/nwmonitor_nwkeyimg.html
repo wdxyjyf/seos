@@ -1,0 +1,120 @@
+﻿{include file='common/head'}
+<div class="nwtop"></div>
+<div class="pmjk-con nwbackgroup">
+    <div class="pmjk" >
+        <div class="biaoti">当前位置：<a href="/monitor" style="color:blue">网站列表 > </a><a href="/weblist/{$search}/{$dmwebid}" style="color:blue"><span class="baitiurl">{$dmname} ({$name})</span></a> 关键词分析 > 历史排名趋势</div>
+        </br>
+        <div class="pmjk" >
+            <div class="chart-con">
+                <div class="header-tit">
+                    <div class="title">
+                        <div>“{$dmkeywords}”历史排名趋势</div>
+                        <ul class="tab-change">
+                            <li class="active">7天</li>
+                            <li>1个月</li>
+                            <li>3个月</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="echartbox">
+                    <div id="chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var data = {:json_encode($dataarr)};
+    var info = {:json_encode($dataarrinfo)};
+    var dkeyid = {:json_encode($id)};
+    drawline(data,info);
+    function drawline(data,info) {
+        $.each (info, function(i,v) {
+            v = v == 0?"100":v
+            v = v == 101?"101":v
+            info[i] = -v;
+        })
+        var mylineChart = echarts.init(document.getElementById('chart'));
+        option = {
+            title: {
+                text: ''
+            },
+            tooltip: {
+                trigger: 'axis',
+                formatter: function(value){
+                    var datay = value[0]['data'] == "-101"?"100+":-value[0]['data']
+                    return value[0].name+"<br>"+value[0].seriesName+"："+datay
+                }
+            },
+            grid: {
+                x: '6%',
+                y: '6%',
+                x2: '6%',
+                y2: '6%',
+                show:'true',
+            },
+            xAxis: {
+                axisLine:{ // 隐藏X轴
+                    show: false
+                },
+                axisTick:{ // 隐藏刻度线
+                    show: false
+                },
+                boundaryGap : false,
+
+                type : 'category',
+                splitLine: {
+                    show: false
+                },
+                data: data
+            },
+            yAxis: {
+                inverse:false,
+                type: 'value',
+                axisLine:{ // 隐藏X轴
+                    show: false
+                },
+                axisTick:{ // 隐藏刻度线
+                    show: false
+                },
+                axisLabel: {
+                    formatter: function(value){
+                        if (value<=0 && value>=-100) {
+                            return -value
+                        } else if (value == -101) {
+                            return "100+"
+                        }
+                    }
+                }
+            },
+            series: [{
+                name:'排名',
+                type: 'line',
+                stack: '',
+                data: info,
+                smooth: true,
+                symbol: "none"
+            }],
+            color: ["orange"]
+        };
+        if (option && typeof option === "object") {
+            mylineChart.setOption(option, true);
+        }
+    }
+    $(".tab-change li").click(function(){
+　　　　//获取点击的元素给其添加样式，讲其兄弟元素的样式移除
+　　　　$(this).addClass("active").siblings().removeClass("active");
+　　　　//获取选中元素的下标
+　　　　var index = $(this).index();
+　　　　$(this).parent().siblings().children().eq(index).addClass("active")
+　　　　.siblings().removeClass("active");
+        $.post("/home/nwmonitor/webImg", {type:index,dkeyid:dkeyid}, function(res){
+            if(res.code == 1){
+                var xarr = res.xarr;
+                var info = res.xinfo;
+                drawline(xarr, info);
+            }
+        });
+    });
+</script>
+{include file='common/footer'}

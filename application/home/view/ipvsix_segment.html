@@ -1,0 +1,34 @@
+﻿{include file='common/head'}
+<div class="wyc">
+  <div class="wyckj">
+    <form action="" method="post">
+      <ul>
+        <li class="yuanwen">IP段</li>
+        <img src="/static/home2/images/jt.png">
+        <li class="wycwz">可用IP</li>
+        <button class="wyczh" id="changebtn" type="button">立即转换</button>
+        <div class="c_l"></div>
+        <textarea class="wuck" placeholder="IP段输入范例1： 10.0.0.1/24&#10;
+IP段输入范例2： 192.168.0.1-192.168.0.254" name="changecont" spellcheck="false"></textarea>
+        <li class="wuckk">
+          <textarea class="wuck2" disabled="disabled" id="changeval"></textarea>
+        </li>
+        <div class="c_l"></div>
+      </ul>
+    </form>
+  </div>
+</div>
+<!-- 介绍 -->
+<div class="js">
+  <div class="kj">
+    <div class="gun"></div>
+    <h1>本程序用途</h1>
+    <h2>查询IP网关，可用IP数查询，查询IP段可用的IP数目；IP段可用IP数目快速查询，批量查询生成IP</h2> 
+    <p>----IP段输入范例1： 10.0.0.1/24 或 10.0.0.1/26 </p>
+    <p>----IP段输入范例2：192.168.0.1-192.168.0.254</p>
+  </div>
+  {include file='common/footnav'}
+</div>
+<!-- 底部 -->
+{include file='common/footer'}
+

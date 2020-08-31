@@ -1,0 +1,222 @@
+{include file="common/head"/}
+<style type="text/css">
+    span{
+        color: #FF4D4F;
+        display: inline-block;
+        margin-top: 5px;
+    }
+</style>
+<div class="admin-main layui-anim layui-anim-upbit" ng-app="hd" ng-controller="ctrl">
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>{$title}</legend>
+    </fieldset>
+    <form class="layui-form layui-form-pane">
+        <div class="layui-form-item">
+            <label class="layui-form-label">所属会员组</label>
+            <div class="layui-input-4">
+                <input type="hidden" name="groupid" value="{$groupid}">
+                <input type="text" name="" value="{$groupname}" class="layui-input" readonly="readonly">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">价格 /年</label>
+            <div class="layui-input-4">
+                <input type="text" name="price" ng-model="field.price" lay-verify="required" placeholder="输入价格" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">权限描述</label>
+            <div class="layui-input-4">
+                <input type="text" name="description" ng-model="field.description" lay-verify="required" placeholder="输入权限简介" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">关键词</label>
+                <div class="layui-input-inline" style="width: 103px;">
+                    <input type="text" name="keyword_querynum" placeholder="查询次数" autocomplete="off" class="layui-input" ng-model="field.keyword_querynum" lay-verify="required"><span>(查询次数)</span>
+                </div>
+                <div class="layui-form-mid">-</div>
+                <div class="layui-input-inline" style="width: 103px;">
+                    <input type="text" name="keyword_exportnum" placeholder="导出次数" autocomplete="off" class="layui-input" ng-model="field.keyword_exportnum" lay-verify="required"><span>(导出次数)</span>
+                </div>
+                <div class="layui-form-mid">-</div>
+                <div class="layui-input-inline" style="width: 103px;">
+                    <input type="text" name="keyword_shownum" placeholder="展示条数" autocomplete="off" class="layui-input" ng-model="field.keyword_shownum" lay-verify="required"><span>(展示条数)</span>
+                </div>
+                <div class="layui-form-mid">-</div>
+                <div class="layui-input-inline" style="width: 112px;">
+                    <input type="text" name="keyword_plquerynum" placeholder="批量查询次数" autocomplete="off" class="layui-input" ng-model="field.keyword_plquerynum" lay-verify="required"><span>(批量查询次数)</span>
+                </div>
+                <div class="layui-form-mid">-</div>
+                <div class="layui-input-inline" style="width: 152px;">
+                    <input type="text" name="keyword_plsubmit" placeholder="批量查询关键词数量" autocomplete="off" class="layui-input" ng-model="field.keyword_plsubmit" lay-verify="required"><span>(批量查询关键词数量)</span>
+                </div>
+            </div>
+        </div>
+       
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">备案</label>
+                <div class="layui-input-inline" style="width: 103px;">
+                    <input type="text" name="beian_querynum" placeholder="查询次数" autocomplete="off" class="layui-input" ng-model="field.beian_querynum" lay-verify="required"><span>(查询次数)</span>
+                </div>
+                <div class="layui-form-mid">-</div>
+                <div class="layui-input-inline" style="width: 103px;">
+                    <input type="text" name="beian_exportnum" placeholder="导出次数" autocomplete="off" class="layui-input" ng-model="field.beian_exportnum" lay-verify="required"><span>(导出次数)</span>
+                </div>
+                <div class="layui-form-mid">-</div>
+                <div class="layui-input-inline" style="width: 103px;">
+                    <input type="text" name="beian_plquerynum" placeholder="批量查询次数" autocomplete="off" class="layui-input" ng-model="field.beian_plquerynum" lay-verify="required"><span>(批量查询次数)</span>
+                </div>
+                <div class="layui-form-mid">-</div>
+                <div class="layui-input-inline" style="width: 130px;">
+                    <input type="text" name="beian_plsubmit" placeholder="批量查询备案数量" autocomplete="off" class="layui-input" ng-model="field.beian_plsubmit" lay-verify="required"><span>(批量查询备案数量)</span>
+                </div>
+                <div class="layui-form-mid">-</div>
+                <div class="layui-input-inline" style="width: 130px;">
+                    <input type="text" name="beian_maxpage" placeholder="批量查询备案数量" autocomplete="off" class="layui-input" ng-model="field.beian_maxpage" lay-verify="required"><span>(最新备案查看页数)</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">收录查询</label>
+                <div class="layui-input-inline" style="width: 103px;">
+                    <input type="text" name="includ_querynum" placeholder="查询次数" autocomplete="off" class="layui-input" ng-model="field.includ_querynum" lay-verify="required"><span>(查询次数)</span>
+                </div>
+                <div class="layui-form-mid">-</div>
+                <div class="layui-input-inline" style="width: 103px;">
+                    <input type="text" name="includ_exportnum" placeholder="导出次数" autocomplete="off" class="layui-input" ng-model="field.includ_exportnum" lay-verify="required"><span>(导出次数)</span>
+                </div>
+                 <div class="layui-form-mid">-</div>
+                <div class="layui-input-inline" style="width: 103px;">
+                    <input type="text" name="includ_plsubmit" placeholder="提交查询个数" autocomplete="off" class="layui-input" ng-model="field.includ_plsubmit" lay-verify="required"><span>(提交查询数量)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label" style="width: 130px;">关键词查询排名</label>
+                <div class="layui-input-inline" style="width: 103px;">
+                    <input type="text" name="rank_querynum" placeholder="查询次数" autocomplete="off" class="layui-input" ng-model="field.rank_querynum" lay-verify="required"><span>(查询次数)</span>
+                </div>
+                <div class="layui-form-mid">-</div>
+                <div class="layui-input-inline" style="width: 103px;">
+                    <input type="text" name="rank_exportnum" placeholder="导出次数" autocomplete="off" class="layui-input" ng-model="field.rank_exportnum" lay-verify="required"> <span>(导出次数)</span>
+                </div>
+                <div class="layui-form-mid">-</div>
+                <div class="layui-input-inline" style="width: 103px;">
+                    <input type="text" name="rank_plquerynum" placeholder="批量查询次数" autocomplete="off" class="layui-input" ng-model="field.rank_plquerynum" lay-verify="required"> <span>(批量查询次数)</span>
+                </div>
+                <div class="layui-form-mid">-</div>
+                <div class="layui-input-inline" style="width: 140px;">
+                    <input type="text" name="rank_plsubmit" placeholder="批量查询排名数量" autocomplete="off" class="layui-input" ng-model="field.rank_plsubmit" lay-verify="required"><span>(批量查询排名数量)</span>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label" style="width: 130px;">网站监控</label>
+                <div class="layui-input-inline" style="width: 103px;">
+                    <input type="text" name="webmonitorl_urlnum" placeholder="监控网址数量" autocomplete="off" class="layui-input" ng-model="field.webmonitorl_urlnum" lay-verify="required"><span>(监控网址数量)</span>
+                </div>
+                <div class="layui-form-mid">-</div>
+                <div class="layui-input-inline" style="width: 115px;">
+                    <input type="text" name="webmonitor_keynum" placeholder="监控关键词数量" autocomplete="off" class="layui-input" ng-model="field.webmonitor_keynum" lay-verify="required"><span>(监控关键词数量)</span>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">伪原创</label>
+                <div class="layui-input-inline" style="width: 103px;">
+                    <input type="text" name="wyc_times" placeholder="查询次数" autocomplete="off" class="layui-input" ng-model="field.wyc_times" lay-verify="required"><span>(查询次数)</span>
+                </div>
+                <div class="layui-form-mid">-</div>
+                <div class="layui-input-inline" style="width: 115px;">
+                    <input type="text" name="wyc_num" placeholder="最大查询字数" autocomplete="off" class="layui-input" ng-model="field.wyc_num" lay-verify="required"><span>(最大查询字数)</span>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 130px;">词频查询次数</label>
+            <div class="layui-input-2">
+                <input type="text" name="qz_querynum" ng-model="field.qz_querynum" placeholder="词频查询次数" class="layui-input" lay-verify="required">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 120px;">备案排序</label>
+            <div class="layui-input-block">
+                <input type="radio" name="order_beian" ng-model="field.order_beian" ng-checked="field.order_beian==1" ng-value="1" title="有">
+                <input type="radio" name="order_beian" ng-model="field.order_beian" ng-checked="field.order_beian==0" ng-value="0" title="无">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 120px;">排名排序</label>
+            <div class="layui-input-block">
+                <input type="radio" name="order_rank" ng-model="field.order_rank" ng-checked="field.order_rank==1" ng-value="1" title="有">
+                <input type="radio" name="order_rank" ng-model="field.order_rank" ng-checked="field.order_rank==0" ng-value="0" title="无">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 120px;">收录排序</label>
+            <div class="layui-input-block">
+                <input type="radio" name="order_includ" ng-model="field.order_includ" ng-checked="field.order_includ==1" ng-value="1" title="有">
+                <input type="radio" name="order_includ" ng-model="field.order_includ" ng-checked="field.order_includ==0" ng-value="0" title="无">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 120px;">挖掘排序</label>
+            <div class="layui-input-block">
+                <input type="radio" name="order_keydig" ng-model="field.order_keydig" ng-checked="field.order_keydig==1" ng-value="1" title="有">
+                <input type="radio" name="order_keydig" ng-model="field.order_keydig" ng-checked="field.order_keydig==0" ng-value="0" title="无">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 120px;">相关词排序</label>
+            <div class="layui-input-block">
+                <input type="radio" name="order_relate" ng-model="field.order_relate" ng-checked="field.order_relate==1" ng-value="1" title="有">
+                <input type="radio" name="order_relate" ng-model="field.order_relate" ng-checked="field.order_relate==0" ng-value="0" title="无">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn" lay-submit="" lay-filter="submit">{:lang('submit')}</button>
+                <a href="{:url('userGroup')}" class="layui-btn layui-btn-primary">{:lang('back')}</a>
+            </div>
+        </div>
+    </form>
+</div>
+{include file="common/foot"/}
+<script src="/static/common/js/angular.min.js"></script>
+<script>
+    var m = angular.module('hd',[]);
+    m.controller('ctrl',['$scope',function($scope) {
+        $scope.field = '{$info|raw}'!='null'?{$info|raw}:{groupid:'',price:'',description:'',keyword_querynum:'',keyword_exportnum:'',keyword_shownum:'',keyword_plquerynum:'',keyword_plsubmit:'',qz_querynum:'',beian_querynum:'',beian_plquerynum:'',beian_exportnum:'',beian_plsubmit:'',includ_querynum:'',includ_exportnum:'',includ_plsubmit:'',webmonitorl_urlnum:'',webmonitor_keynum:'',rank_querynum:'',rank_plquerynum:'',rank_plsubmit:'',rank_exportnum:'',order_beian:0,order_includ:0,order_relate:0,order_keydig:0,order_rank:0};
+        layui.use(['form', 'layer'], function () {
+            var form = layui.form, $ = layui.jquery;
+            if ($('input[name=price]').val() == '0.00') {
+                $('input[name=price]').attr('readonly', 'readonly')
+            }
+
+            form.on('submit(submit)', function (data) {
+                // 提交到方法 默认为本身
+                var loading = layer.load(1, {shade: [0.1, '#fff']});
+                data.field.id = $scope.field.id;
+                $.post("", data.field, function (res) {
+                    layer.close(loading);
+                    if (res.code > 0) {
+                        layer.msg(res.msg, {time: 1800, icon: 1}, function () {
+                            location.href = res.url;
+                        });
+                    } else {
+                        layer.msg(res.msg, {time: 1800, icon: 2});
+                    }
+                });
+            })
+        });
+    }]);
+</script>

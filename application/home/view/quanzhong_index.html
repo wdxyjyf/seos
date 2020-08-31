@@ -1,0 +1,35 @@
+﻿{include file='common/head'}
+<!-- 搜索框-->
+<section class="products">
+	<div class="container">
+		<div class="search">
+        <form method="post">
+            <input type="text" class="qzweb" name="qzweb" placeholder="请输入网址" autocomplete="off">
+            <input type="text" class="qzkey" placeholder="请输入关键词" autocomplete="off">
+            <button class="search-btn" style="width:180px;" id="selectqz" type="button">立即搜索</button>
+        </form>
+		</div>
+	</div>
+</section>
+<!-- 最近查询 -->
+<div class="zjbeianbox indexym" style="margin-top: 40px;">
+  <span class="zjtit">最新网址查询:</span>
+  {foreach $list as $key=>$value}
+  <span class="balist"><a href="/rate/{$value.website_url}" class="beianone">{$value.website_url}</a></span>
+  {/foreach}
+</div>
+<!-- 介绍 -->
+<div class="js">
+  <div class="kj">
+    <div class="gun"></div>
+    <h1>工具简介</h1>
+    <h2>通过网站的地址，以及关键词计算该网站内容的关键词词频占得权重</h2>
+    <p>----一个非常重要的参数对于搜索引擎优化来说；请适当增加关键词的词频在网页中</p>
+    <p>----可输入内页，栏目页进行查询</p>
+    <p>----默认不输入关键词，则提前网页内容的前20个词频比较高的关键词作为展示</p>
+  </div>
+  {include file='common/footnav'}
+</div>
+<!-- 底部 -->
+{include file='common/footer'}
+

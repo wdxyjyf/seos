@@ -1,0 +1,69 @@
+﻿{include file='common/head'}
+<!-- 搜索框-->
+<input type="text" style="opacity:0;position:absolute;" value="搜一搜站长工具，大数据关键词挖掘，免费网站关键词排名监控，邀请注册即可获得VIP 会员！{$Think.session.yqurl}" id="fuzhi">
+<section class="plkey">
+	<div class="plkeyrq" >
+		<div class="keytou">
+			<div class="gunun"></div>
+			<p class="resp" style="margin-top: 9px;"><strong>域名批量备案查询</strong></p>
+			<div class="c_l"></div>
+		</div>
+    <input type="hidden" class="querypl" data-plsubmit="{$beian_plsubmit}" data-id="{$Think.session.usersid}" data-level="{$Think.session.userinfo.level}" order_beian="{$order_beian}">
+		<form action="" method="post">
+			<textarea name="urlpl" class="keysearch" spellcheck="false" placeholder="输入查询网址&#10;&#10;格式随意，智能识别、提取网址&#10;&#10;一次最多可查询{$beian_plsubmit}个网址&#10;&#10;VIP权限享有更高权限" style="width:75%;"></textarea>
+      <div class="right">
+        <button class="keytj beians-extract" type="button">网址提取</button>
+        <button class="keytj beians-empty" type="button">清 空</button>
+        <button class="keytj" id="subplurl" type="button">提 交</button>
+      </div>
+		</form>
+		<div class="c_l"></div>
+	</div>
+</section>
+<!-- 介绍 -->
+<div class="js">
+  <div class="kj">
+    <div class="gun"></div>
+    <h1>工具简介</h1>
+    <h2>批量网站备案信息查询，实时查询网站备案，更新ICP备案信息</h2>
+    <p>----批量查询网站备案信息，个人备案信息查询，企业备案信息查询，备案时间查询</p>
+    <p>----若没查到备案数据，可能需要几秒钟缓存，请稍等重试</p>
+    <p>----如有异常请联系管理人员。</p>
+  </div>
+  {include file='common/footnav'}
+</div>
+<!-- 结果 -->
+<div id="result" class="plmres"></div>
+<div class="sousuo plmres2">
+  <div class="paiming">
+    <ul class="pmt hideline">
+      <div class="gun"></div>
+      <p><strong>域名批量备案查询结果</strong></p>
+      <a id="daochu" href="javascript:;">
+        <img src="/static/home2/images/dc.png"><span> 导出数据</span>
+        <form action="/export2excel" id="daochuForm" method="post">
+          <input type="hidden" name="title" value="备案批量导出">
+          <input type="hidden" name="point">
+          <input type="hidden" name="shuju">
+        </form>
+      </a>
+      <div class="c_l"></div>
+    </ul>
+    <table class="pmddd">
+      <tr class="tabtit">
+        <th width="2%"></th>
+        <th width="4%">序号</th>
+        <th width="20%">网站域名</th>
+        <th width="25%">备案名称</th>
+        <th width="8%">备案性质<img src="/static/home2/images/desc.png" class="order hide nature_order"></th>
+        <th>备案号</th>
+        <th width="11%">审核时间</th>
+        <th width="13%">缓存时间<img src="/static/home2/images/desc.png" class="order hide time_order">&nbsp;<a href="javascript:;" class="hide order allupdate" style="color:#0d8c21">[更新]</a></th>
+      </tr>
+      <tbody id='content'>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- 底部 -->
+{include file='common/footer'}

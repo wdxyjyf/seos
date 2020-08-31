@@ -1,0 +1,94 @@
+﻿{include file='common/head'}
+<div class="wrap1">
+	<div class="vip_cont c100 clearfix">
+		<!--会员中心 左侧导航-->
+		<div class="fl vip_left vip_magLeft">
+			<dl>
+				<dt>我的账号</dt>
+				<dd>
+					<p class="commonstyle">
+						<a href="/homeuser">账号信息</a>
+					</p>
+					<p>
+						<a href="/edituser">修改资料</a>
+					</p>
+					<p>
+						<a href="/upass">修改密码</a>
+					</p>
+					<p>
+						<a href="/authlist">权限升级</a>
+					</p>
+					<p>
+					<a href="/plist">下载记录</a>
+					</p>
+					<p>
+						<a href="/visit">邀请领VIP</a>
+					</p>
+					<img src="/static/home2/images/vip.png" class="invite">
+				</dd>
+			</dl>
+		</div>
+		<!--会员中心 右侧信息-->
+		<div class="fr vip_right vip_magRight">
+			<div class="vip_center">
+				<h1>基本信息</h1>
+			</div>
+			<div class="cus01">
+				<div class="cusImg">
+					{if $userList.avatar}
+                    <img src="{$userList.avatar}"/>
+                    {elseif $userList.headimgurl}
+                    <img src="{$userList.headimgurl}"/>
+                    {else/}
+                   	<img src="/static/home2/images/customerImg.png" />
+                    {/if}
+				</div>
+				<div class="cusName">
+					<p title="用户手机">{$userList.mobile}</p>
+					<span class="tokentext">API KEY：<font id='token' title='点击复制'>{$userList.token}</font> <a href="/browseapi"><img src="/static/home2/images/ask.png" title="API接口列表"></a></span>
+					<input type="text" value="{$userList.token}" id="tokeninput">
+					<span class="usertime">注册时间：{$userList.reg_time}</span>
+					{if $userList.level == 1}
+					<span class="bdTell usertime">当前用户组：{$userList.title}</span>
+					{else}
+					<span class="bdTell usertime2">当前用户组：{$userList.title}</span>
+					{/if}
+					{if $userList.email}
+					<span class="usertime3">绑定邮箱：已绑定<img src="/static/home2/images/right.png"></span>
+					{else}
+					<span class="usertime3">绑定邮箱：未绑定，<a href="/edituser" style="color: #504cc1">请前往绑定</a></span>
+					{/if}
+				</div>
+				<div class="keytou userpoint">
+					<div class="gunun"></div>
+					<p><strong>我的积分</strong></p>
+					<h1><strong>{$userList.point}</strong></h1>
+					<div class="c_l"></div>
+				</div>
+			</div>
+			<ul class="cus02">
+				<li>
+				<p><span>我的余额</span></p>
+				<span class="numbers">￥{$userList.money}元</span>
+				</li>
+				<li>
+				<p><span>用户组开通时间</span></p>
+				<span class="numbers">{$userList.opentime}</span>
+				</li>
+				<li>
+				<p><span>用户组到期时间</span></p>
+				<span class="numbers">{$userList.endtime}</span>
+				</li>
+			</ul>
+		</div>
+		<div class="c_l"></div>
+	</div>
+</div>
+<div class="cus03">
+	<p class="recom">
+		<span>推广链接:</span><input id="recomUrl" value="{$yqurl}" type="text" disabled><button id="copyurl">复制链接</button>
+	</p>
+</div>
+<div class="c_l"></div>
+{include file='common/footer'}
+

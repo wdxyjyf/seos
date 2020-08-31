@@ -1,0 +1,129 @@
+﻿{include file='common/head'}
+<input type="text" style="opacity:0;position:absolute;"
+       value="搜一搜站长工具，大数据关键词挖掘，免费网站关键词排名监控，邀请注册即可获得VIP 会员！{$Think.session.yqurl}" id="fuzhi">
+<section class="products">
+    <div class="container">
+        <div class="search">
+            <input type="hidden" class="alldata" data-level="{$level}" data-sort="{$sort}" data-dgorder="{$dgorder}">
+            <input type="hidden" class="allpage" data-page="{$page}" data-son="{$on}">
+            <form id="form" method="post" >
+                <input type="text" class="digkeywords" placeholder="请输入相关词进行挖掘" value="{$kw?$kw:''}">
+                <button class="search-btn" id="selectdig" type="button">立即查询</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<div class="sousuo">
+    <div class="paiming">
+        <ul class="pmt">
+            <div class="gun"></div>
+            <p><strong><font color="#423da1">{$kw} </font>相关词挖掘结果</strong></p>
+            {if count($list)}
+            <span id="daochu">
+                <img src="/static/home2/images/dc.png" style="margin-left: 5px;"><span>导出数据 </span>
+            </span>
+            {/if}
+            <div class="c_l"></div>
+        </ul>
+            {if $on}
+                {if $level == 1 || $level == 2}
+                <table class="pmddd">
+                    <tr class="tabtit">
+                        <th width="20%">关键词</th>
+                        <th class="zhousl">周搜索量 <img src="/static/home2/images/desc.png" class="order"></th>
+                        <th class="zhousl">周PC搜索量 <img src="/static/home2/images/desc.png" class="order"></th>
+                        <th class="zhousl">周移动搜索量 <img src="/static/home2/images/desc.png" class="order"></th>
+                        <th class="zhousl">日搜索量 <img src="/static/home2/images/desc.png" class="order"></th>
+                        <th class="zhousl">PC日搜索量 <img src="/static/home2/images/desc.png" class="order"></th>
+                        <th class="zhousl">移动日搜索量 <img src="/static/home2/images/desc.png" class="order"></th>
+                        <th class="zhousl">SEO理由</th>
+                    </tr>
+                    <tbody id='content'>
+                    {foreach $list as $pvvo}
+                    <tr class="tbodytit">
+                        <td data-info="{$pvvo.keyword|subtext=8}">
+                            <a href='/dig/{$pvvo.keyword|urlsafe_b64encode}' class="keyall" title="{$pvvo.keyword2}">{$pvvo.keyword2|subtext=9}</a>
+                            <div class="hover-button">
+                                    搜
+                                <div>
+                                    <ul>
+                                        <li><a target="_blank" href="http://www.baidu.com/baidu?word={$pvvo.keyword}">查百度</a></li>
+                                        <li><a target="_blank" href="/related/{$pvvo.keyword|urlsafe_b64encode}">挖长尾词</a></li>
+                                        {if (mb_strlen($pvvo.keyword, 'utf8')<=5)}
+                                        <li><a target="_blank" href="/findsites/{$pvvo.keyword|urlsafe_b64encode}">相关网站</a></li>
+                                        {/if}
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="color:#504cc1;">{$pvvo.averagePv}</td>
+                        <td>{$pvvo.averagePvPc}</td>
+                        <td>{$pvvo.averagePvMobile}</td>
+                        <td>{$pvvo.averageDayPv}</td>
+                        <td>{$pvvo.averageDayPvPc}</td>
+                        <td>{$pvvo.averageDayPvMobile}</td>
+                        <td>
+                            {if (strstr($pvvo.showReasons, '移动黑马'))}
+                            <div class="list-icon list-icon-move" title="在移动平台上，近期网民关注度热点，竞争程度相对较低的关键词">移</div>
+                            {/if}
+                            {if (strstr($pvvo.showReasons, '周末好词'))}
+                            <div class="list-icon list-icon-week" title="周末搜索量较高，商业价值较高的关键词">周</div>
+                            {/if}
+                            {if (strstr($pvvo.showReasons, '夜间好词'))}
+                            <div class="list-icon list-icon-night" title="夜间搜索量较高，商业价值较高的关键词">夜</div>
+                            {/if}
+
+
+                        </td>
+                    </tr>
+                    {/foreach}
+                    </tbody>
+                </table>
+                {else /}
+                <div class="rulebox">
+                    <p class="onep">
+                        您当前级别不能查看到该数据！
+                    </p>
+                    <p class="twop">
+                        您可以提升级别来获取查看权限
+                    </p>
+                    <a class="vipanniu" href="/authlist"  target="_blank">
+                        <span>
+                            升级VIP
+                        </span>
+                    </a>
+                </div>
+                {/if}
+                {if $list}
+                <div class="pagestyle">
+                    {$list->render()|raw}
+                    <form action="/dig" id="dirForm" method="post">
+                        <input type="hidden" name="page">
+                        <input type="hidden" name="sort">
+                    </form>
+                </div>
+                    {if $maxPage}
+                    <p class="maxPage">当前最多可支持查看<span>{$maxPage}</span>页，更多关键词，请<a href="tencent://message/?uin=30449406&Menu=yes">联系客服</a>！</p>
+                    {/if}
+                {/if}
+            {else /}
+            <style>
+                .ft {
+                    position: fixed;
+                    left: 0;
+                    bottom: 20px;
+                    width: 100%;
+                }
+            </style>
+            <h3 class="record">暂无搜索结果 , 请稍后重试 !</h3>
+            {/if}
+    </div>
+</div>
+{if ($ad)}
+<div class="ad">
+    <a href="{$ad.url}"><img src="{$ad.pic}" title="{$ad.title}"></a>
+</div>
+{/if}
+<!-- 底部 -->
+{include file='common/footer'}

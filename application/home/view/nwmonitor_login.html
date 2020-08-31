@@ -1,0 +1,76 @@
+{include file='common/head'}
+<div class="nwtop"></div>
+<div class="pmjk-con nwbackgroup">
+    <div class="pmjk">
+        <div class="header-tit">
+            <div class="title">
+                <div>网站列表</div>
+            </div>
+        </div>
+        <input type="hidden" class="nwtype" val="{$type}">
+        <div class="tabs">
+            <form action="" method="post">
+                <ul class="link">
+                    <li class="active">
+                        <a href="/webqc?navtype=0">全部</a>
+                    </li>
+                    <li>
+                        <a href="/webqc?navtype=1">百度PC</a>
+                    </li>
+                    <li>
+                        <a href="/webqc?navtype=2">百度移动</a>
+                    </li>
+                    <li>
+                        <a href="/webqc?navtype=3">360搜索PC</a>
+                    </li>
+                    <li>
+                        <a href="/webqc?navtype=5">搜狗PC</a>
+                    </li>
+                </ul>
+                
+                <div class="search222">
+                    <ul>
+                        <li>
+                            <input placeholder="请输入网站地址" class="from-control" name="searchname" id="searchname"
+                                   spellcheck="false">
+                        </li>
+                        <li>
+                            <button type="button" class="btn blue" id="btnsearch1">搜索</button>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+        <!---->
+        <div class="pmjk">
+            <div class="bodybox" style="height: 160px;">
+                <h3 class="nullres">没有登录,请立即登录</h3>
+                <a href="/login" style="margin-left: 492px"><button class="btn blue">立即登录</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 底部 -->
+<div class="footer">
+    <div class="ft" style="margin-top: 350px;">
+       
+        <div class="c_l"></div>
+        <div class="fttt">
+            <p>© CopyRight 2019 南京白鸥网络技术有限公司  </p>
+            <h2><a href="http://www.beian.miit.gov.cn/"> 苏ICP备17006137号-3</a></h2>
+            <h2 class="footabout"><a href="/contact"> 联系我们</a></h2>
+            <h2 class="footabout"><a href="/about"> 关于我们</a></h2>
+            <h2 class="footabout"><a href="/agreement"> 使用协议</a></h2>
+            <a target="_blank"
+               href="//shang.qq.com/wpa/qunwpa?idkey=badeb4d7a314531403d2a395623f3bd0b5b48e8542ecac260f0530356a957fdc"
+               style="margin-left:20px;"><img border="0" src="/static/home2/images/qq2.png" alt="搜一搜站长工具"
+                                              title="搜一搜站长工具" width="25px" height="25px"></a>
+            <div class="c_l"></div>
+        </div>
+    </div>
+</div>
+{$config['cnzz']|raw}
+</body>
+</html>
+
+	

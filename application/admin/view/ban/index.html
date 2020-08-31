@@ -1,0 +1,111 @@
+{include file="common/head"/}
+<div class="admin-main layui-anim layui-anim-upbit">
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>违禁词{:lang('list')}</legend>
+    </fieldset>
+    <div class="demoTable">
+        <div class="layui-inline">
+            <input class="layui-input" name="key" id="key" placeholder="{:lang('pleaseEnter')}关键字">
+        </div>
+        <button class="layui-btn" id="search" data-type="reload">搜索</button>
+        <a href="{:url('index')}" class="layui-btn">显示全部</a>
+        <button type="button" class="layui-btn layui-btn-danger" id="delAll">批量删除</button>
+    </div>
+    <table class="layui-table" id="list" lay-filter="list"></table>
+</div>
+
+<script type="text/html" id="action">
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<!-- <script type="text/html" id="email">
+    {{d.email}}
+    {{# if(d.email && d.email_validated=='0'){ }}
+    (未验证)
+    {{# } }}
+</script> -->
+<script type="text/html" id="topBtn">
+   <a href="{:url('addBan')}" class="layui-btn layui-btn-sm">{:lang('add')}违禁词</a>
+</script>
+<!-- <script type="text/html" id="sex">
+    {{# if(d.sex=='0'){ }}
+    女
+    {{# }else{ }}
+    男
+    {{# } }}
+</script> -->
+{include file="common/foot"/}
+<script>
+    layui.use(['table','form'], function() {
+        var table = layui.table,form = layui.form, $ = layui.jquery;
+        var tableIn = table.render({
+            id: 'ban',
+            elem: '#list',
+            url: '{:url("index")}',
+            method: 'post',
+            toolbar: '#topBtn',
+            page: true,
+            cols: [[
+                {checkbox:true,fixed: true},
+                {field: 'id', title: '{:lang("id")}', width: 80, fixed: true},
+                {field: 'ban', title: '违禁词', width: 300},
+                {field: 'addtime', title: '添加时间', width: 200},
+                {fixed: 'right', title: '操作',width: 150, align: 'center', toolbar: '#action'}
+            ]],
+            limit: 10 //每页默认显示的数量
+        });
+
+        //搜索
+        $('#search').on('click', function() {
+            var key = $('#key').val();
+            if($.trim(key)==='') {
+                layer.msg('{:lang("pleaseEnter")}关键字！',{icon:0});
+                return;
+            }
+            tableIn.reload({ page: {page: 1},where: {key: key}});
+        });
+        table.on('tool(list)', function(obj) {
+            var data = obj.data;
+            if (obj.event === 'del') {
+                layer.confirm('您确定要删除该违禁词吗？', function(index){
+                    var loading = layer.load(1, {shade: [0.1, '#fff']});
+                    $.post("{:url('banDel')}",{id:data.id},function(res){
+                        layer.close(loading);
+                        if(res.code===1){
+                            layer.msg(res.msg,{time:1000,icon:1});
+                            tableIn.reload();
+                        }else{
+                            layer.msg('操作失败！',{time:1000,icon:2});
+                        }
+                    });
+                    layer.close(index);
+                });
+            }
+        });
+        $('body').on('click','#delAll',function() {
+            layer.confirm('确认要删除选中信息吗？', {icon: 3}, function(index) {
+                layer.close(index);
+                var checkStatus = table.checkStatus('ban'); //test即为参数id设定的值
+                var ids = [];
+                $(checkStatus.data).each(function (i, o) {
+                    ids.push(o.id);
+                });
+                if(ids==''){
+                    layer.msg('请选择要删除的违禁词！', {time: 1000, icon: 2});
+                    return false;
+                }
+                var loading = layer.load(1, {shade: [0.1, '#fff']});
+                $.post("{:url('delall')}", {ids: ids}, function (data) {
+                    layer.close(loading);
+                    if (data.code === 1) {
+                        layer.msg(data.msg, {time: 1000, icon: 1});
+                        tableIn.reload();
+                    } else {
+                        layer.msg(data.msg, {time: 1000, icon: 2});
+                    }
+                });
+            });
+        })
+    });
+</script>
+</body>
+</html>

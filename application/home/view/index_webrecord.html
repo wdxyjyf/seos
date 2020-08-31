@@ -1,0 +1,435 @@
+﻿{include file='common/head'}
+<!-- 搜索框-->
+<div class="searchbox">
+    <input type="hidden" id="is_update" value="{$is_update}">
+    <input type="hidden" id="beian_ct" value="{$beian_ct}">
+    <input type="hidden" id="beianinfo_ct" value="{$beianinfo_ct}">
+    <input type="hidden" name="" id="onearr" value="{$onearr}">
+    <input type="hidden" name="" id="urlarr" value="{$urlarr}" data-son="{$on}" data-onthrid="{$on3}" data-slon="{$sldata}">
+    <span date-one="{:strtotime('-1 days')}" date-seven="{:strtotime('-7 days')}" date-month="{:strtotime('-30 days')}" data-key='{$kw?$kw:""}' class="datejh"></span>
+    <section class="products">
+        <div class="container">
+            <div class="search">
+                <!-- <form action="/rankweb" method="get"> -->
+                    <input type="text" list="source" class="website"  placeholder="请输入您需要查询的网站" spellcheck="false" value='{$kw?$kw:""}'>
+                    <button class="search-btn" id="selectweb" type="button">立即查询</button>
+                    <div class="history hide">
+                        <dl>
+                            <dd onclick="save_history($('.website'), this);"> + 保存输入框的网址</dd>
+                            {volist name="save_url" id="vo"}
+                            <dd class="dd_url" data-url="{$vo}"><button>删除</button>{$vo}</dd>
+                            {/volist}
+                        </dl>
+                    </div>
+                <!-- </form> -->
+            </div>
+        </div>
+        
+    </section>
+    <div class="container-bottom">
+        <input type="checkbox" class="is-update" name="is_update"> 更新网页缓存
+    </div>
+
+    <!-- 搜索结果-->
+    <div class="webinf">
+        <ul>
+            <p style="border-bottom:none">域名解析</p>
+            <div class="websj">
+                <li>IP：<span class="url_ip">{$urlip?:'ip获取失败'}</span> <span class="city">
+                    {if $urlcity}
+                    {$urlcity}
+                    {else /}
+                    &nbsp;
+                    {/if}
+                    </span>  
+                </li>
+            </div>
+        </ul>
+        <ul>
+            <p style="border-bottom:none">域名信息</p>
+            <div class="websj">
+                <li>年龄：
+                    <span id="ymd">
+                        {if ($on)}
+                            {if ($weblist['start_time'])}
+                            <span>{$weblist['difftimey']?$weblist['difftimey'].'年':''}{$weblist['difftimem']?$weblist['difftimem'].'月':''}{$weblist['difftimed']?$weblist['difftimed'].'天':''}</span>
+                            <span class="creatime">( 创建于{$weblist['start_timey']}年{$weblist['start_timem']}月{$weblist['start_timed']}日，将于{$weblist['end_timey']}年{$weblist['end_timem']}月{$weblist['end_timed']}日到期 )</span>
+                            {else /}
+                            <img src="/static/home2/images/wh2.png" title="暂无数据" >
+                            {/if}
+                        {else /}
+                        <img src="/static/home2/images/loading.gif" alt="">
+                        {/if}
+                    </span> 
+                </li>
+            </div>
+        </ul>
+        <ul>
+            <p style="border-bottom:none">备案信息</p>
+            <div class="websj">
+                <li>备案号：
+                    {if $on}
+                    {if $weblist['record_num']}
+                    <span><a href="/beian/{$kw}" class="beianhao">{$weblist['record_num']}</a></span>
+                    {else /}
+                    <span ><img src="/static/home2/images/wh2.png" title="暂无数据"></span>
+                    {/if}
+                    {else /}
+                    <span id="bah"><img src="/static/home2/images/loading.gif"></span>
+                    {/if}
+                </li>
+                <li>性质：
+                    {if $on}
+                        {if $weblist['nature']}
+                        <span>{$weblist['nature']}</span>
+                        {else /}
+                        <span><img src="/static/home2/images/wh2.png" title="暂无数据"></span>
+                        {/if}
+                    {else /}
+                    <span id="baxz"><img src="/static/home2/images/loading.gif"></span>
+                    {/if}
+                </li>
+                <li>名称：
+                    {if $on}
+                        {if $weblist['name']}
+                        <span>{$weblist['name']}</span>
+                        {else /}
+                        <span ><img src="/static/home2/images/wh2.png" title="暂无数据"></span>
+                        {/if}
+                    {else /}
+                    <span id="bamc"><img src="/static/home2/images/loading.gif"></span>
+                    {/if}
+                </li>
+            </div>
+        </ul>
+        <ul>
+            <p>网站认证</p>
+            <div class="websj endwebsj">
+                <li>百度信用：
+                    <span>
+                        {if ($on3 && $tkd.jj)}
+                        <img src="/static/home2/images/rz1.png" title="已认证">
+                        {else/}
+                        <img src="/static/home2/images/rz0.png" title="未认证">
+                        {/if}
+                    </span>
+                </li>
+            </div>
+        </ul>
+    </div>
+    <div class="c_l"></div>
+    {if ($ad)}
+    <div class="ad">
+        <a href="{$ad.url}"><img src="{$ad.pic}" title="{$ad.title}"></a>
+    </div>
+    {/if}
+    <!-- 百度预计流量-->
+    <div class="keyjb1">
+        <div class="kejb1" >
+            <table class="pmaaa uniquetab">
+                <tr class="tablenav">
+                    <th>首页位置</th>
+                    <th width="15%">快照时间</th>
+                    <th width="15%">索引</th>
+                    <th width="15%">今日收录</th>
+                    <th width="15%">一周收录</th>
+                    <th width="15%">一月收录</th>
+                    <th width="15%">总收录</th>
+                </tr>
+                <tr id="redlist1" class="tablecont">
+                    <td>
+                    {if $slflarr}
+                    {$slflarr['baidu_index']?:'0'}
+                    {else /}
+                    <img src="/static/home2/images/loading.gif">
+                    {/if}
+                    </td>
+                    <td>
+                    {if $slflarr}
+                    <a href='http://www.baidu.com/s?wd={$onearr}' target='_blank'>{$slflarr['kuanzhao_time']?:0}
+                    </a>
+                    {else /}
+                    <img src="/static/home2/images/loading.gif">
+                    {/if}
+                    </td>
+                    <td>
+                    {if $slflarr}
+                    <span>{$slflarr['index_num']?:0}</span>
+                    {else /}
+                    <img src="/static/home2/images/loading.gif">
+                    {/if}
+                    </td>
+                    <td>
+                    {if $slflarr}
+                    <a href="http://www.baidu.com/s?wd=site:{$onearr}&lm=1&gpc=stf={:strtotime('-1 days')},{:time()}|stftype=1" target='_blank'>{$slflarr['day_num']?:0}</a>
+                    {else /}
+                    <img src="/static/home2/images/loading.gif">
+                    {/if}
+                    </td>
+                    <td>
+                    {if $slflarr}
+                    <a href="http://www.baidu.com/s?wd=site:{$onearr}&lm=7&gpc=stf={:strtotime('-7 days')},{:time()}|stftype=1" target='_blank'>{$slflarr['week_num']?:0}</a>
+                    {else /}
+                    <img src="/static/home2/images/loading.gif">
+                    {/if}
+                    </td>
+                    <td>
+                    {if $slflarr}
+                    <a href="http://www.baidu.com/s?wd=site:{$onearr}&lm=30&gpc=stf={:strtotime('-30 days')},{:time()}|stftype=1" target='_blank'>{$slflarr['mon_num']?:0}</a>
+                    {else /}
+                    <img src="/static/home2/images/loading.gif">
+                    {/if}
+                    </td>
+                    <td>
+                    {if $slflarr}
+                    <a href="http://www.baidu.com/s?wd=site:{$onearr}" target='_blank'>{$slflarr['bd_index_num']?:0}</a>
+                    {elseif $tkd['baidu_include']}
+                    <a href="http://www.baidu.com/s?wd=site:{$onearr}" target='_blank' style="color:#666;">{$tkd['baidu_include']}</a>
+                    {else /}
+                    <img src="/static/home2/images/loading.gif">
+                    {/if}
+                    </td>
+                </tr>
+            </table>
+            <div class="c_l"></div>
+        </div>
+    </div>
+    <!-- 收录/反链信息 -->
+    <div class="keyjb">
+        <div class="kejb">
+            <div class="keytou">
+                <div class="gunun"></div>
+                <p><strong><font color="#333">{$kw} </font>收录/反链信息</strong></p>
+                <div class="c_l"></div>
+            </div>
+            <table class="pmaaa uniquetab">
+                <tr class="tablenav">
+                    <th>搜索引擎</th>
+                    <th width="22%">百度</th>
+                    <th width="22%">好搜</th>
+                    <th width="22%">搜狗</th>
+                    <th width="22%">神马</th>
+                </tr>
+                <tr id="shoulu" class="tablecont">
+                    <td>收录</td>
+                    <td>
+                    {if $slflarr}
+                    <a href="http://www.baidu.com/s?wd=site:{$onearr}" target='_blank'>{$slflarr['bd_index_num']?:0}</a>
+                    {elseif $tkd['baidu_include']}
+                    <a href="http://www.baidu.com/s?wd=site:{$onearr}" target='_blank' style="color:#666;">{$tkd['baidu_include']}</a>
+                    {else /}
+                    <img src="/static/home2/images/loading.gif">
+                    {/if}
+                    </td>
+                    <td>
+                    {if $slflarr}
+                    <a href="http://www.so.com/s?q=site:{$onearr}" target='_blank'>{$slflarr['hao_index_num']?:0}</a>
+                    {else /}
+                    <img src="/static/home2/images/loading.gif">
+                    {/if}
+                    </td>
+                    <td>
+                    {if $slflarr}
+                    <a href="http://www.sogou.com/web?query=site:{$onearr}" target='_blank'>{$slflarr['sougou_index_num']?:0}</a>
+                    {else /}
+                    <img src="/static/home2/images/loading.gif">
+                    {/if}
+                    </td>
+                    <td>
+                    {if $slflarr}
+                    <img src='/static/home2/images/wh2.png' class="wh2" title='暂无数据'>
+                    {else /}
+                    <img src="/static/home2/images/loading.gif">
+                    {/if}
+                    </td>
+                </tr>
+                <tr id="fanlian" class="tablecont">
+                    <td>反链</td>
+                    <td>
+                    {if $slflarr}
+                    <a href="http://www.baidu.com/s?wd=domain:{$onearr}" target='_blank'>{$slflarr['bd_fanlian']?:0}</a>
+                    {else /}
+                    <img src="/static/home2/images/loading.gif">
+                    {/if}
+                    </td>
+                    <td>
+                    {if $slflarr}
+                    <a href="http://www.so.com/s?q={$onearr}" target='_blank'>{$slflarr['hao_fanlian']?:0}</a>
+                    {else /}
+                    <img src="/static/home2/images/loading.gif">
+                    {/if}
+                    </td>
+                    <td> 
+                    {if $slflarr}
+                    <a href="http://www.sogou.com/web?query={$onearr}" target='_blank'>{$slflarr['sougou_fanlian']?:0}</a>
+                    {else /}
+                    <img src="/static/home2/images/loading.gif">
+                    {/if}
+                    </td>
+                    <td>
+                    {if $slflarr}
+                    <img src='/static/home2/images/wh2.png' class="wh2" title='暂无数据'>
+                    {else /}
+                    <img src="/static/home2/images/loading.gif">
+                    {/if}
+                    </td>
+                </tr>
+            </table>
+            <div class="c_l"></div>
+        </div>
+    </div>
+    <!-- 网站标签信息 -->
+    <div class="keyjb">
+        <div class="kejb">
+            <div class="keytou">
+                <div class="gunun"></div>
+                <p><strong>网站标签信息</strong></p>
+                <ul class="tab-change">
+                    <a href="/monitor"><li class="active add">+添加网站监控</li></a>
+                </ul>
+                <div class="c_l"></div>
+            </div>
+            <table class="pmaaa uniquetab">
+                <tr class="tablenav">
+                    <th style="width:140px;">标签</th>
+                    <th style="width:160px;">内容长度</th>
+                    <th style="width:600px;">内容</th>
+                    <th style="width:180px;">优化建议</th>
+                </tr>
+                <tr class="tablecont">
+                    <td>标题 (Title)</td>
+                    <td>80个字符</td>
+                    {if $on3}
+                    {if $tkd['title']}
+                    <td>{:subtext($tkd['title'],50)}</td>
+                    {else /}
+                    <td><img src="/static/home2/images/wh2.png" title="暂无数据"></td>
+                    {/if}
+                    {else /}
+                    <td id="wt"><img src="/static/home2/images/loading.gif"></td>
+                    {/if}
+                    <td>一般不超过80个字符</td>
+                </tr>
+                <tr class="tablecont">
+                    <td>关键词 (Keywords)</td>
+                    <td>5个关键字</td>
+                    {if $on3}
+                    {if $tkd['keyword']}
+                    <td>{:subtext($tkd['keyword'],80)}</td>
+                    {else /}
+                    <td><img src="/static/home2/images/wh2.png" title="暂无数据"></td>
+                    {/if}
+                    {else /}
+                    <td id="wk"><img src="/static/home2/images/loading.gif"></td>
+                    {/if}
+                    <td>一般不超过5个关键词</td>
+                </tr>
+                <tr class="tablecont">
+                    <td>描述 (Description)</td>
+                    <td>150个字符</td>
+                    {if $on3}
+                    {if $tkd['description']}
+                    <td>{:subtext($tkd['description'],80)}</td>
+                    {else /}
+                    <td><img src="/static/home2/images/wh2.png" title="暂无数据"></td>
+                    {/if}
+                    {else /}
+                    <td id="wd"><img src="/static/home2/images/loading.gif" ></td>
+                    {/if}
+                    <td>一般不超过150个字符</td>
+                </tr>
+            </table>
+            <div class="c_l"></div>
+        </div>
+    </div>
+    <!-- 关键词排行 -->
+    <div class="keyjb">
+        <div class="kejb">
+            <div class="keytou">
+                <div class="gunun"></div>
+                <p ><strong>关键词排行</strong></p>
+                <div class="c_l"></div>
+            </div>
+            <table class="pmaaa uniquetab" id="kwlist">
+                {if $on3}
+                {if($kwlist[0]['kw'])}
+                <tr class="tablenav">
+                    <th width="20%">关键字</th>
+                    <th width="16%">搜索量</th>
+                    <th width="16%">相关词数量</th>
+                    <th width="16%">词频 <span class="allssl onequery">[一键查询]</span></th>
+                    <th width="16%">排名 <span class="allcsl onequery">[一键查询]</th>
+                    <th>预计流量 <span class="onequery"></th>
+                </tr>
+                {foreach $kwlist as $k=>$v}
+                <tr class="tablecont">
+                    <td>
+                        <a class="kwa" href="/keyword/{$v.kw2|urlsafe_b64encode}" title="{$v.kw}">{$v.kw|subtext=8}</a>
+                        <div class="hover-button">
+                                搜
+                            <div>
+                                <ul>
+                                    <li><a target="_blank" href="/dig/{$v.kw2|urlsafe_b64encode}">相关词</a></li>
+                                    <li><a target="_blank" href="/related/{$v.kw2|urlsafe_b64encode}">长尾词</a></li>
+                                    {if (mb_strlen($v.kw, 'utf8')<=5)}
+                                    <li><a target="_blank" href="/findsites/{$v.kw2|urlsafe_b64encode}">相关网站</a></li>
+                                    {/if}
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                    <td><a>{$v.sousl}</a></td>
+                    <td><a href="/related/{$v.kw|urlsafe_b64encode}" title="点击查看更多相关数据">{$v.xgnum}</a></td>
+                    <td class="ssl" data-info="{$v.kw}"><a href="/rate/{$kw}/{$v.kw|urlsafe_b64encode}">查询</a></td>
+                    <td class="xgcsl" data-info="{$v.kw}" data-num="{$v.sousl}">查询</td>
+                    <td><img src="/static/home2/images/wh2.png" title="关键词预计流量"></td>
+                </tr>
+                {/foreach}
+                {else /}
+                <tr class="tablenav">
+                    <th>关键字</th>
+                    <th>搜索量</th>
+                    <th>相关词数量</th>
+                    <th>词频</th>
+                    <th>排名</th>
+                    <th>预计流量</th>
+                </tr>
+                {/if}
+                {else /}
+                <tr class="tablenav">
+                    <th>关键字</th>
+                    <th>搜索量</th>
+                    <th>相关词数量</th>
+                    <th>词频</th>
+                    <th>排名</th>
+                    <th>预计流量</th>
+                </tr>
+                {/if}
+            </table>
+            <div class="c_l"></div>
+        </div>
+    </div>
+    <!-- 最近查询 -->
+    <div class="zjbeianbox indexym">
+      <span class="zjtit">更多网站排名查询:</span>
+      {foreach $list as $key=>$value}
+      <span class="balist"><a href="/{$value.website_url}" class="beianone">{$value.website_url}</a></span>
+      {/foreach}
+    </div>
+    <p style="height: 20px;"></p>
+</div>
+<!-- 介绍 -->
+<div class="js">
+    {include file='common/footnav'}
+</div>
+<div class="c_l"></div>
+<!-- 底部 -->
+<ul class="ftt">
+    <li><p>友情链接:</p></li>
+    {volist name="linkList" id="vo"}
+    <li><a href="{$vo.url}" target="_blank">{$vo.title}</a><span>|</span></li>
+    {/volist}
+</ul>
+{include file='common/footer'}
+
+

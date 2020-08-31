@@ -1,0 +1,142 @@
+<?php
+// +----------------------------------------------------------------------
+// | ThinkPHP [ WE CAN DO IT JUST THINK ]
+// +----------------------------------------------------------------------
+// | Copyright (c) 2006~2018 http://thinkphp.cn All rights reserved.
+// +----------------------------------------------------------------------
+// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
+// +----------------------------------------------------------------------
+// | Author: liu21st <liu21st@gmail.com>
+// +----------------------------------------------------------------------
+
+/*Route::get('CLTPHP', function () {
+    return 'hello,CLTPHP!';
+});*/
+return [
+    '__pattern__' => [
+        'website' => '[-\w.]+', //website A~Za-z0-9之间的纯字符串，至少要有一个字符
+        'url'=>'[-\w.]+',
+        'sort'=>'[\w]+',
+        'web' => '[-=\w.]+',
+        'keyword' => '[-=\w.]+',
+        'keywords' => '[-=\w.]+',
+        'key' => '[-=\w.]+',
+        'xgkeyword'=> '[-=\w.]+',
+    ],
+    'admin'=>'/',
+    'seosys'=>'admin/index/index',
+    'getPoint'=>"home/common/getPoint",
+    'export2excel'=>"home/common/export2excel",
+    'exporttype'=>'home/common/daochunum',//用户组导出次数查询
+
+    '/'=>'home/index/index',
+    // 'rankweb'=>'home/index/webrecord',//网址搜索
+
+    'mrank'=>'home/mobilekeywords/mobkeyindex',//移动端关键词排名
+    'mrank/:url/:keyword'=>'home/mobilekeywords/mobkeyrecord',//移动端关键词排名结果
+    'mranks'=>'home/mobilekeywords/mobkeypl',//移动端批量
+    // 'mobiledaochu'=>'home/mobilekeywords/daochu',//导出数据
+
+    'pcrank'=>'home/pckeywords/pckeyindex',//pc端关键词排名
+    'pcrank/:url/:keyword'=>'home/pckeywords/pcrecord',//pc端关键词排名结果
+    'pcranks'=>'home/pckeywords/pckeypl',//pc端批量
+    'pckeypla'=>'home/pckeywords/pckeypla',//pc端批量结果
+    'pckeyplb'=>'home/pckeywords/pckeyplb',//pc端批量结果
+    // 'pcdaochu'=>'home/pckeywords/daochu',//导出数据
+    'rankpc'=>'home/pckeywords/rankpc',//首页查排名
+
+
+    'keyword'=>'home/keywords/hotindex',//关键词热度查询
+    // 'keyresult'=>'home/keywords/hotrecord',//关键词热度查询结果
+    'keyword/:keyword'=>'home/keywords/hotrecord',//关键词热度查询结果
+
+    'keywords'=>'home/keywords/hotpl',//关键词热度批量
+
+
+    'dig'=>'home/keywords/digindex',//关键词挖掘
+    // 'digr'=>'home/keywords/digrecord',//关键词挖掘结果
+    'dig/:keyword'=>'home/keywords/digrecord',//关键词挖掘结果
+    'dgdc'=>'home/keywords/daochu',//关键词挖掘导出
+
+    'related'=>'home/relatedwords/index',//相关词查询
+    'related/:key' =>'home/relatedwords/selectres',//相关词查询结果
+    'relardc'=>'home/relatedwords/daochu',//相关词导出
+    
+    'rate'=>'home/quanzhong/index',//词频权重
+    'rate/:web/[:key]'=>'home/quanzhong/qzrecord',//词频权重结果
+
+    'wyc'=>'home/falseoriginal/index',//伪原创
+    'ipchange'=>'home/ipvsix/change',//ipv6转换
+    'segment'=>'home/ipvsix/segment',//ip转换工具
+
+    'monitor'=>'home/nwmonitor/nwlist',//网站监控
+    'monitor/:navtype'=>'home/nwmonitor/changelist',//网站监控切换
+    'weblist/:search/:webid'=>'home/nwmonitor/nwkeylist',//网站关键字趋势
+    'webimg/:url/:name/:key/:dmid'=>'home/nwmonitor/nwkeyimg',
+    'nwlogin'=>'home/nwmonitor/login',//未登录用户查看网络监控'
+
+    'compete'=>'home/keywords/jjcxindex',//竞价查询
+    'compete/:keywords'=>'home/keywords/jjcxrecord',//竞价查询结果
+
+    'beian'=>'home/recordquery/rselect',//备案查询
+    'beian/:url/[:update]'=>'home/recordquery/urlrecord',//备案查询结果页
+
+    'beians'=>'home/recordquery/urlpl',//备案批量查询
+    'weburlpldaochu'=>'home/recordquery/daochu',//备案批量查询导出
+    'newbeian'=>'home/recordquery/newrecord',//最新备案域名
+
+    'pinyin'=>'home/language/change',//汉字转换
+    'about'=>'home/about/about',//关于我们
+    'contact'=>'home/about/lxwm',//联系我们
+    'agreement'=>'home/about/agreement',//联系我们
+
+    'homeuser'=>'home/users/index',//个人中心
+    'edituser'=>'home/users/editinfo',//修改资料
+    'upass'=>'home/users/editpass',//修改密码
+    'authlist'=>'home/users/auth',//权限升级
+    'visit'=>'home/users/friendlist',//邀请列表
+    'plist/[:page]'=>'home/pointslog/plist',//积分扣除记录
+    'payinfo'=>'home/users/payinfo',//支付详情页
+    'pay'=>'home/users/pay',
+
+    'login'=>'home/login/login',//登录页
+    'register'=>'home/login/register',//注册
+    'findpass'=>'home/login/forgotpass',//找回密码
+    'loginout'=>'home/login/logout',//退出登录
+    'wxregister'=>'home/login/wxregister',//绑定手机号
+    'wechatcode'=>'home/wxfollow/wechatcode',//获取二维码
+    'wxrandcode'=>'home/wxfollow/wxrandcode',//扫描二维码获取用户信息
+    'wxcodeLogin'=>'home/login/wxcodeLogin',//是否绑定手机号
+
+    'a'=>'home/mobilekeywords/a',
+    'b'=>'home/mobilekeywords/b',
+
+    'urlpla'=>'home/recordquery/urlpla',
+    'urlplb'=>'home/recordquery/urlplb',
+    'urlplc'=>'home/recordquery/urlplc',
+
+    'pcincludes'=>'home/recordquery/pcincludes',    // PC端批量查收录
+    'mincludes'=>'home/recordquery/mincludes',    // 移动端批量查收录
+    'putinclude'=>'home/recordquery/putinclude',    // 存redis
+    'getinclude'=>'home/recordquery/getinclude',    // 存redis
+    'aaa'=>'home/recordquery/aaa',    // 存redis
+
+    // 测速
+    'speed'=>'home/speed/index',
+    'speedmap'=>'home/speed/map',
+
+    // Api页面
+    'browseapi'=>'home/users/browseapi',
+    'apiinfo/:aid'=>'home/users/apiinfo',
+    'payapi/:aid'=>'home/users/payapi',
+    'pay2/:aid'=>'home/users/pay2',
+
+    // Api列表
+    'CallAPI/hotrecord'=>'api/keywords/hotrecord',//关键词热度
+    'CallAPI/wyc'=>'api/wyc/wycrecord',//伪原创
+    'CallAPI/beian'=>'api/beian/beian',//备案查询
+    
+    'xgwebexprot'=>'home/keywords/xgwebexprot',//相关网站导出
+    'findsites/:xgkeyword'=>'home/keywords/xgwebsite',//相关网站
+    '/:website'=>'home/index/webrecord',
+];

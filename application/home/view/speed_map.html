@@ -1,0 +1,74 @@
+{include file='common/head'}
+<link href="/static/home2/css/order.css" rel="stylesheet"/>
+<link rel="stylesheet" href="/static/home2/css/alter.css"/>
+<script type="text/javascript" src="/static/home2/js/alert.js"></script>
+<script src="/static/home2/js/echarts.min.js"></script>
+<script src="/static/home2/js/china.js"></script>
+<script type="text/javascript" src="/static/home2/js/speed.js"></script>
+<!-- 搜索框-->
+<section class="products">
+    <div class="container">
+        <input type="hidden" class="speed" data-sign="{$sign}">
+        <div class="search">
+          <form action="/speedmap" method="get">
+            <input type="text" name="website" class="website"  placeholder="请输入正确的网站地址" spellcheck="false" value="{$Think.get.website}">
+            <button class="search-btn" id="selectweb" type="button">立即查询</button>
+          </form>
+        </div>
+    </div>
+</section>
+
+<!-- 介绍 -->
+<div class="js">
+  <div class="map">
+    <div id="left">
+        <table class="pmaaa uniquetab" style="margin:0px auto">
+            <tr class="tbodytit">
+                <th width="7%">排名</th>
+                <th width="">IP</th>
+                <th width="16%">地区</th>
+                <th width="12%">连接时间</th>
+                <th width="12%">下载大小</th>
+                <th width="11%">下载速度</th>
+                <th width="11%">运营商</th>
+                <!-- <th width="13%">域名解析时间</th> -->
+                <th width="11%">总耗时</th>
+            </tr>
+            <tbody id="content" style="overflow:scroll">
+              <tr class="loading">
+                  <td><img src="/static/home2/images/loading.gif" ></td>
+                  <td><img src="/static/home2/images/loading.gif" ></td>
+                  <td><img src="/static/home2/images/loading.gif" ></td>
+                  <td><img src="/static/home2/images/loading.gif" ></td>
+                  <td><img src="/static/home2/images/loading.gif" ></td>
+                  <td><img src="/static/home2/images/loading.gif" ></td>
+                  <td><img src="/static/home2/images/loading.gif" ></td>
+                  <td><img src="/static/home2/images/loading.gif" ></td>
+              </tr>
+            </tbody>
+            
+        </table>
+    </div>
+    <div id="right">
+      <div id='map'></div>
+      <div id='down'>
+        <p class="zanzhu">赞助idc服务商</p>
+        {foreach ($idc as $k=>$v)}
+        {if ($k%2==0)}
+        <span class="down_left">{$v}</span>
+        {else/}
+        <span class="down_right">{$v}</span>
+        {/if}
+        {/foreach}
+      </div>
+    </div>
+    
+  </div>
+    <div class="c_l"></div>
+    {include file='common/footnav'}
+</div>
+{include file='common/footer'}
+
+
+
+

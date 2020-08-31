@@ -1,0 +1,236 @@
+{include file='common/head'}
+<div class="maxbox">
+	<div class="boxtit">
+	    <div class="gun"></div>
+	    <h1><a href="/browseapi" style="color:#423da1;font-weight: bold;">API接口列表</a> > {$api.title}API接口详情</h1>
+	</div>
+	<div class="ssxz">
+		<div class="paiming1">
+			<div class="boxleft">
+				<div class="prodinfo-head">
+	                <div class="view-img z-fl"><img src="{$api.img}" style="height:115px;margin-top:-15px;"></div>
+	                <div class="view-info">
+	                    <div class="prodtitle">
+	                    	<span class="z-fl" style="color:#333;font-weight: bold;font-size: 16px;">{$api.title}</span>
+	                    	<span class="tag">官方提供</span>
+	                    </div>
+	                    <p style="margin-top: 10px;font-size: 13px;color: #666;">描述：{$api.description}</p>
+	                    <div class="datalist">
+	                    	<p>
+	                    		<span>接口状态：<span>正常</span></span>
+		                    	<span style="margin-left: 25px;">付费类型：<span>收费</span></span>
+		                    	<span style="margin-left: 25px;">上架时间：<span>{$api.create_time|date="Y-m-d"}</span></span>
+	                    	</p>
+	                    	<p style="margin-top: 5px;">
+	                    		<span>使用次数：<span>{$timesInfo.total_num-$timesInfo.num}</span></span>
+	                    		<span style="margin-left: 32px;"> 剩余次数：<span>{$timesInfo.num?:0}</span></span>
+	                    		{if ($timesInfo)}
+	                    		<span style="margin-left: 30px;">上次使用时间：<span>{$timesInfo.modify_time|date="Y-m-d"}</span></span>
+	                    		{/if}
+	                    	</p>
+	                    	
+	                    </div>
+	                    <div class="buygroup">
+	                    	<a href="/payapi/{$api.id}" class="buybtn">购买API</a>
+	                    	<span style="color:#888;margin-left:20px">费用: <span style="color:#FF7F00;font-size:8px">￥<span style="font-size:18px">{$api.price}</span></span><span style="font-size:8px;margin:0 10px 0 3px">元/{$api.num}次</span><!-- (<span style="cursor:pointer;color:#2196f3">VIP等级越高、费用越低</span>) --></span> 
+	                    </div>
+	                </div>
+	                <div class="c_l"></div>
+	            </div>
+			</div>
+			<div class="rmpxb" style='display: none;'>
+				<div class="side-box bg-white">
+					<div class="sibox-tit">
+						<div class="gun"></div>
+	    				<h1 style="margin-left: 7%;">API推荐</h1>
+					</div>
+				    <ul class="list-w">
+		                <li class="list-c">
+		                    <a href="/ApiDetails/Whois" class="lcimg z-fl" target="_blank">
+		                        <img src="">
+		                    </a>
+		                    <div class="z-fl fz14"><a href="" class="tit" target="_blank"><strong>Whois查询</strong></a><p class="info">根据域名返回Whoi...</p></div>
+		                </li>
+		                <li class="list-c">
+		                    <a href="/ApiDetails/IP" class="lcimg z-fl" target="_blank">
+		                        <img margin-top:3px;" src="">
+		                    </a>
+		                    <div class="z-fl fz14"><a href="" class="tit" target="_blank"><strong>IP查询</strong></a><p class="info">根据IP返回IP所属...</p></div>
+		                </li>
+		                <li class="list-c">
+		                    <a href="/ApiDetails/Domain" class="lcimg z-fl" target="_blank">
+		                        <img src="">
+		                    </a>
+		                    <div class="z-fl fz14"><a href="" class="tit" target="_blank"><strong>ICP域名备案查询</strong></a><p class="info">根据域名返回查询域名...</p></div>
+		                </li>
+		                <li class="list-c">
+		                    <a href="" class="lcimg z-fl" target="_blank">
+		                        <img src="">
+		                    </a>
+		                    <div class="z-fl fz14"><a href="" class="tit" target="_blank"><strong>网站TDK信息</strong></a><p class="info">根据域名返回网站(标...</p></div>
+		                </li>
+		                <li class="list-c">
+		                    <a href="" class="lcimg z-fl" target="_blank">
+		                        <img src="">
+		                    </a>
+		                    <div class="z-fl fz14"><a href="" class="tit" target="_blank"><strong>综合权重</strong></a><p class="info">根据域名返回所有权重...</p></div>
+		                </li>
+				    </ul>
+				</div>
+			</div>
+			<div class="boxbottom">
+				<div style="padding: 16px;">
+					<ul class="prodinfo-info">
+                        <li><a href="javascript:" class="active"><span>API文档</span></a></li>
+                        <li><a href="javascript:"><span>错误码参照</span></a></li>
+                    </ul>
+				</div>
+				<div class="info info-0">
+					<div class="z-fl">
+						<div class="nbbarc">
+	                        <div class="z-pb3">
+	                            <a href="javascript:">单个调用</a>
+	                        </div>
+	                    </div>
+					</div>
+					<div class="n-api z-fl" >
+	                    <p>接口地址：<a href="javascript:" >{$api.api}</a></p>
+	                    <p>返回格式：<span >JSON</span></p>
+	                    <p>请求方式：<span >GET/POST</span></p>
+	                    <p>请求示例：{$api.example}</p>
+	                    <p>Key说明：请到<a href="/homeuser" style='color:#504cc1;font-weight: bold;'>个人中心</a>获取</p>
+	                    <p>请求参数：</p>
+	                    <table class="intable" style="width:100%;">
+	                        <tbody>
+	                            <tr style="background: #f4ffee">
+	                                <th width="20%" class="z-tc">名称</th>
+	                                <th width="15%" class="z-tc">类型</th>
+	                                <th width="15%" class="z-tc">必填</th>
+	                                <th width="50%" class="z-tc">说明</th>
+	                            </tr>
+	                            <tr>
+	                                <td width="20%">key</td>
+	                                <td width="15%">string</td>
+	                                <td width="15%">是</td>
+	                                <td width="50%">注册时生成的key，可在个人中心查看</td>
+	                            </tr>
+	                            {if $aid == 1}
+	                            <tr>
+	                                <td width="20%">keyword</td>
+	                                <td width="15%">string</td>
+	                                <td width="15%">是</td>
+	                                <td width="50%">需要查询热度的关键词</td>
+	                            </tr>
+	                            {elseif $aid == 2}
+	                            <tr>
+	                                <td width="20%">changearticle</td>
+	                                <td width="15%">string</td>
+	                                <td width="15%">是</td>
+	                                <td width="50%">需要进行伪原创的文章</td>
+	                            </tr>
+	                            {elseif $aid == 2}
+	                            <tr>
+	                                <td width="20%">url</td>
+	                                <td width="15%">string</td>
+	                                <td width="15%">是</td>
+	                                <td width="50%">需要进行伪原创的文章</td>
+	                            </tr>
+	                            {else/}
+	                            {/if}
+	                        </tbody>
+	                    </table>
+	                    <p>返回参数说明：</p>
+	                    <table class="intable z-tc" style="width:100%;">
+	                        <tbody>
+	                            <tr style="background: #f4ffee">
+	                                <th width="35%" class="z-tc">名称</th>
+	                                <th width="15%" class="z-tc">类型</th>
+	                                <th width="50%" class="z-tc">说明</th>
+	                            </tr>
+	                            <tr><td>StateCode</td><td>int</td><td>状态码</td></tr>
+	                            <tr><td>Reason</td><td>string</td><td>状态说明</td></tr>
+	                            <tr><td>Result</td><td>string</td><td>查询结果</td></tr>
+	                            {if $aid == 1}
+	                            <tr><td>keyword</td><td>string</td><td>关键词</td></tr>
+	                            <tr><td>averagePv</td><td>string</td><td>周搜索量</td></tr>
+	                            <tr><td>averagePvPc</td><td>string</td><td>周PC搜索量</td></tr>
+	                            <tr><td>averagePvMobile</td><td>string</td><td>周移动搜索量</td></tr>
+	                            <tr><td>averageDayPv</td><td>string</td><td>日搜索量</td></tr>
+	                            <tr><td>averageDayPvPc</td><td>string</td><td>PC日搜索量</td></tr>
+	                            <tr><td>averageDayPvMobile</td><td>string</td><td>移动日搜索量</td></tr>
+	                            {elseif $aid == 2}
+	                            {elseif $aid == 3}
+	                            <tr><td>website_url</td><td>string</td><td>网站域名</td></tr>
+	                            <tr><td>status_time</td><td>string</td><td>备案审核时间</td></tr>
+	                            <tr><td>record_num</td><td>string</td><td>备案号</td></tr>
+	                            <tr><td>nature</td><td>string</td><td>备案性质</td></tr>
+	                            <tr><td>name</td><td>string</td><td>备案名称</td></tr>
+	                            <tr><td>create_time</td><td>string</td><td>缓存时间</td></tr>
+	                            {else/}
+	                            {/if}
+	                        </tbody>
+	                    </table>
+	                    <p>JSON返回示例：</p>
+<pre style="background-color:#f4ffee;border:1px solid #ededed;padding:10px 15px;line-height:24px;">
+{if $aid == 1}	
+{
+	"StateCode": 1,
+	"Reason": "成功",
+	"Result": {
+		"keyword": "电影天堂",
+		"averagePv": 2155363,
+		"averagePvPc": 1466934,
+		"averagePvMobile": 688429,
+		"averageDayPv": 307909,
+		"averageDayPvPc": 209562,
+		"averageDayPvMobile": 98347
+	}
+}
+{elseif $aid == 2}
+{
+	"StateCode": 1,
+	"Reason": "成功",
+	"Result": {"从海天一色的大海里，能够读懂生命的渺小时，才会彻悟出一幅画作“画龙点睛”的道理。一个灵魂没有了轴心，怎么会晕染开美丽的画面？海面点点的渔船，或远，或近，它们不只是一个点缀的风景，在大海身心的飘摇里完成着生存的使命。日月星辰庇佑了艰辛，没有哪一个人不是在飘摇里靠岸，没有哪一个人不是在劈波斩浪里生还。"}
+}
+{elseif $aid == 3}
+{
+	"StateCode": 1,
+	"Reason": "成功",
+	"Result": {
+		"website_url": "www.seos.vip",
+		"status_time": "2019-01-07 00:00:00",
+		"record_num": "苏ICP备17006137号-3",
+		"nature": "企业",
+		"name": "南京白鸥网络技术有限公司",
+		"create_time": "2019-06-17 18:23:53"
+	}
+}
+{else/}
+{/if}
+</pre>
+                	</div>
+				</div>
+				<div class="info info-1" style="display: none;">
+					<table class="intable" width="91%" style="margin-left: 35px;line-height: 30px;">
+                    <tbody>
+                        <tr style="background: #f4ffee"><th width="20%" class="z-tc">错误代码</th><th width="80%" class="z-tc">说明</th></tr>
+                        <tr><td width="20%">1</td><td width="80%">成功</td></tr>
+                        <tr><td width="20%">10001</td><td width="80%">错误的请求KEY</td></tr>
+                        <tr><td width="20%">10002</td><td width="80%">缺少关键词参数</td></tr>
+                        <tr><td width="20%">10003</td><td width="80%">参数格式不正常</td></tr>
+                        <tr><td width="20%">10004</td><td width="80%">未请求到相关数据</td></tr>
+                        <tr><td width="20%">10005</td><td width="80%">appKey剩余请求次数不足</td></tr>
+                    </tbody>
+                </table>
+				</div>
+				<div class="info info-2" style="display: none;">
+					222
+				</div>
+                <div class="c_l"></div>
+			</div>
+			<div class="c_l"></div>
+		</div>
+	</div>
+</div>
+<div class="c_l"></div>
+{include file='common/footer'}

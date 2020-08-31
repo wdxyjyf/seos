@@ -1,0 +1,39 @@
+﻿{include file='common/head'}
+<!-- 登录注册 -->
+<div class="demo">
+	<div class="demobg"></div>
+	<div class="aui-content-box clearfix">
+		<div class="aui-content-box-fl">
+			<div class="aui-form-header">
+				<div class="aui-form-header-item wxlogin on" >微信登录</div>
+				<div class="aui-form-header-item moblogin">手机号码登录</div>
+			</div>
+			<div id="login_container" style="display: block;text-align: center;">
+				<img src="" class="weixinimg" data-code="" style="display: none;">
+			</div>
+			<div id="login_mobile" style="display: none">
+				<form action="" method="post" id="registform">
+					<div class="aui-form-list">
+						<img src="/static/home2/images/log.png"/>
+						<input type="text" class="aui-input findpass" name="mobile" placeholder="请输入手机号" data-required="required" autocomplete="off" id="lmobile">
+					</div>
+					<div class="aui-form-list">
+						<img src="/static/home2/images/pass.png"/>
+						<input type="password" class="aui-input findpass" name="password" placeholder="请输入密码" data-required="required" autocomplete="off" id="lpass">
+					</div>
+					<div class="aui-form-pwd clearfix">
+						<a href="/register">还没有账号 ? 去注册</a>
+						<!-- <img src="/static/home2/images/wxlogin.png" class="wximg"> -->
+						<a href="/findpass" style="float: left;">忘记密码？</a>
+						<div class="c_l"></div>
+					</div>
+					<div class="aui-form-btn btnlogin">
+						<button class="aui-btn" id="loginbut">登 录</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div style="width: 1080px;height: 80px;"></div>
+{include file='common/footer'}

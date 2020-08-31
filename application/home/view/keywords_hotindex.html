@@ -1,0 +1,154 @@
+﻿{include file='common/head'}
+<!-- 搜索框-->
+<section class="products">
+	<input type="hidden" class="stopquery" value="{$stop?:''}">
+	<div class="container">
+		<div class="search">
+			<!-- <form action="/keyresult" method="get"> -->
+				<input type="text" class="hotkeywords" placeholder="请输入要查询的关键词" spellcheck="false">
+				<span><a href="/keywords">批量查询</a></span>
+				<button class="search-btn" id="selecthot" type="button">立即搜索</button>
+			<!-- </form> -->
+		</div>
+	</div>
+</section>
+<div class="sousuo">
+	<div class="paiming">
+		<ul class="pmt">
+			<div class="gun"></div>
+			<p class="tubiao">
+				<strong>总搜索榜单</strong>
+				<img src="/static/home2/images/wh2.png" title="用户在本站搜索的关键词排行榜">
+			</p>
+			<li class="ssb seing">
+				<strong>搜索榜</strong>
+				<p class="online"></p>
+			</li>
+			<li class="xzc">
+				<strong>新增词</strong>
+				<p class="online2"></p>
+			</li>
+			<img src="/static/home2/images/share.png">
+			<div class="c_l"></div>
+	 	</ul>
+		<div class="pmall">
+			<div class="xianshi">
+				<table>
+			      <tr class="tabnav">
+			        <th width="150px;">排行</th>
+			        <th width="180px;">搜索词</th>
+			        <th>搜索量</th>
+			        <th width="510px"></th>
+			        <th>操作</th>
+			      </tr>
+			      {foreach $list1 as $k=>$pvvo}
+			      <tr class="tabcont">
+			        <td><div class="sort sort{$k+1}">{$k+1}</div></td>
+			        <td align="left" title="{$pvvo.keyword}"><a href="/keyword/{$pvvo.keyword|urlsafe_b64encode}" class="keyimg">{$pvvo.keyword|subtext}</a></td>
+			        <td align="left">{$pvvo.averagePv}</td>
+			        <td><div class='averagePv1' averagePv="{$pvvo.averagePv}"></div></td>
+			        <td align="left"><a href="/keyword/{$pvvo.keyword}" class="keyimg"><img src="/static/home2/images/set.png"></a></td>
+			      </tr>
+			      {/foreach}
+			    </table>
+			</div>
+			
+			<div class="xianshi2">
+				<table>
+			      <tr class="tabnav">
+			        <th width="150px;">排行</th>
+			        <th width="180px;">搜索词</th>
+			        <th>搜索量</th>
+			        <th width="510px"></th>
+			        <th>操作</th>
+			      </tr>
+			      {foreach $list2 as $k=> $pvvo2}
+			      <tr class="tabcont">
+			        <td><div class="sort sort{$k+1}">{$k+1}</div></td>
+			        <td align="left" title="{$pvvo2.keyword}"><a href="/keyword/{$pvvo2.keyword|urlsafe_b64encode}" class="keyimg">{$pvvo2.keyword|subtext}</a></td>
+			        <td align="left">{$pvvo2.averagePv}</td>
+			        <td><div class='averagePv2' averagePv="{$pvvo2.averagePv}"></div></td>
+			        <td align="left"><a href="/keyword/{$pvvo2.keyword}" class="keyimg"><img src="/static/home2/images/set.png"></a></td>
+			      </tr>
+			      {/foreach}
+			    </table>
+				<div class="c_l"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="ssxz">
+	<div class="paiming1">
+		<div class="rmpxb" style="height: 550px">
+			<ul class="pmt pmt3">
+				<div class="gun2"></div>
+				<p class="tubiao2 tubiao">
+					<strong>热门排行榜</strong>
+					<img src="/static/home2/images/wh2.png" title="用户在本站搜索的关键词热门关键词排行">
+				</p>
+				<img src="/static/home2/images/share.png" class="share2">
+				<div class="c_l"></div>
+			</ul>
+			<div class="pmall">
+				<table class="pmddd">
+			      <tr class="tabnav2"> 
+			        <th width="100px;">排行</th>
+			        <th width="150px;">搜索词</th>
+			        <th width="150px;">搜索量</th>
+			      </tr>
+			      {foreach $list3 as $key=>$pvvo3}
+			      <tr class="tabcont">
+			        <td><div class="sort sort{$key+1}">{$key+1}</div></td>
+			        <td title="{$pvvo3.keyword}"><a href="/keyword/{$pvvo3.keyword|urlsafe_b64encode}" class="keyimg">{$pvvo3.keyword|subtext}</a></td>
+			        <td>{$pvvo3.averagePv}</td>
+			      </tr>
+			      {/foreach}
+			    </table>
+			</div>
+		</div>
+		<div class="rmpxb rmpxb2" style="height: 550px">
+			<ul class="pmt pmt3">
+				<div class="gun3"></div>
+				<p class="tubiao3 tubiao">
+					<strong>搜索词排行榜</strong>
+					<img src="/static/home2/images/wh2.png" title="搜索引擎中搜索最热词排行">
+				</p>
+				<img src="/static/home2/images/share.png" class="share2">
+				<div class="c_l"></div>
+			</ul>
+			<div class="pmall">
+				<table class="pmddd">
+			      <tr class="tabnav2">
+			        <th width="100px;">排行</th>
+			        <th width="150px;">搜索词</th>
+			        <th width="150px;">搜索量</th>
+			      </tr>
+			      {foreach $list4 as $key=>$pvvo4}
+			      <tr class="tabcont">
+			        <td><div class="sort sort{$key+1}">{$key+1}</div></td>
+			        <td title="{$pvvo4.keyword}"><a href="/keyword/{$pvvo4.keyword|urlsafe_b64encode}" class="keyimg">{$pvvo4.keyword|subtext}</a></td>
+			        <td>{$pvvo4.averagePv}</td>
+			      </tr>
+			      {/foreach}
+			    </table>
+			</div>
+		</div>
+	<div class="c_l"></div>
+	</div>
+</div>
+<div class="js">
+	<div class="kj">
+	    <div class="gun"></div>
+	    <h1>工具简介</h1>
+	    <h2>关键词搜索工具可查询搜索引擎百度的关键词搜索量；输入搜索的关键词后提交即可；</h2>
+	    <p>----周平均搜索量：一周PC,移动端的关键词平均搜索量之和</p>
+	    <p>----周平均PC搜索量：一周PC端关键词搜索量之和</p>
+	    <p>----周平均移动搜索量：一周移动端关键词搜索量之和</p>
+	    <p>----日平均搜索量：PC端和移动端的关键词搜索量</p>
+	    <p>----周平均PC搜索量：一周PC端关键词搜索量之和</p>
+	    <p>----PC日均搜索量： PC端每日关键词搜索量</p>
+	    <p>----移动日均搜索量： 移动端每日关键词搜索量</p>
+	</div>
+	{include file='common/footnav'}
+</div>
+{include file='common/footer'}
